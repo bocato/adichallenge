@@ -1,0 +1,389 @@
+{
+	"info": {
+		"_postman_id": "6dc6e1d2-ca4a-44db-b262-93cf244f684c",
+		"name": "Initial Data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Product Runner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"{{id}}\",\n    \"name\": \"product\",\n    \"imgUrl\" : \"{{img}}\",\n    \"description\": \"description\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://products:3001/product",
+					"protocol": "http",
+					"host": [
+						"products"
+					],
+					"port": "3001",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product Review",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e462decd-291d-430b-8af0-90e1b43a26b8",
+						"exec": [
+							"pm.environment.set(\"random_number\", _.random(1, 5))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rating\" :  {{random_number}},\n    \"text\" : \"this product is the bestaaaa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://products-review:3002/reviews/{{id}}",
+					"protocol": "http",
+					"host": [
+						"products-review"
+					],
+					"port": "3002",
+					"path": [
+						"reviews",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product Review 2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "881e2c13-5b91-4c2a-b413-e73dca77453c",
+						"exec": [
+							"pm.environment.set(\"random_number\", _.random(1, 5))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rating\" :  {{random_number}},\n    \"text\" : \"Amazing!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://products-review:3002/reviews/{{id}}",
+					"protocol": "http",
+					"host": [
+						"products-review"
+					],
+					"port": "3002",
+					"path": [
+						"reviews",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product Review 3",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "89aeb1ed-df4a-484a-bf36-c82a9b1590d7",
+						"exec": [
+							"pm.environment.set(\"random_number\", _.random(1, 5))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rating\" :  {{random_number}},\n    \"text\" : \"Love it!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://products-review:3002/reviews/{{id}}",
+					"protocol": "http",
+					"host": [
+						"products-review"
+					],
+					"port": "3002",
+					"path": [
+						"reviews",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product Review 4",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c19d23ce-b1f5-4661-af31-29242746cd55",
+						"exec": [
+							"pm.environment.set(\"random_number\", _.random(1, 5))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rating\" :  {{random_number}},\n    \"text\" : \"The best product for the athlete\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://products-review:3002/reviews/{{id}}",
+					"protocol": "http",
+					"host": [
+						"products-review"
+					],
+					"port": "3002",
+					"path": [
+						"reviews",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product Review 5",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0a5c1d73-c60d-48c6-91c9-19ae4d4e247f",
+						"exec": [
+							"pm.environment.set(\"random_number\", _.random(1, 5))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rating\" :  {{random_number}},\n    \"text\" : \"Fantastic!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://products-review:3002/reviews/{{id}}",
+					"protocol": "http",
+					"host": [
+						"products-review"
+					],
+					"port": "3002",
+					"path": [
+						"reviews",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product Review 6",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0a90e77f-32d3-4f64-bc82-2b71394f3819",
+						"exec": [
+							"pm.environment.set(\"random_number\", _.random(1, 5))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rating\" :  {{random_number}},\n    \"text\" : \"high quality!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://products-review:3002/reviews/{{id}}",
+					"protocol": "http",
+					"host": [
+						"products-review"
+					],
+					"port": "3002",
+					"path": [
+						"reviews",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product Review 7",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4fd2e9f2-d31d-41bb-a606-93b6c9203830",
+						"exec": [
+							"pm.environment.set(\"random_number\", _.random(1, 5))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rating\" :  {{random_number}},\n    \"text\" : \"Best tech summit talk!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://products-review:3002/reviews/{{id}}",
+					"protocol": "http",
+					"host": [
+						"products-review"
+					],
+					"port": "3002",
+					"path": [
+						"reviews",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d6658460-3666-4f64-a8a8-bad0fa1a587e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9aa2ad4d-44c5-472b-a81d-7b1b553a431a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
