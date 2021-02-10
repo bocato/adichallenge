@@ -44,17 +44,26 @@ public struct SearchBar: View {
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))
                 .cornerRadius(8)
-                .padding(.horizontal, 10)
+                .padding(.horizontal, 15)
                 .onTapGesture { isEditing = true }
- 
+                .overlay(
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.secondary)
+                            .padding(.horizontal, 20)
+                        Spacer()
+                    }
+                )
+            
             if isEditing {
                 Button(layout.cancelText) {
                     isEditing = false
                     text = ""
                 }
-                .padding(.trailing, 10)
+                .foregroundColor(.secondary)
+                .padding(.trailing, 15)
                 .transition(.move(edge: .trailing))
-                .animation(.default)
+                .animation(.easeInOut)
             }
         }
     }

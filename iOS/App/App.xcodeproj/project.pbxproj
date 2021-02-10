@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E5025E4225D416D600330F10 /* Modules in Frameworks */ = {isa = PBXBuildFile; productRef = E5025E4125D416D600330F10 /* Modules */; };
-		E5025E4325D416D600330F10 /* Modules in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E5025E4125D416D600330F10 /* Modules */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		E5BF31BB25D1543400AF0234 /* AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31BA25D1543400AF0234 /* AppApp.swift */; };
+		E554237025D43B6800192ABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554236F25D43B6800192ABA /* AppDelegate.swift */; };
+		E5658F0225D42BC700DD5EB1 /* Modules in Frameworks */ = {isa = PBXBuildFile; productRef = E5658F0125D42BC700DD5EB1 /* Modules */; };
+		E5658F0325D42BC700DD5EB1 /* Modules in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E5658F0125D42BC700DD5EB1 /* Modules */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		E5BF31BB25D1543400AF0234 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31BA25D1543400AF0234 /* AppMain.swift */; };
 		E5BF31BD25D1543400AF0234 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31BC25D1543400AF0234 /* ContentView.swift */; };
 		E5BF31BF25D1543500AF0234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5BF31BE25D1543500AF0234 /* Assets.xcassets */; };
 		E5BF31C225D1543500AF0234 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5BF31C125D1543500AF0234 /* Preview Assets.xcassets */; };
@@ -41,7 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E5025E4325D416D600330F10 /* Modules in Embed Frameworks */,
+				E5658F0325D42BC700DD5EB1 /* Modules in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,8 +50,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E554236F25D43B6800192ABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5BF31B725D1543400AF0234 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5BF31BA25D1543400AF0234 /* AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppApp.swift; sourceTree = "<group>"; };
+		E5BF31BA25D1543400AF0234 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
 		E5BF31BC25D1543400AF0234 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E5BF31BE25D1543500AF0234 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5BF31C125D1543500AF0234 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -68,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5025E4225D416D600330F10 /* Modules in Frameworks */,
+				E5658F0225D42BC700DD5EB1 /* Modules in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +91,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E554236E25D43B5900192ABA /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF31BA25D1543400AF0234 /* AppMain.swift */,
+				E554236F25D43B6800192ABA /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		E5BF31AE25D1543400AF0234 = {
 			isa = PBXGroup;
 			children = (
@@ -113,7 +124,7 @@
 		E5BF31B925D1543400AF0234 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				E5BF31BA25D1543400AF0234 /* AppApp.swift */,
+				E554236E25D43B5900192ABA /* Application */,
 				E5BF31BC25D1543400AF0234 /* ContentView.swift */,
 				E5BF31BE25D1543500AF0234 /* Assets.xcassets */,
 				E5BF31C325D1543500AF0234 /* Info.plist */,
@@ -173,7 +184,7 @@
 			);
 			name = App;
 			packageProductDependencies = (
-				E5025E4125D416D600330F10 /* Modules */,
+				E5658F0125D42BC700DD5EB1 /* Modules */,
 			);
 			productName = App;
 			productReference = E5BF31B725D1543400AF0234 /* App.app */;
@@ -288,8 +299,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E554237025D43B6800192ABA /* AppDelegate.swift in Sources */,
 				E5BF31BD25D1543400AF0234 /* ContentView.swift in Sources */,
-				E5BF31BB25D1543400AF0234 /* AppApp.swift in Sources */,
+				E5BF31BB25D1543400AF0234 /* AppMain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +471,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocato.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -481,7 +493,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocato.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -611,7 +623,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E5025E4125D416D600330F10 /* Modules */ = {
+		E5658F0125D42BC700DD5EB1 /* Modules */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Modules;
 		};

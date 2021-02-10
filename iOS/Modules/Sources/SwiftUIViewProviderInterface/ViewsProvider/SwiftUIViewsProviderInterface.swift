@@ -14,7 +14,7 @@ public struct EmptyEnvironment {
 /// Defines a contract for the View's Factory related to routes/features.
 /// Usage example:
 /// ```
-/// let viewsProvider: FeatureViewsProviding = FeatureViewsProvider.shared
+/// let viewsProvider: FeatureViewsProviding = SwiftUIViewsProvider.shared
 /// let route: MyViewRoute = .init(
 ///     someParameter: "some value"
 /// )
@@ -41,6 +41,12 @@ public protocol FeatureViewsProviding {
         withInitialFeature feature: Feature.Type,
         environment: Environment
     ) -> UIHostingController<AnyView>
+    
+    /// Builds an `AnyCustomView` with the Main View for the feature.
+    /// - Parameters:
+    ///   - feature: the feature you want to get a Main view from.
+    /// - Returns: An `AnyCustomView`` with the Main View as it's rootView .
+    func rootView(for feature: Feature.Type) -> AnyCustomView
 
     /// Builds a view wrapped by `AnyCustomView` related to a route.
     /// - Parameters:
@@ -53,6 +59,7 @@ public protocol FeatureViewsProviding {
         withContext context: Context,
         environment: Environment
     ) -> AnyCustomView
+    
 }
 public extension FeatureViewsProviding {
     /// Builds a `UIHostingController` with the Main View for the feature.

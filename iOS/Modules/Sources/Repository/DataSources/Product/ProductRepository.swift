@@ -11,7 +11,7 @@ public final class ProductRepository: ProductRepositoryProtocol {
 
     // MARK: - Initialization
 
-    init(
+    public init(
         httpDispatcher: HTTPRequestDispatcherProtocol,
         jsonDecoder: JSONDecoder = JSONDecoder()
     ) {

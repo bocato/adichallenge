@@ -7,8 +7,6 @@ public enum SwiftUIViewProviderError: Error {
 }
 
 public final class SwiftUIViewsProvider: SwiftUIViewsProviderInterface {
-    public static let shared = SwiftUIViewsProvider()
-
     // MARK: - Dependencies
 
     let container: DependenciesContainerInterface
@@ -26,6 +24,10 @@ public final class SwiftUIViewsProvider: SwiftUIViewsProviderInterface {
     ) {
         self.container = container ?? DependenciesContainer()
         self.unavailableViewBuilder = unavailableViewBuilder
+        self.container.register(
+            factory: { self },
+            forMetaType: SwiftUIViewsProviderInterface.self
+        )
     }
 
     // MARK: - Public API
@@ -62,6 +64,15 @@ public final class SwiftUIViewsProvider: SwiftUIViewsProviderInterface {
         .eraseToAnyView()
 
         return UIHostingController(rootView: rootView)
+    }
+    
+    public func rootView(for feature: Feature.Type) -> AnyCustomView {
+        let rootView = feature.buildView(
+            fromRoute: nil,
+            withContext: EmptyViewRouteContext(),
+            environment: EmptyEnvironment()
+        )
+        return rootView
     }
 
     public func customViewForRoute<Environment, Context>(
@@ -106,6 +117,9 @@ public final class SwiftUIViewProviderDummy: SwiftUIViewsProviderInterface {
     public func register(routesHandler: FeatureRoutesHandler) {}
     public func hostingController<Environment>(withInitialFeature feature: Feature.Type, environment: Environment) -> UIHostingController<AnyView> {
         .init(rootView: AnyView(EmptyView()))
+    }
+    public func rootView(for feature: Feature.Type) -> AnyCustomView {
+        .init(erasing: EmptyView())
     }
     public func anyViewForRoute<Environment, Context>(_ route: ViewRoute, withContext context: Context, environment: Environment) -> AnyView {
         .init(EmptyView())

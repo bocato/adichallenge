@@ -4,6 +4,7 @@ import CoreUI
 struct ProductsListView {
     var body: some View {
         // Search
+        
         SearchBar(
             layout: .init(
                 placeholder: "Search",

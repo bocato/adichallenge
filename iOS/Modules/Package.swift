@@ -14,7 +14,7 @@ let package = Package(
             type: .dynamic,
             targets: [
                 // Core Modules
-                "CoreFoundation",
+                "FoundationKit",
                 "CoreUI",
                 "NetworkingInterface",
                 "Networking",
@@ -30,9 +30,13 @@ let package = Package(
     ],
     dependencies: [
         // MARK: - Third Party
+//        .package(
+//            url: "https://github.com/pointfreeco/swift-composable-architecture.git",
+//            from: "0.14.0"
+//        ),
         .package(
             url: "https://github.com/pointfreeco/swift-composable-architecture.git",
-            from: "0.14.0"
+            from: "0.9.0"
         ),
         .package(
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
@@ -42,13 +46,13 @@ let package = Package(
     targets: [
         // MARK: - Core Modules
         
-        // CoreFoundation Module
+        // FoundationKit Module
         .target(
-            name: "CoreFoundation",
+            name: "FoundationKit",
             dependencies: []
         ),
         .testTarget(
-            name: "CoreFoundationTests",
+            name: "FoundationKitTests",
             dependencies: []
         ),
         
@@ -56,7 +60,7 @@ let package = Package(
         .target(
             name: "CoreUI",
             dependencies: [
-                "CoreFoundation"
+                "FoundationKit"
             ]
         ),
         .testTarget(
@@ -136,7 +140,7 @@ let package = Package(
                 "RepositoryInterface",
                 "SwiftUIViewProviderInterface",
                 // Third Party Dependencies
-                "ComposableArchitecture"
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]
         ),
         .testTarget(
