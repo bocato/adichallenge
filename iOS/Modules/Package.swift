@@ -100,7 +100,8 @@ let package = Package(
             name: "Repository",
             dependencies: [
                 "NetworkingInterface",
-                "RepositoryInterface"
+                "RepositoryInterface",
+                "CacheKit"
             ]
         ),
         .testTarget(
@@ -108,7 +109,8 @@ let package = Package(
             dependencies: [
                 "NetworkingInterface",
                 "RepositoryInterface",
-                "Repository"
+                "Repository",
+                "CacheKit"
             ]
         ),
         
@@ -128,6 +130,18 @@ let package = Package(
             dependencies: [
                 "SwiftUIViewProviderInterface",
                 "SwiftUIViewProvider"
+            ]
+        ),
+        
+        // CacheKit Module
+        .target(
+            name: "CacheKit",
+            dependencies: []
+        ),
+        .testTarget(
+            name: "CacheKitTests",
+            dependencies: [
+                "CacheKit"
             ]
         ),
         

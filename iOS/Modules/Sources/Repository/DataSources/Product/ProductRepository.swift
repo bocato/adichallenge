@@ -38,7 +38,7 @@ public final class ProductRepository: ProductRepositoryProtocol {
             .eraseToAnyPublisher()
     }
 
-    public func getProductWithID(_ id: Int) -> AnyPublisher<ProductComplete, ProductRepositoryError> {
+    public func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductRepositoryError> {
         let path = "/products/\(id)"
         let request: DefaultAPIRequest = .init(
             method: .get,
@@ -48,8 +48,8 @@ public final class ProductRepository: ProductRepositoryProtocol {
         return httpDispatcher
             .executeRequest(request)
             .tryMap { [jsonDecoder] data in
-                let decodedResponse = try data.decoded(using: jsonDecoder) as ProductCompleteDTO
-                let domainModel: ProductComplete = .init(dto: decodedResponse)
+                let decodedResponse = try data.decoded(using: jsonDecoder) as ProductDTO
+                let domainModel: Product = .init(dto: decodedResponse)
                 return domainModel
             }
             .mapError { $0 as ProductRepositoryError }

@@ -4,6 +4,7 @@ import NetworkingInterface
 import Networking
 import SwiftUIViewProviderInterface
 import SwiftUIViewProvider
+import CacheKit
 import Feature_Products
 import RepositoryInterface
 import Repository
@@ -48,6 +49,10 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         appContainer.viewsProvider.register(
             dependencyFactory: { ProductRepository(httpDispatcher: appContainer.httpDispatcher) } ,
             forType: ProductRepositoryProtocol.self
+        )
+        appContainer.viewsProvider.register(
+            dependencyFactory: { ImagesRepository() } ,
+            forType: ImagesRepositoryProtocol.self
         )
     }
 }

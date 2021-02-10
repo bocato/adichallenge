@@ -17,27 +17,28 @@ struct ProductsListView: View {
     
     var body: some View {
         WithViewStore(store) { viewStore in
-            SearchBar(
-                layout: .init(
-                    placeholder: "Search",
-                    cancelText: "Cancel"
-                ),
-                text: viewStore.binding(
-                    get: { $0.searchTerm } ,
-                    send: { .updateSearchTerm($0) }
+            NavigationView {
+                SearchBar(
+                    layout: .init(
+                        placeholder: "Search",
+                        cancelText: "Cancel"
+                    ),
+                    text: viewStore.binding(
+                        get: { $0.searchTerm } ,
+                        send: { .updateSearchTerm($0) }
+                    )
                 )
-            )
-            if viewStore.isLoading {
-                ActivityIndicator()
-            } else {
-                List {
-                    ForEach(viewStore.state.productRows) { product in
-                        ProductsListRow(data: product)
-//                            .onTapGesture { viewStore.send(.shouldDetailsForItemWithID(item.id)) }
+                if viewStore.isLoading {
+                    ActivityIndicator()
+                } else {
+                    List {
+                        ForEach(viewStore.state.productRows) { product in
+                            ProductsListRow(data: product)
+    //                            .onTapGesture { viewStore.send(.shouldDetailsForItemWithID(item.id)) }
+                        }
                     }
                 }
-            }
-            Spacer()
+            }.onAppear { viewStore.send(.loadData) }
         }
     }
 }
@@ -55,23 +56,20 @@ struct ProductsListRow: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-//                LoadableImageView(
-//                    inState: imageLoadingState,
-//                    ofSize: .init(width: 80, height: 80),
-//                    placeholder: { Rectangle().fill().foregroundColor(.primary) }
-//                )
-                Text("IMAGE HERE") // TODO: Load Image!
-                    .frame(width: 80, height: 80)
-                Spacer()
-            }
-            HStack {
+        HStack(alignment: .top, spacing: 5) {
+//            LoadableImageView(
+//                inState: imageLoadingState,
+//                ofSize: .init(width: 80, height: 80),
+//                placeholder: { Rectangle().fill().foregroundColor(.primary) }
+//            )
+            Text("IMAGE HERE") // TODO: Load Image!
+                .frame(width: 80, height: 80)
+            VStack(alignment: .leading, spacing: 5) {
                 Text(data.name) // TODO: Product name
                     .bold()
                     .foregroundColor(.primary)
                 Text(data.description) // TODO: Product Description
-                Text("Price..") // TODO: Product price
+                Text("Price $$$") // TODO: Product price
                 Spacer()
             }
         }
