@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E5025E4225D416D600330F10 /* Modules in Frameworks */ = {isa = PBXBuildFile; productRef = E5025E4125D416D600330F10 /* Modules */; };
+		E5025E4325D416D600330F10 /* Modules in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E5025E4125D416D600330F10 /* Modules */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E5BF31BB25D1543400AF0234 /* AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31BA25D1543400AF0234 /* AppApp.swift */; };
 		E5BF31BD25D1543400AF0234 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31BC25D1543400AF0234 /* ContentView.swift */; };
 		E5BF31BF25D1543500AF0234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5BF31BE25D1543500AF0234 /* Assets.xcassets */; };
 		E5BF31C225D1543500AF0234 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5BF31C125D1543500AF0234 /* Preview Assets.xcassets */; };
 		E5BF31CD25D1543600AF0234 /* AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31CC25D1543600AF0234 /* AppTests.swift */; };
 		E5BF31D825D1543600AF0234 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31D725D1543600AF0234 /* AppUITests.swift */; };
-		E5BF320625D3310A00AF0234 /* CoreModules in Frameworks */ = {isa = PBXBuildFile; productRef = E5BF320525D3310A00AF0234 /* CoreModules */; };
-		E5BF320B25D3318C00AF0234 /* FeatureModules in Frameworks */ = {isa = PBXBuildFile; productRef = E5BF320A25D3318C00AF0234 /* FeatureModules */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +33,20 @@
 			remoteInfo = App;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E5668D2B25D40EE200AF0EF6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E5025E4325D416D600330F10 /* Modules in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E5BF31B725D1543400AF0234 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,8 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5BF320625D3310A00AF0234 /* CoreModules in Frameworks */,
-				E5BF320B25D3318C00AF0234 /* FeatureModules in Frameworks */,
+				E5025E4225D416D600330F10 /* Modules in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +165,7 @@
 				E5BF31B325D1543400AF0234 /* Sources */,
 				E5BF31B425D1543400AF0234 /* Frameworks */,
 				E5BF31B525D1543400AF0234 /* Resources */,
+				E5668D2B25D40EE200AF0EF6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -159,8 +173,7 @@
 			);
 			name = App;
 			packageProductDependencies = (
-				E5BF320525D3310A00AF0234 /* CoreModules */,
-				E5BF320A25D3318C00AF0234 /* FeatureModules */,
+				E5025E4125D416D600330F10 /* Modules */,
 			);
 			productName = App;
 			productReference = E5BF31B725D1543400AF0234 /* App.app */;
@@ -598,13 +611,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E5BF320525D3310A00AF0234 /* CoreModules */ = {
+		E5025E4125D416D600330F10 /* Modules */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = CoreModules;
-		};
-		E5BF320A25D3318C00AF0234 /* FeatureModules */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FeatureModules;
+			productName = Modules;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

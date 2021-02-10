@@ -4,32 +4,69 @@
 import PackageDescription
 
 let package = Package(
-    name: "CoreModules",
+    name: "Modules", // TODO: - This should be splitted into FeatureModules (that depends on Core) and CoreModules
     platforms: [
         .iOS(.v14)
     ],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "CoreModules",
+            name: "Modules",
             type: .dynamic,
             targets: [
+                // Core Modules
+                "CoreFoundation",
+                "CoreUI",
                 "NetworkingInterface",
                 "Networking",
                 "RepositoryInterface",
                 "Repository",
                 "SwiftUIViewProviderInterface",
                 "SwiftUIViewProvider",
-                "CoreUI"
+                
+                // Feature Modules
+                "Feature-Products",
             ]
         ),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+        // MARK: - Third Party
+        .package(
+            url: "https://github.com/pointfreeco/swift-composable-architecture.git",
+            from: "0.14.0"
+        ),
+        .package(
+            url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
+            from: "1.8.2"
+        )
     ],
     targets: [
-        // MARK: - Networking Module
+        // MARK: - Core Modules
+        
+        // CoreFoundation Module
+        .target(
+            name: "CoreFoundation",
+            dependencies: []
+        ),
+        .testTarget(
+            name: "CoreFoundationTests",
+            dependencies: []
+        ),
+        
+        // CoreUI Module
+        .target(
+            name: "CoreUI",
+            dependencies: [
+                "CoreFoundation"
+            ]
+        ),
+        .testTarget(
+            name: "CoreUITests",
+            dependencies: [
+                "CoreUI"
+            ]
+        ),
+        
+        // Networking Module
         .target(
             name: "NetworkingInterface",
             dependencies: []
@@ -48,7 +85,7 @@ let package = Package(
             ]
         ),
         
-        // MARK: - Repository Module
+        // Repository Module
         .target(
             name: "RepositoryInterface",
             dependencies: [
@@ -71,7 +108,7 @@ let package = Package(
             ]
         ),
         
-        // MARK: - SwiftUIViewProvider Module
+        // SwiftUIViewProvider Module
         .target(
             name: "SwiftUIViewProviderInterface",
             dependencies: []
@@ -90,15 +127,22 @@ let package = Package(
             ]
         ),
         
-        // MARK: - CoreUI Module
+        // MARK: - Feature Modules
         .target(
-            name: "CoreUI",
-            dependencies: []
+            name: "Feature-Products",
+            dependencies: [
+                // Internal Dependencies
+                "CoreUI",
+                "RepositoryInterface",
+                "SwiftUIViewProviderInterface",
+                // Third Party Dependencies
+                "ComposableArchitecture"
+            ]
         ),
         .testTarget(
-            name: "CoreUITests",
+            name: "Feature-ProductsTests",
             dependencies: [
-                "CoreUI"
+                "Feature-Products",
             ]
         ),
     ]
