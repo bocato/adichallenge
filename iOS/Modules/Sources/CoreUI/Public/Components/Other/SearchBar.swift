@@ -6,14 +6,17 @@ extension SearchBar {
         let cancelText: String
         
         public init(
-            placeholder: String = "Search...",
-            cancelText: String = "Cancel"
+            placeholder: String,
+            cancelText: String
         ) {
             self.placeholder = placeholder
             self.cancelText = cancelText
         }
         
-        public static let `default`: Self = .init()
+        public static let `default`: Self = .init(
+            placeholder: L10n.SearchBar.placeholder,
+            cancelText: L10n.SearchBar.cancelText
+        )
     }
 }
 

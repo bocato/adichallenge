@@ -1,0 +1,8 @@
+// MARK: - Search Bar
+"searchBar.placeholder" = "Search";
+"searchBar.cancelText" = "Cancel";
+
+// MARK: - Error View
+"errorView.title" = "Ops!";
+"errorView.subtitle" = "Something is wrong, try again later.";
+"errorView.button.text" = "Retry";

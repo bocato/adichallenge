@@ -8,24 +8,23 @@ public struct ProductsFeature: Feature {
         environment: Environment
     ) -> AnyCustomView {
         switch (route, context, environment) {
-        case let (route, _, productsListEvironment as ProductsListEnvironment) where route is ProductsListRoute:
+        case let (route, _, _) where route is ProductsListRoute:
             return ProductsListView(
                 store: .init(
-                    initialState: .init(),
+                    initialState: .init(viewState: .loading),
                     reducer: productsListReducer,
-                    environment: productsListEvironment
+                    environment: (environment as? ProductsListEnvironment) ?? ProductsListEnvironment()
                 )
             )
             .eraseToAnyCustomView()
         default: // Default app view
             return ProductsListView(
                 store: .init(
-                    initialState: .init(),
+                    initialState: .init(viewState: .loading),
                     reducer: productsListReducer,
                     environment: ProductsListEnvironment()
                 )
-            )
-            .eraseToAnyCustomView()
+            ).eraseToAnyCustomView()
         }
     }
 }

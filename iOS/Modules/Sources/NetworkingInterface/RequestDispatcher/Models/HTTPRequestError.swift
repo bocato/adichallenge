@@ -6,6 +6,7 @@ public enum HTTPRequestError: Error, Equatable {
     case invalidHTTPResponse
     case unexpectedAPIError
     case apiError(APIError)
+    case unreachableNetwork
     
     public static func == (lhs: HTTPRequestError, rhs: HTTPRequestError) -> Bool {
         switch (lhs, rhs) {
@@ -19,6 +20,8 @@ public enum HTTPRequestError: Error, Equatable {
             return true
         case let (.apiError(e1), .apiError(e2)):
             return e1.asNSError() == e2.asNSError()
+        case (.unreachableNetwork, .unreachableNetwork):
+            return true
         default:
             return false
         }

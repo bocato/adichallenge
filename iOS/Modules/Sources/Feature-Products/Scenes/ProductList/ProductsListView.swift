@@ -19,28 +19,47 @@ struct ProductsListView: View {
         WithViewStore(store) { viewStore in
             NavigationView {
                 SearchBar(
-                    layout: .init(
-                        placeholder: "Search",
-                        cancelText: "Cancel"
-                    ),
                     text: viewStore.binding(
                         get: { $0.searchTerm } ,
                         send: { .updateSearchTerm($0) }
                     )
                 )
-                if viewStore.isLoading {
-                    ActivityIndicator()
-                } else {
-                    List {
-                        ForEach(viewStore.state.productRows) { product in
-                            ProductsListRow(data: product)
-    //                            .onTapGesture { viewStore.send(.shouldDetailsForItemWithID(item.id)) }
-                        }
-                    }
-                }
-            }.onAppear { viewStore.send(.loadData) }
+                contentView()
+            }
+            .onAppear { viewStore.send(.loadData) }
         }
     }
+    
+    @ViewBuilder
+    private func contentView() -> some View {
+        WithViewStore(store) { viewStore in
+            switch viewStore.viewState {
+            case .loading:
+                ActivityIndicator()
+                    .eraseToAnyView()
+            case .content:
+                List {
+                    ForEach(viewStore.state.productRows) { product in
+                        ProductsListRow(data: product)
+//                            .onTapGesture { viewStore.send(.shouldDetailsForItemWithID(item.id)) }
+                    }
+                }
+                .eraseToAnyView()
+            case .error:
+                ErrorView(
+                    onRetry: { viewStore.send(.loadData) }
+                )
+                .eraseToAnyView()
+            case .empty:
+                EmptyContentView(
+                    title: L10n.ProductList.EmptyView.title,
+                    subtitle: L10n.ProductList.EmptyView.subtitle
+                )
+                .eraseToAnyView()
+            }
+        }
+    }
+    
 }
 
 struct ProductsListRow: View {

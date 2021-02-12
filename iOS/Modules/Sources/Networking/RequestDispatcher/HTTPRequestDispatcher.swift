@@ -2,6 +2,7 @@ import Foundation
 import Combine
 import NetworkingInterface
 
+// TODO: Handle Reachability
 public final class HTTPRequestDispatcher: HTTPRequestDispatcherProtocol {
     // MARK: - Dependencies
     
@@ -40,7 +41,10 @@ public final class HTTPRequestDispatcher: HTTPRequestDispatcherProtocol {
                     }
                     return data
                 }.mapError { networkingError in
-                    return HTTPRequestError.networking(networkingError)
+                    guard !networkingError.isNetworkConnectionError else {
+                        return .unreachableNetwork
+                    }
+                    return .networking(networkingError)
                 }
                 .eraseToAnyPublisher()
         } catch {

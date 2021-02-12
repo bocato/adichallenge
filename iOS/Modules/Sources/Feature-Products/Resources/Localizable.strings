@@ -1,0 +1,3 @@
+// MARK: - ProductList
+"productList.emptyView.title" = "Oh no!";
+"productList.emptyView.subtitle" = "We could not find the content for this page, try another Search Term...";
