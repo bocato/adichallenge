@@ -4,6 +4,7 @@ extension ErrorView {
     public typealias Data = InformationView.Data
     public typealias ActionButton = InformationView.ActionButton
 }
+
 extension ErrorView.Data {
     public static let defaultErrorLayout: Self = .init(
         title: L10n.ErrorView.title,
@@ -14,27 +15,28 @@ extension ErrorView.Data {
         )
     )
 }
+
 public struct ErrorView: View {
     // MARK: - Properties
-    
+
     private let data: Data
     private let retryButton: ActionButton
-    
+
     // MARK: - Initialization
-    
+
     public init(
         data: Data = .defaultErrorLayout,
         onRetry: @escaping () -> Void
     ) {
         self.data = data
-        self.retryButton = .init(
+        retryButton = .init(
             text: L10n.ErrorView.Button.text,
             action: onRetry
         )
     }
-    
+
     // MARK: - UI
-    
+
     public var body: some View {
         InformationView(
             data: data,
@@ -42,4 +44,3 @@ public struct ErrorView: View {
         )
     }
 }
-

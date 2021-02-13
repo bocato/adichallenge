@@ -38,6 +38,7 @@ public protocol Feature {
         environment: Environment
     ) -> AnyCustomView
 }
+
 public extension Feature {
     /// Builds the view for some route, with a context and it's environment.
     /// - Parameters:
@@ -51,6 +52,7 @@ public extension Feature {
             environment: EmptyEnvironment()
         )
     }
+
     /// Builds the view for some route, with a context and it's environment.
     /// - Parameters:
     ///   - route: a route, that describes a view, if `nil`will normally return the Main View for this feature.

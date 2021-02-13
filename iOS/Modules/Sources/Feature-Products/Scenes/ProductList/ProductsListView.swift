@@ -1,28 +1,28 @@
-import SwiftUI
+import ComposableArchitecture
 import CoreUI
 import FoundationKit
-import ComposableArchitecture
+import SwiftUI
 
 struct ProductsListView: View {
     // MARK: - Dependencies
-    
+
     private let store: Store<ProductsListState, ProductsListAction>
-    
+
     // MARK: - Initialization
-    
+
     init(store: Store<ProductsListState, ProductsListAction>) {
         self.store = store
     }
-    
+
     // MARK: - Body
-    
+
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
                 VStack {
                     SearchBar(
                         text: viewStore.binding(
-                            get: { $0.searchInput } ,
+                            get: { $0.searchInput },
                             send: { .updateSearchTerm($0) }
                         )
                     )
@@ -37,11 +37,11 @@ struct ProductsListView: View {
             }
         }
     }
-    
+
     // MARK: - Content Views
-    
+
     @ViewBuilder
-    private func contentView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) ->  some View {
+    private func contentView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) -> some View {
         List {
             let productRows = viewStore.isFiltering ? viewStore.filteredProductRows : viewStore.productRows
             ForEach(productRows) { product in
@@ -54,7 +54,7 @@ struct ProductsListView: View {
         }
         .padding(.bottom, DS.Spacing.tiny)
     }
-    
+
     @ViewBuilder
     private func loadingView(_ isVisible: Bool) -> some View {
         if isVisible {
@@ -63,7 +63,7 @@ struct ProductsListView: View {
             Spacer()
         }
     }
-    
+
     @ViewBuilder
     private func emptyContentView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) -> some View {
         if viewStore.productRows.isEmpty && !viewStore.isLoading {
@@ -74,14 +74,14 @@ struct ProductsListView: View {
             )
         }
     }
-    
+
     @ViewBuilder
     private func errorView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) -> some View {
         if viewStore.apiError != nil {
             ErrorView(onRetry: { viewStore.send(.loadData) })
         }
     }
-    
+
     @ViewBuilder
     private func filteringView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) -> some View {
         if viewStore.showFilteringView {
@@ -105,7 +105,7 @@ struct ProductsListView: View {
 struct ProductsListRow: View {
     private let data: ProductRowData
     private var imageLoadingState: LoadingState<Data>
-    
+
     init(
         data: ProductRowData,
         imageLoadingState: LoadingState<Data>
@@ -113,7 +113,7 @@ struct ProductsListRow: View {
         self.data = data
         self.imageLoadingState = imageLoadingState
     }
-    
+
     var body: some View {
         HStack(alignment: .top, spacing: DS.Spacing.tiny) {
             LoadableImageView(
@@ -140,12 +140,12 @@ struct ProductsListRow: View {
     }
 }
 
-//#if DEBUG
-//struct ProductsListView_Previews: PreviewProvider {
+// #if DEBUG
+// struct ProductsListView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        Group {
 //            ProductsListView()
 //        }
 //    }
-//}
-//#endif
+// }
+// #endif

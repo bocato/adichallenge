@@ -25,6 +25,7 @@ extension DS {
         public static let xLarge: CGFloat = 64
     }
 }
+
 extension DS {
     public enum LayoutSize {
         /// CGSize = (1, 1)
@@ -35,6 +36,7 @@ extension DS {
         public static let large: CGSize = .init(width: 48, height: 48)
     }
 }
+
 extension DS {
     public enum CornerRadius {
         /// CGFloat = 8

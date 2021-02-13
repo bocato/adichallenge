@@ -4,9 +4,8 @@ import SwiftUI
 // accessible from SwiftUI.
 
 public struct ActivityIndicator: View {
-    
     public init() {}
-    
+
     public var body: some View {
         UIViewRepresented(makeUIView: { _ in
             let view = UIActivityIndicatorView()

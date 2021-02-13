@@ -1,5 +1,5 @@
-import SwiftUIViewProviderInterface
 import Foundation
+import SwiftUIViewProviderInterface
 
 /// The concrete implementation of a dependency store
 public final class DependenciesContainer: DependenciesContainerInterface {
@@ -50,12 +50,13 @@ public final class DependenciesContainer: DependenciesContainerInterface {
     }
 
     #if DEBUG
-    public func swapFactory<T>(forMetaType metaType: T.Type, to newFactory: @escaping DependencyFactory) {
-        let name = String(describing: metaType)
-        dependencyFactories[name] = newFactory
-    }
+        public func swapFactory<T>(forMetaType metaType: T.Type, to newFactory: @escaping DependencyFactory) {
+            let name = String(describing: metaType)
+            dependencyFactories[name] = newFactory
+        }
     #endif
 }
+
 extension DependenciesContainer {
     // MARK: - Inner Types
 

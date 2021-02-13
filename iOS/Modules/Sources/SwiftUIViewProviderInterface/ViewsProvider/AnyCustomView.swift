@@ -23,9 +23,9 @@ public struct AnyCustomView: View {
         erasing view: V,
         withAssociatedObject object: Any? = nil
     ) {
-        self.erasedView = .init(erasing: view)
-        self.typeErasedView = view
-        self.associatedObject = object
+        erasedView = .init(erasing: view)
+        typeErasedView = view
+        associatedObject = object
     }
 }
 

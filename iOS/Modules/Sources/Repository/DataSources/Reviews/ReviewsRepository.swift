@@ -1,7 +1,7 @@
-import Foundation
 import Combine
-import RepositoryInterface
+import Foundation
 import NetworkingInterface
+import RepositoryInterface
 
 public final class ReviewsRepository: ReviewsRepositoryProtocol {
     // MARK: - Dependencies
@@ -20,14 +20,14 @@ public final class ReviewsRepository: ReviewsRepositoryProtocol {
     }
 
     // MARK: - Public API
-    
+
     public func getReviewForProductWithID(_ id: Int) -> AnyPublisher<[ProductReview], ReviewsRepositoryError> {
         let path = "/reviews/\(id)"
         let request: DefaultAPIRequest = .init(
             method: .get,
             path: path
         )
-        
+
         return httpDispatcher
             .executeRequest(request)
             .tryMap { [jsonDecoder] data in

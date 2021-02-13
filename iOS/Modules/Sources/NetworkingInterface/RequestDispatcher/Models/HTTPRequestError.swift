@@ -7,7 +7,7 @@ public enum HTTPRequestError: Error, Equatable {
     case unexpectedAPIError
     case apiError(APIError)
     case unreachableNetwork
-    
+
     public static func == (lhs: HTTPRequestError, rhs: HTTPRequestError) -> Bool {
         switch (lhs, rhs) {
         case let (.requestDataSerialization(e1), .requestDataSerialization(e2)):

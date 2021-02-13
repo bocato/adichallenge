@@ -1,6 +1,6 @@
+import SwiftUI
 @testable import SwiftUIViewProvider
 import SwiftUIViewProviderInterface
-import SwiftUI
 import TestHelpers
 import XCTest
 
@@ -237,14 +237,14 @@ struct ResolvableEnvironmentMock: ResolvableEnvironment {
 struct ContextDummy {}
 
 struct FeatureDummy: Feature {
-    static func buildView<Context, Environment>(fromRoute route: ViewRoute?, withContext context: Context, environment: Environment) -> AnyCustomView {
+    static func buildView<Context, Environment>(fromRoute _: ViewRoute?, withContext _: Context, environment _: Environment) -> AnyCustomView {
         .init(erasing: EmptyView())
     }
 }
 
 final class TestFeatureFake: Feature {
     static var viewToBeReturned: AnyCustomView = EmptyView().eraseToAnyCustomView()
-    private(set) static  var routePassed: ViewRoute?
+    private(set) static var routePassed: ViewRoute?
     private(set) static var contextPassed: Any?
     private(set) static var environmentPassed: Any?
     static func buildView<Context, Environment>(

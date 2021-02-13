@@ -7,7 +7,8 @@ protocol CurrencyFormatterProtocol {
         currencyCode: String
     ) -> String
 }
-extension CurrencyFormatterProtocol{
+
+extension CurrencyFormatterProtocol {
     func format(
         _ value: Double,
         currencyCode: String

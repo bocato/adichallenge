@@ -1,6 +1,6 @@
 import Foundation
 
-/// Defines a contract 
+/// Defines a contract
 public protocol FeatureDependenciesRegistering {
     /// Registers a factory for some dependency, related to it's interface/contract.
     /// - Parameters:

@@ -1,18 +1,18 @@
-import SwiftUI
-import SwiftUIViewProviderInterface
-import SwiftUIViewProvider
 import Feature_Products
+import SwiftUI
+import SwiftUIViewProvider
+import SwiftUIViewProviderInterface
 
 @main
 struct AppMain: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+
     var body: some Scene {
         WindowGroup {
             rootView
         }
     }
-    
+
     private var rootView: some View {
         appDelegate
             .appContainer
@@ -20,5 +20,4 @@ struct AppMain: App {
             .rootView(for: ProductsFeature.self)
             .eraseToAnyView()
     }
-    
 }

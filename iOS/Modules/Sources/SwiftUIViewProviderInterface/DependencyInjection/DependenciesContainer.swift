@@ -20,13 +20,14 @@ public protocol DependenciesContainerInterface: AnyObject {
         failureHandler: (String) -> Void
     )
     #if DEBUG
-    /// Enables uns to swap a factory for a given metatype, if needed.
-    /// - Parameters:
-    ///   - metaType: the dependency metatype
-    ///   - newFactory: a new dependency factory
-    func swapFactory<T>(forMetaType metaType: T.Type, to newFactory: @escaping DependencyFactory)
+        /// Enables uns to swap a factory for a given metatype, if needed.
+        /// - Parameters:
+        ///   - metaType: the dependency metatype
+        ///   - newFactory: a new dependency factory
+        func swapFactory<T>(forMetaType metaType: T.Type, to newFactory: @escaping DependencyFactory)
     #endif
 }
+
 public extension DependenciesContainerInterface {
     /// Registers a dependency for the given type
     /// - Parameters:

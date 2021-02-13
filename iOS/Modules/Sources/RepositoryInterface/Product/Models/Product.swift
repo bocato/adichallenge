@@ -8,7 +8,7 @@ public struct Product {
     public let description: String
     public let imageURL: String
     public let reviews: [ProductReview]
-    
+
     public init(
         id: String,
         name: String,
@@ -27,4 +27,3 @@ public struct Product {
         self.reviews = reviews
     }
 }
-

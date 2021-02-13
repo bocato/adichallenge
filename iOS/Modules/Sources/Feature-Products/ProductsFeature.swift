@@ -1,5 +1,5 @@
-import SwiftUIViewProviderInterface
 import Foundation
+import SwiftUIViewProviderInterface
 
 public struct ProductsFeature: Feature {
     public static func buildView<Context, Environment>(

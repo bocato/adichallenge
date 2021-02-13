@@ -1,11 +1,12 @@
+import Foundation
 @testable import SwiftUIViewProvider
 @testable import SwiftUIViewProviderInterface
-import Foundation
 import TestHelpers
 import XCTest
 
 final class DependencyTests: XCTestCase {
     // MARK: - Tests
+
     func test_resolvedValue_shouldInitWithValidInstance() {
         // Given
         let instance = DummyDependency()
@@ -110,18 +111,18 @@ final class DependencyTests: XCTestCase {
 private final class DependencieContainerMock: DependenciesContainerInterface {
     var valueToBeReturned: Any?
     private(set) var getCalled = false
-    func get<T>(_ arg: T.Type) -> T? {
+    func get<T>(_: T.Type) -> T? {
         getCalled = true
         return valueToBeReturned as? T
     }
 
     func register<T>(
-        factory: @escaping DependencyFactory,
-        forMetaType metaType: T.Type,
-        failureHandler: (String) -> Void
+        factory _: @escaping DependencyFactory,
+        forMetaType _: T.Type,
+        failureHandler _: (String) -> Void
     ) {}
 
     #if DEBUG
-    func swapFactory<T>(forMetaType metaType: T.Type, to newFactory: @escaping DependencyFactory) {}
+        func swapFactory<T>(forMetaType _: T.Type, to _: @escaping DependencyFactory) {}
     #endif
 }

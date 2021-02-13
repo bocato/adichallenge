@@ -1,6 +1,6 @@
 import Foundation
-import RepositoryInterface
 import FoundationKit
+import RepositoryInterface
 
 struct ProductsListState: Equatable {
     var isLoading: Bool = false
@@ -11,6 +11,7 @@ struct ProductsListState: Equatable {
     var productImageStates: [String: LoadingState<Data>] = [:]
     var selectedProductID: String?
 }
+
 extension ProductsListState {
     var isFiltering: Bool { searchInput.count > 0 }
     var showFilteringView: Bool { searchInput.count > 0 && searchInput.count < 3 }

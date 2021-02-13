@@ -8,7 +8,7 @@ struct ProductDTO: Decodable {
     let description: String
     let imageURL: String
     let reviews: [ProductReviewDTO]
-    
+
     enum CodingKeys: String, CodingKey {
         case id, name, currency, price, description, reviews
         case imageURL = "imgUrl"

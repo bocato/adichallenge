@@ -1,5 +1,5 @@
-import ComposableArchitecture
 import Combine
+import ComposableArchitecture
 import FoundationKit
 
 typealias ProductsListReducer = Reducer<ProductsListState, ProductsListAction, ProductsListEnvironment>
@@ -12,7 +12,7 @@ let productsListReducer = ProductsListReducer { state, action, environment in
             return .none
         }
         return .init(value: .filterProductsByTerm(term))
-        
+
     case .loadData:
         state.isLoading = true
         return environment
@@ -21,7 +21,7 @@ let productsListReducer = ProductsListReducer { state, action, environment in
             .receive(on: environment.mainQueue)
             .catchToEffect()
             .map(ProductsListAction.loadProductsResponse)
-        
+
     case let .loadProductsResponse(.success(data)):
         state.isLoading = false
         state.productRows = data.map { product in
@@ -44,27 +44,27 @@ let productsListReducer = ProductsListReducer { state, action, environment in
                     .map { .updateProductImageState(for: product.id, to: $0) }
             }
         )
-        
+
     case let .loadProductsResponse(.failure(error)):
         state.isLoading = false
         state.apiError = .init(error)
         return .none
-        
+
     case let .updateProductImageState(productID, newLoadingState):
         state.productImageStates[productID] = newLoadingState
         return .none
-        
+
     case let .shouldDetailsForProductWithID(productID):
         state.selectedProductID = productID // @TODO: Open Details Scene
         return .none
-        
+
     case let .filterProductsByTerm(filter):
         let cleanFilter = filter.lowercased()
         state.filteredProductRows = state
             .productRows
             .filter {
                 $0.description.lowercased().contains(cleanFilter) ||
-                $0.name.lowercased().contains(cleanFilter)
+                    $0.name.lowercased().contains(cleanFilter)
             }
         return .none
     }

@@ -4,7 +4,7 @@ extension SearchBar {
     public struct Layout {
         let placeholder: String
         let cancelText: String
-        
+
         public init(
             placeholder: String,
             cancelText: String
@@ -12,7 +12,7 @@ extension SearchBar {
             self.placeholder = placeholder
             self.cancelText = cancelText
         }
-        
+
         public static let `default`: Self = .init(
             placeholder: L10n.SearchBar.placeholder,
             cancelText: L10n.SearchBar.cancelText
@@ -22,24 +22,24 @@ extension SearchBar {
 
 public struct SearchBar: View {
     // MARK: - Dependencies
-    
+
     private let layout: Layout
-    
+
     // MARK: - Properties
-    
+
     @Binding public var text: String
     @State private var isEditing = false
-    
+
     public init(
         layout: Layout = .default,
         text: Binding<String>
     ) {
         self.layout = layout
-        self._text = text
+        _text = text
     }
- 
+
     // MARK: - UI
-    
+
     public var body: some View {
         HStack {
             TextField(layout.placeholder, text: $text)
@@ -57,7 +57,7 @@ public struct SearchBar: View {
                         Spacer()
                     }
                 )
-            
+
             if isEditing {
                 Button(layout.cancelText) {
                     isEditing = false
@@ -72,17 +72,15 @@ public struct SearchBar: View {
     }
 }
 
-
 #if DEBUG
-struct SearchBar_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SearchBar(
-                layout: .default,
-                text: .constant("Search Value")
-            )
+    struct SearchBar_Previews: PreviewProvider {
+        static var previews: some View {
+            Group {
+                SearchBar(
+                    layout: .default,
+                    text: .constant("Search Value")
+                )
+            }
         }
     }
-}
 #endif
-

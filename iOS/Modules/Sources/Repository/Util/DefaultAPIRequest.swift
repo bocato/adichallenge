@@ -2,16 +2,15 @@ import Foundation
 import NetworkingInterface
 
 struct DefaultAPIRequest: URLRequestProtocol {
-    
     let path: String?
     let method: HTTPMethod
     let bodyParameters: [String: Any]?
     let headers: [String: String]?
-    
+
     private let defaultHeaders: [String: String] = [
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
     ]
-    
+
     init(
         method: HTTPMethod,
         path: String? = nil,
@@ -23,6 +22,6 @@ struct DefaultAPIRequest: URLRequestProtocol {
         self.bodyParameters = bodyParameters
         var headersToApply = defaultHeaders
         extraHeaders.forEach { headersToApply[$0.key] = $0.value }
-        self.headers = headersToApply
+        headers = headersToApply
     }
 }

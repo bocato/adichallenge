@@ -2,18 +2,18 @@ import SwiftUI
 
 public struct EmptyContentView: View {
     // MARK: - Properties
-    
+
     private let data: InformationView.Data
-    private var actionButton: InformationView.ActionButton? = nil
-    
+    private var actionButton: InformationView.ActionButton?
+
     // MARK: - Initialization
-    
+
     public init(
         title: String,
         subtitle: String,
         onRefresh: (() -> Void)? = nil
     ) {
-        self.data = .init(
+        data = .init(
             title: title,
             subtitle: subtitle,
             image: .init(
@@ -21,15 +21,15 @@ public struct EmptyContentView: View {
             )
         )
         if let onRefreshClosure = onRefresh {
-            self.actionButton = .init(
+            actionButton = .init(
                 text: L10n.EmptyContentView.Button.text,
                 action: onRefreshClosure
             )
         }
     }
-    
+
     // MARK: - UI
-    
+
     public var body: some View {
         InformationView(
             data: data,
@@ -38,8 +38,8 @@ public struct EmptyContentView: View {
     }
 }
 
-//#if DEBUG
-//struct EmptyContentView_Previews: PreviewProvider {
+// #if DEBUG
+// struct EmptyContentView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        Group {
 //            EmptyContentView(
@@ -48,5 +48,5 @@ public struct EmptyContentView: View {
 //            )
 //        }
 //    }
-//}
-//#endif
+// }
+// #endif

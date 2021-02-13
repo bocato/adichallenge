@@ -16,7 +16,7 @@ public final class Cache<Key: Hashable, Value> {
         wrapped.countLimit = maximumEntryCount
         wrapped.delegate = keyTracker
     }
-    
+
     func insert(_ value: Value, forKey key: Key) {
         let date = dateProvider().addingTimeInterval(entryLifetime)
         let entry = Entry(key: key, value: value, expirationDate: date)
@@ -37,11 +37,12 @@ public final class Cache<Key: Hashable, Value> {
 
         return entry.value
     }
-    
+
     func removeValue(forKey key: Key) {
         wrapped.removeObject(forKey: WrappedKey(key))
     }
 }
+
 private extension Cache {
     func entry(forKey key: Key) -> Entry? {
         guard let entry = wrapped.object(forKey: WrappedKey(key)) else {
@@ -61,6 +62,7 @@ private extension Cache {
         keyTracker.keys.insert(entry.key)
     }
 }
+
 extension Cache {
     subscript(key: Key) -> Value? {
         get { return value(forKey: key) }
@@ -107,25 +109,26 @@ private extension Cache {
             self.expirationDate = expirationDate
         }
     }
-    
+
     final class KeyTracker: NSObject, NSCacheDelegate {
         var keys = Set<Key>()
 
         func cache(
-            _ cache: NSCache<AnyObject, AnyObject>,
+            _: NSCache<AnyObject, AnyObject>,
             willEvictObject object: Any
         ) {
             guard let entry = object as? Entry else {
                 return
             }
-            
+
             keys.remove(entry.key)
         }
     }
 }
+
 extension Cache.Entry: Codable where Key: Codable, Value: Codable {}
 extension Cache: Codable where Key: Codable, Value: Codable {
-    convenience public init(from decoder: Decoder) throws {
+    public convenience init(from decoder: Decoder) throws {
         self.init()
 
         let container = try decoder.singleValueContainer()
@@ -138,6 +141,7 @@ extension Cache: Codable where Key: Codable, Value: Codable {
         try container.encode(keyTracker.keys.compactMap(entry))
     }
 }
+
 extension Cache where Key: Codable, Value: Codable {
     func saveToDisk(
         withName name: String,
@@ -152,6 +156,4 @@ extension Cache where Key: Codable, Value: Codable {
         let data = try JSONEncoder().encode(self)
         try data.write(to: fileURL)
     }
-    
-   
 }

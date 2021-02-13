@@ -5,7 +5,7 @@ public struct ProductReview {
     public let locale: String
     public let rating: Int
     public let text: String
-    
+
     public init(
         productID: String,
         locale: String,

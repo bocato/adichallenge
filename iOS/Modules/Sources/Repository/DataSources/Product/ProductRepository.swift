@@ -1,7 +1,7 @@
-import Foundation
 import Combine
-import RepositoryInterface
+import Foundation
 import NetworkingInterface
+import RepositoryInterface
 
 public final class ProductRepository: ProductRepositoryProtocol {
     // MARK: - Dependencies
@@ -26,7 +26,7 @@ public final class ProductRepository: ProductRepositoryProtocol {
             method: .get,
             path: "/product"
         )
-        
+
         return httpDispatcher
             .executeRequest(request)
             .tryMap { [jsonDecoder] data in
@@ -44,7 +44,7 @@ public final class ProductRepository: ProductRepositoryProtocol {
             method: .get,
             path: path
         )
-        
+
         return httpDispatcher
             .executeRequest(request)
             .tryMap { [jsonDecoder] data in

@@ -49,7 +49,7 @@ public protocol FeatureViewsProviding {
         withInitialFeature feature: Feature.Type,
         environment: Environment
     ) -> UIHostingController<AnyView>
-    
+
     /// Builds an `AnyCustomView` with the Main View for the feature.
     /// - Parameters:
     ///   - feature: the feature you want to get a Main view from.
@@ -67,8 +67,8 @@ public protocol FeatureViewsProviding {
         withContext context: Context,
         environment: Environment
     ) -> AnyCustomView
-    
 }
+
 public extension FeatureViewsProviding {
     /// Builds a `UIHostingController` with the Main View for the feature.
     /// - Parameters:
@@ -77,7 +77,7 @@ public extension FeatureViewsProviding {
     func hostingController(
         withInitialFeature feature: Feature.Type
     ) -> UIHostingController<AnyView> {
-        self.hostingController(
+        hostingController(
             withInitialFeature: feature,
             environment: EmptyEnvironment()
         )
@@ -157,7 +157,7 @@ public extension FeatureViewsProviding {
         _ route: ViewRoute,
         withContext context: Context
     ) -> AnyCustomView {
-        self.customViewForRoute(
+        customViewForRoute(
             route,
             withContext: context,
             environment: EmptyEnvironment()
@@ -173,7 +173,7 @@ public extension FeatureViewsProviding {
         _ route: ViewRoute,
         environment: Environment
     ) -> AnyCustomView {
-        self.customViewForRoute(
+        customViewForRoute(
             route,
             withContext: EmptyViewRouteContext(),
             environment: environment
@@ -187,7 +187,7 @@ public extension FeatureViewsProviding {
     func customViewForRoute(
         _ route: ViewRoute
     ) -> AnyCustomView {
-        self.customViewForRoute(
+        customViewForRoute(
             route,
             withContext: EmptyViewRouteContext(),
             environment: EmptyEnvironment()

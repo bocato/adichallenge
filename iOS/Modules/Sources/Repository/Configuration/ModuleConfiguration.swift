@@ -11,7 +11,7 @@ public enum RepositoryModule {
             self.apiEnvironment = apiEnvironment
         }
     }
-    
+
     public static func registerDependencies(_ dependencies: Dependencies) {
         dependenciesHolder = dependencies
     }

@@ -10,14 +10,13 @@ extension Error {
             NSURLErrorNotConnectedToInternet,
             NSURLErrorBadServerResponse,
             NSURLErrorInternationalRoamingOff,
-            NSURLErrorCallIsActive
+            NSURLErrorCallIsActive,
         ]
     }
-    
+
     var isNetworkConnectionError: Bool {
         let nsError = self as NSError
         return nsError.domain == NSURLErrorDomain &&
             networkErrors.contains(nsError.code)
     }
-    
 }

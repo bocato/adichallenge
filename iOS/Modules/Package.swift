@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Modules", // TODO: - This should be splitted into FeatureModules (that depends on Core) and CoreModules
     platforms: [
-        .iOS(.v14)
+        .iOS(.v14),
     ],
     products: [
         .library(
@@ -22,7 +22,7 @@ let package = Package(
                 "Repository",
                 "SwiftUIViewProviderInterface",
                 "SwiftUIViewProvider",
-                
+
                 // Feature Modules
                 "Feature-Products",
             ]
@@ -30,6 +30,7 @@ let package = Package(
     ],
     dependencies: [
         // MARK: - Third Party
+
         .package(
             url: "https://github.com/pointfreeco/swift-composable-architecture.git",
             from: "0.9.0"
@@ -37,11 +38,11 @@ let package = Package(
         .package(
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
             from: "1.8.2"
-        )
+        ),
     ],
     targets: [
         // MARK: - Core Modules
-        
+
         // FoundationKit Module
         .target(
             name: "FoundationKit",
@@ -51,24 +52,24 @@ let package = Package(
             name: "FoundationKitTests",
             dependencies: []
         ),
-        
+
         // CoreUI Module
         .target(
             name: "CoreUI",
             dependencies: [
-                "FoundationKit"
+                "FoundationKit",
             ],
             resources: [
-                .process("Resources/Localizable.strings")
+                .process("Resources/Localizable.strings"),
             ]
         ),
         .testTarget(
             name: "CoreUITests",
             dependencies: [
-                "CoreUI"
+                "CoreUI",
             ]
         ),
-        
+
         // Networking Module
         .target(
             name: "NetworkingInterface",
@@ -77,22 +78,22 @@ let package = Package(
         .target(
             name: "Networking",
             dependencies: [
-                "NetworkingInterface"
+                "NetworkingInterface",
             ]
         ),
         .testTarget(
             name: "NetworkingTests",
             dependencies: [
                 "NetworkingInterface",
-                "Networking"
+                "Networking",
             ]
         ),
-        
+
         // Repository Module
         .target(
             name: "RepositoryInterface",
             dependencies: [
-                "NetworkingInterface"
+                "NetworkingInterface",
             ]
         ),
         .target(
@@ -100,7 +101,7 @@ let package = Package(
             dependencies: [
                 "NetworkingInterface",
                 "RepositoryInterface",
-                "CacheKit"
+                "CacheKit",
             ]
         ),
         .testTarget(
@@ -109,10 +110,10 @@ let package = Package(
                 "NetworkingInterface",
                 "RepositoryInterface",
                 "Repository",
-                "CacheKit"
+                "CacheKit",
             ]
         ),
-        
+
         // SwiftUIViewProvider Module
         .target(
             name: "SwiftUIViewProviderInterface",
@@ -121,17 +122,17 @@ let package = Package(
         .target(
             name: "SwiftUIViewProvider",
             dependencies: [
-                "SwiftUIViewProviderInterface"
+                "SwiftUIViewProviderInterface",
             ]
         ),
         .testTarget(
             name: "SwiftUIViewProviderTests",
             dependencies: [
                 "SwiftUIViewProviderInterface",
-                "SwiftUIViewProvider"
+                "SwiftUIViewProvider",
             ]
         ),
-        
+
         // CacheKit Module
         .target(
             name: "CacheKit",
@@ -140,11 +141,12 @@ let package = Package(
         .testTarget(
             name: "CacheKitTests",
             dependencies: [
-                "CacheKit"
+                "CacheKit",
             ]
         ),
-        
+
         // MARK: - Feature Modules
+
         .target(
             name: "Feature-Products",
             dependencies: [
@@ -153,10 +155,10 @@ let package = Package(
                 "RepositoryInterface",
                 "SwiftUIViewProviderInterface",
                 // Third Party Dependencies
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ],
             resources: [
-                .process("Resources/Localizable.strings")
+                .process("Resources/Localizable.strings"),
             ]
         ),
         .testTarget(

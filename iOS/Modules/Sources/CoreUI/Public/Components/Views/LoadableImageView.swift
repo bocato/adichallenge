@@ -1,12 +1,11 @@
-import SwiftUI
 import FoundationKit
+import SwiftUI
 
 public struct LoadableImageView<Placeholder: View>: View {
-    
     private let placeholder: Placeholder
     private let state: LoadingState<Data>
     private let size: CGSize
-    
+
     public init(
         inState state: LoadingState<Data>,
         ofSize size: CGSize,
@@ -16,7 +15,7 @@ public struct LoadableImageView<Placeholder: View>: View {
         self.size = size
         self.placeholder = placeholder()
     }
-    
+
     public var body: some View {
         switch state {
         case .empty:
@@ -35,7 +34,7 @@ public struct LoadableImageView<Placeholder: View>: View {
             return buildClippedView(image, to: size)
         }
     }
-    
+
     private func buildClippedView<V: View>(_ view: V, to size: CGSize) -> AnyView {
         return AnyView(
             view.scaledToFill()

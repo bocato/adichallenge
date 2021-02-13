@@ -5,8 +5,8 @@ extension InformationView {
         public let title: String
         public let subtitle: String?
         public let image: ImageResource
-        
-        public  init(
+
+        public init(
             title: String,
             subtitle: String? = nil,
             image: ImageResource
@@ -15,12 +15,12 @@ extension InformationView {
             self.subtitle = subtitle
             self.image = image
         }
-        
+
         public struct ImageResource {
             /// This is related to `systemName`, please check SFSymbols
             public let sfSymbol: String
             public let color: Color?
-            
+
             public init(
                 sfSymbol: String,
                 color: Color = .secondary
@@ -30,7 +30,7 @@ extension InformationView {
             }
         }
     }
-    
+
     public struct ActionButton {
         public let text: String
         public let action: () -> Void
@@ -39,12 +39,12 @@ extension InformationView {
 
 public struct InformationView: View {
     // MARK: - Properties
-    
+
     private let data: Data
     private let actionButton: ActionButton?
-    
+
     // MARK: - Initialization
-    
+
     public init(
         data: Data,
         actionButton: ActionButton? = nil
@@ -52,16 +52,16 @@ public struct InformationView: View {
         self.data = data
         self.actionButton = actionButton
     }
-    
+
     // MARK: - UI
-    
+
     public var body: some View {
         VStack(spacing: DS.Spacing.base) {
             Image(systemName: data.image.sfSymbol)
                 .resizable()
                 .frame(width: DS.LayoutSize.large.width, height: DS.LayoutSize.large.height)
                 .foregroundColor(data.image.color)
-            
+
             VStack(spacing: DS.Spacing.xSmall) {
                 Text(data.title)
                     .foregroundColor(.primary)
@@ -72,7 +72,7 @@ public struct InformationView: View {
                 }
             }
             .multilineTextAlignment(.center)
-            
+
             if let actionButton = actionButton {
                 Button(
                     actionButton.text,
@@ -90,4 +90,3 @@ public struct InformationView: View {
         )
     }
 }
-

@@ -1,6 +1,6 @@
+import Foundation
 @testable import SwiftUIViewProvider
 import SwiftUIViewProviderInterface
-import Foundation
 import XCTest
 
 final class DependenciesContainerTests: XCTestCase {

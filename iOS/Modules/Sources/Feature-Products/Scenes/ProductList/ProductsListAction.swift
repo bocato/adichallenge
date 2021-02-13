@@ -1,6 +1,6 @@
 import Foundation
-import RepositoryInterface
 import FoundationKit
+import RepositoryInterface
 
 enum ProductsListAction {
     case updateSearchTerm(String)

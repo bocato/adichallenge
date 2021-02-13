@@ -1,6 +1,6 @@
-import SwiftUIViewProviderInterface
 import Foundation
 import SwiftUI
+import SwiftUIViewProviderInterface
 
 public enum SwiftUIViewProviderError: Error {
     case unregisteredRouteForIdentifier(String)
@@ -65,7 +65,7 @@ public final class SwiftUIViewsProvider: SwiftUIViewsProviderInterface {
 
         return UIHostingController(rootView: rootView)
     }
-    
+
     public func rootView(for feature: Feature.Type) -> AnyCustomView {
         let rootView = feature.buildView(
             fromRoute: nil,
@@ -113,21 +113,24 @@ public final class SwiftUIViewsProvider: SwiftUIViewsProviderInterface {
 }
 
 #if DEBUG
-public final class SwiftUIViewProviderDummy: SwiftUIViewsProviderInterface {
-    public init() {}
-    public func register<T>(dependencyFactory: @escaping DependencyFactory, forType metaType: T.Type) {}
-    public func register(routesHandler: FeatureRoutesHandler) {}
-    public func hostingController<Environment>(withInitialFeature feature: Feature.Type, environment: Environment) -> UIHostingController<AnyView> {
-        .init(rootView: AnyView(EmptyView()))
+    public final class SwiftUIViewProviderDummy: SwiftUIViewsProviderInterface {
+        public init() {}
+        public func register<T>(dependencyFactory _: @escaping DependencyFactory, forType _: T.Type) {}
+        public func register(routesHandler _: FeatureRoutesHandler) {}
+        public func hostingController<Environment>(withInitialFeature _: Feature.Type, environment _: Environment) -> UIHostingController<AnyView> {
+            .init(rootView: AnyView(EmptyView()))
+        }
+
+        public func rootView(for _: Feature.Type) -> AnyCustomView {
+            .init(erasing: EmptyView())
+        }
+
+        public func anyViewForRoute<Environment, Context>(_: ViewRoute, withContext _: Context, environment _: Environment) -> AnyView {
+            .init(EmptyView())
+        }
+
+        public func customViewForRoute<Environment, Context>(_: ViewRoute, withContext _: Context, environment _: Environment) -> AnyCustomView {
+            .init(erasing: EmptyView())
+        }
     }
-    public func rootView(for feature: Feature.Type) -> AnyCustomView {
-        .init(erasing: EmptyView())
-    }
-    public func anyViewForRoute<Environment, Context>(_ route: ViewRoute, withContext context: Context, environment: Environment) -> AnyView {
-        .init(EmptyView())
-    }
-    public func customViewForRoute<Environment, Context>(_ route: ViewRoute, withContext context: Context, environment: Environment) -> AnyCustomView {
-        .init(erasing: EmptyView())
-    }
-}
 #endif
