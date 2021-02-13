@@ -6,30 +6,35 @@ import SwiftUIViewProviderInterface
 import SwiftUIViewProvider
 import CacheKit
 import Feature_Products
+import NetworkingInterface
+import Networking
 import RepositoryInterface
 import Repository
 
 struct AppContainer {
     let viewsProvider: SwiftUIViewsProviderInterface
     let httpDispatcher: HTTPRequestDispatcherProtocol
+    let apiEnvironment: APIEnvironmentProvider
 }
 extension AppContainer {
     static let live: Self = .init(
         viewsProvider: SwiftUIViewsProvider(),
-        httpDispatcher: HTTPRequestDispatcher()
+        httpDispatcher: HTTPRequestDispatcher(),
+        apiEnvironment: APIEnvironment.shared
     )
 }
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
     // MARK: - Dependencies
     
-    let appContainer: AppContainer = .live
+    private(set) var appContainer: AppContainer!
     
     // MARK: - UIApplicationDelegate Methods
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
+        appContainer = .live
         registerRouteHandlers(
             for: appContainer.viewsProvider
         )
@@ -46,6 +51,9 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     private func registerDependencies(using appContainer: AppContainer) {
+        RepositoryModule.registerDependencies(
+            .init(apiEnvironment: appContainer.apiEnvironment)
+        )
         appContainer.viewsProvider.register(
             dependencyFactory: { ProductRepository(httpDispatcher: appContainer.httpDispatcher) } ,
             forType: ProductRepositoryProtocol.self
@@ -54,6 +62,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             dependencyFactory: { ImagesRepository() } ,
             forType: ImagesRepositoryProtocol.self
         )
+        
     }
 }
 

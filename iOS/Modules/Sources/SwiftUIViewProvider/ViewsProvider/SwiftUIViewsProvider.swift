@@ -70,7 +70,9 @@ public final class SwiftUIViewsProvider: SwiftUIViewsProviderInterface {
         let rootView = feature.buildView(
             fromRoute: nil,
             withContext: EmptyViewRouteContext(),
-            environment: EmptyEnvironment()
+            environment: ContainerAwareEnvironment(
+                container: container
+            )
         )
         return rootView
     }

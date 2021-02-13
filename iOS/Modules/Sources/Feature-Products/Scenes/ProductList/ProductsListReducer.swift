@@ -21,6 +21,15 @@ let productsListReducer = ProductsListReducer { state, action, environment in
         
     case let .loadProductsResponse(.success(data)):
         state.isLoading = false
+        state.productRows = data.map { product in
+            .init(
+                id: product.id,
+                groupName: "GROUP NAME?",
+                name: product.name,
+                description: product.description,
+                price: environment.currencyFormatter.format(product.price, currencyCode: product.currency)
+            )
+        }
         return Effect.merge(
             data.map { product in
                 environment
@@ -33,18 +42,17 @@ let productsListReducer = ProductsListReducer { state, action, environment in
             }
         )
         
-    case .loadProductsResponse(.failure): // TODO: Handle Errors
+    case let .loadProductsResponse(.failure(error)):
         state.isLoading = false
+        state.apiError = .init(error)
         return .none
         
     case let .updateProductImageState(productID, newLoadingState):
-        
+        state.productImageStates[productID] = newLoadingState
         return .none
         
     case let .shouldDetailsForProductWithID(productID):
-        return .none
-        
-    default:
+        state.selectedProductID = productID // @TODO: Open Details Scene
         return .none
     }
 }

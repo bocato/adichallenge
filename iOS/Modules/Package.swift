@@ -30,10 +30,6 @@ let package = Package(
     ],
     dependencies: [
         // MARK: - Third Party
-//        .package(
-//            url: "https://github.com/pointfreeco/swift-composable-architecture.git",
-//            from: "0.14.0"
-//        ),
         .package(
             url: "https://github.com/pointfreeco/swift-composable-architecture.git",
             from: "0.9.0"
@@ -61,6 +57,9 @@ let package = Package(
             name: "CoreUI",
             dependencies: [
                 "FoundationKit"
+            ],
+            resources: [
+                .process("Resources/Localizable.strings")
             ]
         ),
         .testTarget(
@@ -155,6 +154,9 @@ let package = Package(
                 "SwiftUIViewProviderInterface",
                 // Third Party Dependencies
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ],
+            resources: [
+                .process("Resources/Localizable.strings")
             ]
         ),
         .testTarget(

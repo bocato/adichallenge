@@ -13,6 +13,15 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name
 internal enum L10n {
 
+  internal enum EmptyContentView {
+    internal enum Button {
+      /// Refresh
+      internal static var text: String {
+        L10n.tr("Localizable", "emptyContentView.button.text")
+      }
+    }
+  }
+
   internal enum ErrorView {
     /// Something is wrong, try again later.
     internal static var subtitle: String {
@@ -49,7 +58,7 @@ internal enum L10n {
 extension L10n {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
     // swiftlint:disable:next nslocalizedstring_key
-    let format = Bundle.main.localizedString(forKey: key, value: "", table: table)
+    let format = Bundle.module.localizedString(forKey: key, value: "", table: table)
     return String(format: format, locale: Locale.current, arguments: args)
   }
 }

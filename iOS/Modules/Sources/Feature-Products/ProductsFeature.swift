@@ -11,18 +11,23 @@ public struct ProductsFeature: Feature {
         case let (route, _, _) where route is ProductsListRoute:
             return ProductsListView(
                 store: .init(
-                    initialState: .init(viewState: .loading),
+                    initialState: .init(),
                     reducer: productsListReducer,
                     environment: (environment as? ProductsListEnvironment) ?? ProductsListEnvironment()
                 )
             )
             .eraseToAnyCustomView()
         default: // Default app view
+            guard let container = (environment as? ContainerAwareEnvironment)?.container else {
+                preconditionFailure("This should never happen!") // @TODO: Review and improve everything below this...
+            }
+            let environment = ProductsListEnvironment()
+            environment.initialize(withContainer: container)
             return ProductsListView(
                 store: .init(
-                    initialState: .init(viewState: .loading),
+                    initialState: .init(),
                     reducer: productsListReducer,
-                    environment: ProductsListEnvironment()
+                    environment: environment
                 )
             ).eraseToAnyCustomView()
         }

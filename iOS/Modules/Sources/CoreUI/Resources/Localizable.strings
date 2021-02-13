@@ -6,3 +6,6 @@
 "errorView.title" = "Ops!";
 "errorView.subtitle" = "Something is wrong, try again later.";
 "errorView.button.text" = "Retry";
+
+// MARK: - Empty View
+"emptyContentView.button.text" = "Refresh";

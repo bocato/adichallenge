@@ -9,12 +9,16 @@ struct AppMain: App {
     
     var body: some Scene {
         WindowGroup {
-            appDelegate
-                .appContainer
-                .viewsProvider
-                .rootView(for: ProductsFeature.self)
-                .eraseToAnyView()
+            rootView
         }
+    }
+    
+    private var rootView: some View {
+        appDelegate
+            .appContainer
+            .viewsProvider
+            .rootView(for: ProductsFeature.self)
+            .eraseToAnyView()
     }
     
 }

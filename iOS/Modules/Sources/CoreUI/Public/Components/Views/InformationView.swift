@@ -20,7 +20,7 @@ public struct InformationView: View {
     
     // MARK: - Initialization
     
-    init(
+    public init(
         data: Data = .default,
         actionButton: ActionButton? = nil
     ) {
@@ -31,13 +31,13 @@ public struct InformationView: View {
     // MARK: - UI
     
     public var body: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: DS.Spacing.base) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .resizable()
-                .frame(width: 48, height: 48) // TODO: Add sizes to DS enum...
+                .frame(width: DS.LayoutSize.large.width, height: DS.LayoutSize.large.height)
                 .foregroundColor(.red)
             
-            VStack(spacing: 12) {
+            VStack(spacing: DS.Spacing.xSmall) {
                 Text(data.title)
                     .foregroundColor(.primary)
                     .bold()
@@ -54,7 +54,7 @@ public struct InformationView: View {
             }
         }
         .alignmentGuide(VerticalAlignment.center) { $0[VerticalAlignment.center] * 1.1 }
-        .padding(32)
+        .padding(DS.Spacing.medium)
         .frame(
             minWidth: .zero,
             maxWidth: .infinity,

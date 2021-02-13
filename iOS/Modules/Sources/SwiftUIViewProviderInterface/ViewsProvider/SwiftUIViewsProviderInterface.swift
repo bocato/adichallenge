@@ -11,6 +11,14 @@ public struct EmptyEnvironment {
     public init() {}
 }
 
+/// Represents an environment that is aware of the global container...
+public struct ContainerAwareEnvironment { // @TODO: Review this...
+    public let container: DependenciesContainerInterface
+    public init(container: DependenciesContainerInterface) {
+        self.container = container
+    }
+}
+
 /// Defines a contract for the View's Factory related to routes/features.
 /// Usage example:
 /// ```

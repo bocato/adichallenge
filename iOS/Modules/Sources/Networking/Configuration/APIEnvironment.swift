@@ -7,7 +7,7 @@ import NetworkingInterface
 public final class APIEnvironment: APIEnvironmentProvider {
     // MARK: - Singleton
     
-    public private(set) lazy var shared = APIEnvironment(
+    public private(set) static var shared = APIEnvironment(
         currentEnvironment: .development,
         baseURL: URL(string: "http://localhost:3001")
     )
@@ -31,7 +31,7 @@ public final class APIEnvironment: APIEnvironmentProvider {
     
     // MARK: - Initialization
     
-    public init(
+    init(
         currentEnvironment: APIEnvironmentType,
         baseURL: URL? = nil
     ) {

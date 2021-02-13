@@ -4,17 +4,25 @@ public struct EmptyContentView: View {
     // MARK: - Properties
     
     private let data: InformationView.Data
+    private var actionButton: InformationView.ActionButton? = nil
     
     // MARK: - Initialization
     
     public init(
         title: String,
-        subtitle: String
+        subtitle: String,
+        onRefresh: (() -> Void)? = nil
     ) {
         self.data = .init(
             title: title,
             subtitle: subtitle
         )
+        if let onRefreshClosure = onRefresh {
+            self.actionButton = .init(
+                text: L10n.EmptyContentView.Button.text,
+                action: onRefreshClosure
+            )
+        }
     }
     
     // MARK: - UI
@@ -22,7 +30,7 @@ public struct EmptyContentView: View {
     public var body: some View {
         InformationView(
             data: data,
-            actionButton: nil
+            actionButton: actionButton
         )
     }
 }

@@ -11,7 +11,6 @@
 		E5658F0225D42BC700DD5EB1 /* Modules in Frameworks */ = {isa = PBXBuildFile; productRef = E5658F0125D42BC700DD5EB1 /* Modules */; };
 		E5658F0325D42BC700DD5EB1 /* Modules in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E5658F0125D42BC700DD5EB1 /* Modules */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E5BF31BB25D1543400AF0234 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31BA25D1543400AF0234 /* AppMain.swift */; };
-		E5BF31BD25D1543400AF0234 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31BC25D1543400AF0234 /* ContentView.swift */; };
 		E5BF31BF25D1543500AF0234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5BF31BE25D1543500AF0234 /* Assets.xcassets */; };
 		E5BF31C225D1543500AF0234 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5BF31C125D1543500AF0234 /* Preview Assets.xcassets */; };
 		E5BF31CD25D1543600AF0234 /* AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31CC25D1543600AF0234 /* AppTests.swift */; };
@@ -53,7 +52,6 @@
 		E554236F25D43B6800192ABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5BF31B725D1543400AF0234 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5BF31BA25D1543400AF0234 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
-		E5BF31BC25D1543400AF0234 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E5BF31BE25D1543500AF0234 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5BF31C125D1543500AF0234 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E5BF31C325D1543500AF0234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				E554236E25D43B5900192ABA /* Application */,
-				E5BF31BC25D1543400AF0234 /* ContentView.swift */,
 				E5BF31BE25D1543500AF0234 /* Assets.xcassets */,
 				E5BF31C325D1543500AF0234 /* Info.plist */,
 				E5BF31C025D1543500AF0234 /* Preview Content */,
@@ -300,7 +297,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E554237025D43B6800192ABA /* AppDelegate.swift in Sources */,
-				E5BF31BD25D1543400AF0234 /* ContentView.swift in Sources */,
 				E5BF31BB25D1543400AF0234 /* AppMain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

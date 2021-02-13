@@ -43,17 +43,17 @@ public struct SearchBar: View {
     public var body: some View {
         HStack {
             TextField(layout.placeholder, text: $text)
-                .padding(7)
-                .padding(.horizontal, 25)
+                .padding(DS.Spacing.xxSmall)
+                .padding(.horizontal, DS.Spacing.base)
                 .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .padding(.horizontal, 15)
+                .cornerRadius(DS.CornerRadius.xxSmall)
+                .padding(.horizontal, DS.Spacing.small)
                 .onTapGesture { isEditing = true }
                 .overlay(
                     HStack {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.secondary)
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, DS.Spacing.base)
                         Spacer()
                     }
                 )
@@ -64,7 +64,7 @@ public struct SearchBar: View {
                     text = ""
                 }
                 .foregroundColor(.secondary)
-                .padding(.trailing, 15)
+                .padding(.trailing, DS.Spacing.small)
                 .transition(.move(edge: .trailing))
                 .animation(.easeInOut)
             }

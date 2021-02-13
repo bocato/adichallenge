@@ -4,10 +4,11 @@ import FoundationKit
 
 struct ProductsListState: Equatable {
     var isLoading: Bool = false
-    var viewState: ViewState
+    var apiError: EquatableErrorWrapper?
     var searchTerm: String = ""
     var productRows: [ProductRowData] = []
     var productImageStates: [String: LoadingState<Data>] = [:]
+    var selectedProductID: String?
 }
 
 // MARK: - View Data Models
@@ -19,5 +20,3 @@ struct ProductRowData: Identifiable, Equatable {
     let description: String
     let price: String // formatted
 }
-
-// TODO: CREATE ERROR VIEW WITH RETRY BUTTON -> WARREN

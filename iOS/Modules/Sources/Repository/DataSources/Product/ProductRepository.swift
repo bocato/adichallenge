@@ -24,7 +24,7 @@ public final class ProductRepository: ProductRepositoryProtocol {
     public func getAll() -> AnyPublisher<[Product], ProductRepositoryError> {
         let request: DefaultAPIRequest = .init(
             method: .get,
-            path: "/products"
+            path: "/product"
         )
         
         return httpDispatcher
@@ -39,7 +39,7 @@ public final class ProductRepository: ProductRepositoryProtocol {
     }
 
     public func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductRepositoryError> {
-        let path = "/products/\(id)"
+        let path = "/product/\(id)"
         let request: DefaultAPIRequest = .init(
             method: .get,
             path: path
