@@ -5,9 +5,13 @@ extension ErrorView {
     public typealias ActionButton = InformationView.ActionButton
 }
 extension ErrorView.Data {
-    public static let `default`: Self = .init(
+    public static let defaultErrorLayout: Self = .init(
         title: L10n.ErrorView.title,
-        subtitle: L10n.ErrorView.subtitle
+        subtitle: L10n.ErrorView.subtitle,
+        image: .init(
+            sfSymbol: "exclamationmark.triangle.fill",
+            color: .red
+        )
     )
 }
 public struct ErrorView: View {
@@ -19,7 +23,7 @@ public struct ErrorView: View {
     // MARK: - Initialization
     
     public init(
-        data: Data = .default,
+        data: Data = .defaultErrorLayout,
         onRetry: @escaping () -> Void
     ) {
         self.data = data

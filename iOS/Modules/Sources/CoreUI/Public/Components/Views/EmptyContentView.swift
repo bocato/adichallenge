@@ -15,7 +15,10 @@ public struct EmptyContentView: View {
     ) {
         self.data = .init(
             title: title,
-            subtitle: subtitle
+            subtitle: subtitle,
+            image: .init(
+                sfSymbol: "icloud.slash"
+            )
         )
         if let onRefreshClosure = onRefresh {
             self.actionButton = .init(
@@ -35,3 +38,15 @@ public struct EmptyContentView: View {
     }
 }
 
+//#if DEBUG
+//struct EmptyContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            EmptyContentView(
+//                title: "Oh no!",
+//                subtitle: "It's empty! :("
+//            )
+//        }
+//    }
+//}
+//#endif

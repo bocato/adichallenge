@@ -7,8 +7,11 @@ typealias ProductsListReducer = Reducer<ProductsListState, ProductsListAction, P
 let productsListReducer = ProductsListReducer { state, action, environment in
     switch action {
     case let .updateSearchTerm(term):
-        state.searchTerm = term
-        return .none
+        state.searchInput = term
+        guard term.count >= 3 else {
+            return .none
+        }
+        return .init(value: .filterProductsByTerm(term))
         
     case .loadData:
         state.isLoading = true
@@ -53,6 +56,16 @@ let productsListReducer = ProductsListReducer { state, action, environment in
         
     case let .shouldDetailsForProductWithID(productID):
         state.selectedProductID = productID // @TODO: Open Details Scene
+        return .none
+        
+    case let .filterProductsByTerm(filter):
+        let cleanFilter = filter.lowercased()
+        state.filteredProductRows = state
+            .productRows
+            .filter {
+                $0.description.lowercased().contains(cleanFilter) ||
+                $0.name.lowercased().contains(cleanFilter)
+            }
         return .none
     }
 }

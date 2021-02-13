@@ -1,3 +1,6 @@
 // MARK: - ProductList
+"productList.navigationBarTitle" = "Products List";
 "productList.emptyView.title" = "Oh no!";
 "productList.emptyView.subtitle" = "We could not find the content for this page, try another Search Term...";
+"productList.filteringView.text" = "Filtering...";
+"productList.filteringView.emptyResults" = "Could not find anything related to the input.";

@@ -18,28 +18,33 @@ struct ProductsListView: View {
     
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack {
-                SearchBar(
-                    text: viewStore.binding(
-                        get: { $0.searchTerm } ,
-                        send: { .updateSearchTerm($0) }
+            NavigationView {
+                VStack {
+                    SearchBar(
+                        text: viewStore.binding(
+                            get: { $0.searchInput } ,
+                            send: { .updateSearchTerm($0) }
+                        )
                     )
-                )
-                contentView(viewStore)
-                    .overlay(loadingView(viewStore.isLoading))
-                    .overlay(emptyContentView(viewStore))
-                    .overlay(errorView(viewStore))
+                    contentView(viewStore)
+                        .overlay(loadingView(viewStore.isLoading))
+                        .overlay(filteringView(viewStore))
+                        .overlay(emptyContentView(viewStore))
+                        .overlay(errorView(viewStore))
+                }
+                .navigationBarTitle(L10n.ProductList.navigationBarTitle)
+                .onAppear { viewStore.send(.loadData) }
             }
-            .onAppear { viewStore.send(.loadData) }
         }
     }
     
-    // MARK: - Cotent Views
+    // MARK: - Content Views
     
     @ViewBuilder
     private func contentView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) ->  some View {
         List {
-            ForEach(viewStore.productRows) { product in
+            let productRows = viewStore.isFiltering ? viewStore.filteredProductRows : viewStore.productRows
+            ForEach(productRows) { product in
                 ProductsListRow(
                     data: product,
                     imageLoadingState: viewStore.productImageStates[product.id] ?? .loading
@@ -47,7 +52,7 @@ struct ProductsListView: View {
                 .onTapGesture { viewStore.send(.shouldDetailsForProductWithID(product.id)) }
             }
         }
-        .padding(.bottom, DS.Spacing.xxSmall)
+        .padding(.bottom, DS.Spacing.tiny)
     }
     
     @ViewBuilder
@@ -77,6 +82,24 @@ struct ProductsListView: View {
         }
     }
     
+    @ViewBuilder
+    private func filteringView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) -> some View {
+        if viewStore.showFilteringView {
+            InformationView(
+                data: .init(
+                    title: L10n.ProductList.FilteringView.text,
+                    image: .init(sfSymbol: "doc.text.magnifyingglass")
+                )
+            )
+        } else if viewStore.showEmptyFilterResults {
+            InformationView(
+                data: .init(
+                    title: L10n.ProductList.FilteringView.emptyResults,
+                    image: .init(sfSymbol: "hand.thumbsdown")
+                )
+            )
+        }
+    }
 }
 
 struct ProductsListRow: View {
@@ -99,15 +122,21 @@ struct ProductsListRow: View {
                 placeholder: { Rectangle().fill().foregroundColor(.primary) }
             )
             VStack(alignment: .leading, spacing: DS.Spacing.tiny) {
-                Text(data.name) // TODO: Product name
+                Text(data.name)
                     .bold()
                     .foregroundColor(.primary)
-                Text(data.description) // TODO: Product Description
-                Text("Price $$$") // TODO: Product price
+                Text(data.description)
+                Text(data.price)
+            }
+            Spacer()
+            VStack(alignment: .center) {
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.body)
+                    .foregroundColor(.secondary)
                 Spacer()
             }
         }
-//        .frame(height: 120)
     }
 }
 

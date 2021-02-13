@@ -8,4 +8,5 @@ enum ProductsListAction {
     case loadProductsResponse(Result<[Product], ProductRepositoryError>)
     case updateProductImageState(for: String, to: LoadingState<Data>)
     case shouldDetailsForProductWithID(String)
+    case filterProductsByTerm(String)
 }

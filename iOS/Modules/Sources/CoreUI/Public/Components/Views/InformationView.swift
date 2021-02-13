@@ -3,7 +3,32 @@ import SwiftUI
 extension InformationView {
     public struct Data {
         public let title: String
-        public let subtitle: String
+        public let subtitle: String?
+        public let image: ImageResource
+        
+        public  init(
+            title: String,
+            subtitle: String? = nil,
+            image: ImageResource
+        ) {
+            self.title = title
+            self.subtitle = subtitle
+            self.image = image
+        }
+        
+        public struct ImageResource {
+            /// This is related to `systemName`, please check SFSymbols
+            public let sfSymbol: String
+            public let color: Color?
+            
+            public init(
+                sfSymbol: String,
+                color: Color = .secondary
+            ) {
+                self.sfSymbol = sfSymbol
+                self.color = color
+            }
+        }
     }
     
     public struct ActionButton {
@@ -21,7 +46,7 @@ public struct InformationView: View {
     // MARK: - Initialization
     
     public init(
-        data: Data = .default,
+        data: Data,
         actionButton: ActionButton? = nil
     ) {
         self.data = data
@@ -32,17 +57,19 @@ public struct InformationView: View {
     
     public var body: some View {
         VStack(spacing: DS.Spacing.base) {
-            Image(systemName: "exclamationmark.triangle.fill")
+            Image(systemName: data.image.sfSymbol)
                 .resizable()
                 .frame(width: DS.LayoutSize.large.width, height: DS.LayoutSize.large.height)
-                .foregroundColor(.red)
+                .foregroundColor(data.image.color)
             
             VStack(spacing: DS.Spacing.xSmall) {
                 Text(data.title)
                     .foregroundColor(.primary)
                     .bold()
-                Text(data.subtitle)
-                    .foregroundColor(.primary)
+                if let subtitle = data.subtitle {
+                    Text(subtitle)
+                        .foregroundColor(.primary)
+                }
             }
             .multilineTextAlignment(.center)
             

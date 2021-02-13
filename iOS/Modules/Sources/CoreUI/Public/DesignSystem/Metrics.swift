@@ -29,6 +29,8 @@ extension DS {
     public enum LayoutSize {
         /// CGSize = (1, 1)
         public static let nano: CGSize = .init(width: 1, height: 1)
+        /// CGSize = (16, 16)
+        public static let small: CGSize = .init(width: 16, height: 16)
         /// CGSize =  (48, 48)
         public static let large: CGSize = .init(width: 48, height: 48)
     }
