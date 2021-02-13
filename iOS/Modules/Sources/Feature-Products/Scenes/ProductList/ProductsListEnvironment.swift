@@ -19,3 +19,21 @@ struct ProductsListEnvironment: ResolvableEnvironment {
         self.mainQueue = mainQueue
     }
 }
+#if DEBUG
+extension ProductsListEnvironment {
+    static func fixture(
+        productsRepository: ProductRepositoryProtocol = ProductRepositoryDummy(),
+        imagesRepository: ImagesRepositoryProtocol =  ImagesRepositoryDummy(),
+        currencyFormatter: CurrencyFormatterProtocol = CurrencyFormatterDummy(),
+        mainQueue: AnySchedulerOf<DispatchQueue> = DispatchQueue.global().eraseToAnyScheduler()
+    ) -> Self {
+        var instance: Self = .init(
+            currencyFormatter: currencyFormatter,
+            mainQueue: mainQueue
+        )
+        instance._productsRepository = .resolvedValue(productsRepository)
+        instance._imagesRepository = .resolvedValue(imagesRepository)
+        return instance
+    }
+}
+#endif

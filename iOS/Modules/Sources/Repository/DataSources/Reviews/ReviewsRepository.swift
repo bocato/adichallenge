@@ -35,7 +35,7 @@ public final class ReviewsRepository: ReviewsRepositoryProtocol {
                 let domainModels = decodedResponse.map(ProductReview.init(dto:))
                 return domainModels
             }
-            .mapError { $0 as ReviewsRepositoryError }
+            .mapError { APIError(rawError: $0) }
             .eraseToAnyPublisher()
     }
 }

@@ -2,7 +2,7 @@ import Foundation
 import FoundationKit
 import RepositoryInterface
 
-enum ProductsListAction {
+enum ProductsListAction: Equatable {
     case updateSearchTerm(String)
     case loadData
     case loadProductsResponse(Result<[Product], ProductRepositoryError>)

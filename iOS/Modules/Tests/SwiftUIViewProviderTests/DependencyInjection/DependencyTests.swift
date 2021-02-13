@@ -1,7 +1,6 @@
 import Foundation
 @testable import SwiftUIViewProvider
 @testable import SwiftUIViewProviderInterface
-import TestHelpers
 import XCTest
 
 final class DependencyTests: XCTestCase {
@@ -32,7 +31,6 @@ final class DependencyTests: XCTestCase {
         }
         let sut: Dependency<DummyDependencyProtocol> = .init(
             resolvedValue: nil,
-            globalContainer: container,
             failureHandler: failureHandler
         )
 
@@ -57,7 +55,6 @@ final class DependencyTests: XCTestCase {
         }
         let sut: Dependency<DummyDependencyProtocol> = .init(
             resolvedValue: nil,
-            globalContainer: container,
             failureHandler: failureHandler
         )
 
@@ -69,24 +66,23 @@ final class DependencyTests: XCTestCase {
         XCTAssertTrue(failureHandlerCalled)
     }
 
-    func test_wrappedValue_shouldCallContainer_whenResolvedValueIsNil() {
-        // Given
-        let containerMock: DependencieContainerMock = .init()
-        let dependencyInstance = DummyDependency()
-        containerMock.valueToBeReturned = dependencyInstance
-
-        let sut: Dependency<DummyDependencyProtocol> = .init(
-            resolvedValue: nil,
-            globalContainer: containerMock
-        )
-
-        // When
-        let returnedValue = sut.wrappedValue
-
-        // Then
-        XCTAssertTrue(containerMock.getCalled)
-        XCTAssertTrue(dependencyInstance === returnedValue)
-    }
+//    func test_wrappedValue_shouldCallContainer_whenResolvedValueIsNil() {
+//        // Given
+//        let containerMock: DependencieContainerMock = .init()
+//        let dependencyInstance = DummyDependency()
+//        containerMock.valueToBeReturned = dependencyInstance
+//
+//        let sut: Dependency<DummyDependencyProtocol> = .init(
+//            resolvedValue: nil
+//        )
+//
+//        // When
+//        let returnedValue = sut.wrappedValue
+//
+//        // Then
+//        XCTAssertTrue(containerMock.getCalled)
+//        XCTAssertTrue(dependencyInstance === returnedValue)
+//    }
 
     func test_wrappedValue_shouldNotCallContainer_whenTheResolvedValueIsNotNil() {
         // Given
@@ -94,8 +90,7 @@ final class DependencyTests: XCTestCase {
         let containerMock: DependencieContainerMock = .init()
 
         let sut: Dependency<DummyDependencyProtocol> = .init(
-            resolvedValue: resolvedValue,
-            globalContainer: containerMock
+            resolvedValue: resolvedValue
         )
 
         // When

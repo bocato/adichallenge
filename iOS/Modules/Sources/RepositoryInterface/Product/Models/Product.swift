@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Product {
+public struct Product: Equatable {
     public let id: String
     public let name: String
     public let currency: String
@@ -27,3 +27,26 @@ public struct Product {
         self.reviews = reviews
     }
 }
+#if DEBUG
+extension Product {
+    public static func fixture(
+        id: String = "id",
+        name: String = "name",
+        currency: String = "currency",
+        price: Double = .zero,
+        description: String = "description",
+        imageURL: String = "imageURL",
+        reviews: [ProductReview] = []
+    ) -> Self {
+        .init(
+            id: id,
+            name: name,
+            currency: currency,
+            price: price,
+            description: description,
+            imageURL: imageURL,
+            reviews: reviews
+        )
+    }
+}
+#endif

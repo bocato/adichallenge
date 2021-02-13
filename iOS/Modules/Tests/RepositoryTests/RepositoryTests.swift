@@ -1,15 +1,7 @@
-@testable import CoreModules
 import XCTest
 
 final class RepositoryTests: XCTestCase {
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(RepositoryTests().text, "Hello, World!")
+        XCTAssert(true)
     }
-
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }

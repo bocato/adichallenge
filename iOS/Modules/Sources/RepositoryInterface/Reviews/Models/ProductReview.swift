@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ProductReview {
+public struct ProductReview: Equatable {
     public let productID: String
     public let locale: String
     public let rating: Int

@@ -34,7 +34,7 @@ public final class ProductRepository: ProductRepositoryProtocol {
                 let domainModels = decodedResponse.map(Product.init(dto:))
                 return domainModels
             }
-            .mapError { $0 as ProductRepositoryError }
+            .mapError { APIError(rawError: $0) }
             .eraseToAnyPublisher()
     }
 
@@ -52,7 +52,7 @@ public final class ProductRepository: ProductRepositoryProtocol {
                 let domainModel: Product = .init(dto: decodedResponse)
                 return domainModel
             }
-            .mapError { $0 as ProductRepositoryError }
+            .mapError { APIError(rawError: $0) }
             .eraseToAnyPublisher()
     }
 }

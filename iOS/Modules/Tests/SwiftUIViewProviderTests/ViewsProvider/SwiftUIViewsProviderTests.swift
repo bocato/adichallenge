@@ -1,7 +1,6 @@
 import SwiftUI
 @testable import SwiftUIViewProvider
 import SwiftUIViewProviderInterface
-import TestHelpers
 import XCTest
 
 final class SwiftUIViewsProviderTests: XCTestCase {
@@ -15,14 +14,6 @@ final class SwiftUIViewsProviderTests: XCTestCase {
     }()
 
     // MARK: - Tests
-
-    func test_init_whenAContainerIsNotSet_itShouldBeConfiguredWithTheSharedInstance() {
-        // Given / When
-        let sut: SwiftUIViewsProvider = .init(container: nil)
-        // Then
-        let usesSharedContainer = sut.container === DependenciesContainer.shared
-        XCTAssertTrue(usesSharedContainer)
-    }
 
     func test_registerDependencyFactory_shouldAddItToDependenciesContainer() {
         // Given
@@ -139,7 +130,7 @@ final class SwiftUIViewsProviderTests: XCTestCase {
             return AnyView(EmptyView())
         }
 
-        let sut: SwiftUIViewProvider = .init(
+        let sut: SwiftUIViewsProvider = .init(
             container: dependenciesContainer,
             unavailableViewBuilder: unavailableViewBuilder
         )

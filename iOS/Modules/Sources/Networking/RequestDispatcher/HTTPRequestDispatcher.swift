@@ -59,6 +59,6 @@ public final class HTTPRequestDispatcher: HTTPRequestDispatcherProtocol {
             let dictionary = try? jsonSerializer.jsonObject(with: data, options: .allowFragments) as? [String: Any]
         else { return .unexpectedAPIError }
         let error: NSError = .init(domain: "Networking", code: code, userInfo: dictionary)
-        return .apiError(error)
+        return .apiError(.init(rawError: error))
     }
 }

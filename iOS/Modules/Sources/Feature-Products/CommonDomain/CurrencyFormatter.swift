@@ -35,3 +35,22 @@ final class DefaultCurrencyFormatter: CurrencyFormatterProtocol {
         return formattedValue
     }
 }
+
+#if DEBUG
+final class CurrencyFormatterDummy: CurrencyFormatterProtocol {
+    func format(
+        _ value: Double,
+        forLocale localeIdentifier: String,
+        currencyCode: String
+    ) -> String { "" }
+}
+
+final class CurrencyFormatterStub: CurrencyFormatterProtocol {
+    var valueToBeReturned = ""
+    func format(
+        _ value: Double,
+        forLocale localeIdentifier: String,
+        currencyCode: String
+    ) -> String { valueToBeReturned }
+}
+#endif
