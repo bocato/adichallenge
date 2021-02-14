@@ -15,23 +15,34 @@ extension CurrencyFormatterProtocol {
     ) -> String {
         format(
             value,
-            forLocale: "en_US",
+            forLocale: "nl_NL",
             currencyCode: currencyCode
         )
     }
 }
 
 final class DefaultCurrencyFormatter: CurrencyFormatterProtocol {
+    // MARK: - Dependencies
+    
+    private let numberFormatter: NumberFormatter
+    
+    // MARK: - Initialization
+    
+    init(numberFormatter: NumberFormatter = .init()) {
+        self.numberFormatter = numberFormatter
+    }
+    
+    // MARK: - Public API
+    
     func format(
         _ value: Double,
         forLocale localeIdentifier: String,
         currencyCode: String
     ) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = currencyCode.isEmpty ? "USD" : currencyCode
-        formatter.locale = Locale(identifier: localeIdentifier)
-        guard let formattedValue = formatter.string(for: value) else { return "" }
+        numberFormatter.numberStyle = .currency
+        numberFormatter.currencyCode = currencyCode.isEmpty ? "EUR" : currencyCode
+        numberFormatter.locale = Locale(identifier: localeIdentifier)
+        guard let formattedValue = numberFormatter.string(for: value) else { return "" }
         return formattedValue
     }
 }

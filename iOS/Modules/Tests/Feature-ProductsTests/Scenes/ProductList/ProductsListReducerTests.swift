@@ -67,7 +67,7 @@ final class ProductsListReducerTests: XCTestCase {
         let firstProduct: Product = .fixture(
             name: "Product A",
             currency: "",
-            price: 1.99,
+            price: 1.23,
             imageURL: "ImageURL A"
         )
         let productsMock: [Product] = [firstProduct]
@@ -90,7 +90,7 @@ final class ProductsListReducerTests: XCTestCase {
                         groupName: "GROUP NAME?", // TODO: CHECK THIS PROPERTY...
                         name: firstProduct.name,
                         description: firstProduct.description,
-                        price: "$\(String(format: "%.2f", firstProduct.price))"
+                        price: "€ 1,23"
                     )
                 ]
             },

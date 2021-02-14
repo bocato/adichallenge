@@ -54,7 +54,7 @@ let productsListReducer = ProductsListReducer { state, action, environment in
         state.productImageStates[productID] = newLoadingState
         return .none
 
-    case let .shouldDetailsForProductWithID(productID):
+    case let .showDetailsForProductWithID(productID):
         state.selectedProductID = productID // @TODO: Open Details Scene
         return .none
 

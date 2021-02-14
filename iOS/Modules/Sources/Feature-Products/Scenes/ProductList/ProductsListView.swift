@@ -49,7 +49,7 @@ struct ProductsListView: View {
                     data: product,
                     imageLoadingState: viewStore.productImageStates[product.id] ?? .loading
                 )
-                .onTapGesture { viewStore.send(.shouldDetailsForProductWithID(product.id)) }
+                .onTapGesture { viewStore.send(.showDetailsForProductWithID(product.id)) }
             }
         }
         .padding(.bottom, DS.Spacing.tiny)
