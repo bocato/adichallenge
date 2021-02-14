@@ -6,7 +6,7 @@ public typealias ProductsRepositoryError = APIError
 
 public protocol ProductsRepositoryProtocol {
     func getAll() -> AnyPublisher<[Product], ProductsRepositoryError>
-    func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductsRepositoryError>
+    func getProductWithID(_ id: String) -> AnyPublisher<Product, ProductsRepositoryError>
 }
 
 #if DEBUG
@@ -17,7 +17,7 @@ public final class ProductsRepositoryDummy: ProductsRepositoryProtocol {
         Empty().eraseToAnyPublisher()
     }
     
-    public func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductsRepositoryError> {
+    public func getProductWithID(_ id: String) -> AnyPublisher<Product, ProductsRepositoryError> {
         Empty().eraseToAnyPublisher()
     }
 }
@@ -31,7 +31,7 @@ public final class ProductsRepositoryStub: ProductsRepositoryProtocol {
     }
     
     public var getProductWithIDResultToBeReturned: Result<Product, ProductsRepositoryError> = .success(.fixture())
-    public func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductsRepositoryError> {
+    public func getProductWithID(_ id: String) -> AnyPublisher<Product, ProductsRepositoryError> {
         getProductWithIDResultToBeReturned.publisher.eraseToAnyPublisher()
     }
 }

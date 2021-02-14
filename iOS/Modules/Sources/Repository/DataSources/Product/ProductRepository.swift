@@ -38,7 +38,7 @@ public final class ProductsRepository: ProductsRepositoryProtocol {
             .eraseToAnyPublisher()
     }
 
-    public func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductsRepositoryError> {
+    public func getProductWithID(_ id: String) -> AnyPublisher<Product, ProductsRepositoryError> {
         let path = "/product/\(id)"
         let request: DefaultAPIRequest = .init(
             method: .get,
