@@ -142,13 +142,13 @@ final class ProductsListReducerTests: XCTestCase {
                 nextState.searchInput = searchTerm
                 XCTAssertEqual(nextState.isFiltering, true)
                 XCTAssertEqual(nextState.showFilteringView, false)
-                XCTAssertEqual(nextState.showEmptyFilterResults, false)
             },
             .receive(.filterProductsByTerm(searchTerm)) { nextState in
                 nextState.filteredProductRows = [
                     .fixture(name: "Abcdefg"),
                     .fixture(description: "Abcdefg"),
                 ]
+                XCTAssertEqual(nextState.showEmptyFilterResults, false)
             }
         )
     }
