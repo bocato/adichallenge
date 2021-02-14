@@ -2,36 +2,36 @@ import Combine
 import Foundation
 import NetworkingInterface
 
-public typealias ProductRepositoryError = APIError
+public typealias ProductsRepositoryError = APIError
 
-public protocol ProductRepositoryProtocol {
-    func getAll() -> AnyPublisher<[Product], ProductRepositoryError>
-    func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductRepositoryError>
+public protocol ProductsRepositoryProtocol {
+    func getAll() -> AnyPublisher<[Product], ProductsRepositoryError>
+    func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductsRepositoryError>
 }
 
 #if DEBUG
-public final class ProductRepositoryDummy: ProductRepositoryProtocol {
+public final class ProductsRepositoryDummy: ProductsRepositoryProtocol {
     public init() {}
     
-    public func getAll() -> AnyPublisher<[Product], ProductRepositoryError> {
+    public func getAll() -> AnyPublisher<[Product], ProductsRepositoryError> {
         Empty().eraseToAnyPublisher()
     }
     
-    public func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductRepositoryError> {
+    public func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductsRepositoryError> {
         Empty().eraseToAnyPublisher()
     }
 }
 
-public final class ProductRepositoryStub: ProductRepositoryProtocol {
+public final class ProductsRepositoryStub: ProductsRepositoryProtocol {
     public init() {}
     
-    public var getAllResultToBeReturned: Result<[Product], ProductRepositoryError> = .success([])
-    public func getAll() -> AnyPublisher<[Product], ProductRepositoryError> {
+    public var getAllResultToBeReturned: Result<[Product], ProductsRepositoryError> = .success([])
+    public func getAll() -> AnyPublisher<[Product], ProductsRepositoryError> {
         getAllResultToBeReturned.publisher.eraseToAnyPublisher()
     }
     
-    public var getProductWithIDResultToBeReturned: Result<Product, ProductRepositoryError> = .success(.fixture())
-    public func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductRepositoryError> {
+    public var getProductWithIDResultToBeReturned: Result<Product, ProductsRepositoryError> = .success(.fixture())
+    public func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductsRepositoryError> {
         getProductWithIDResultToBeReturned.publisher.eraseToAnyPublisher()
     }
 }

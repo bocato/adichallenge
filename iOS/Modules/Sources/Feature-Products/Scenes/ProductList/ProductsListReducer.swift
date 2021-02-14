@@ -27,7 +27,7 @@ let productsListReducer = ProductsListReducer { state, action, environment in
         state.productRows = data.map { product in
             .init(
                 id: product.id,
-                groupName: "GROUP NAME?",
+                groupName: "GROUP NAME?", // TODO: CHECK THIS PROPERTY...
                 name: product.name,
                 description: product.description,
                 price: environment.currencyFormatter.format(product.price, currencyCode: product.currency)

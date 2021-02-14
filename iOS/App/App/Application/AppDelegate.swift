@@ -55,8 +55,8 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             .init(apiEnvironment: appContainer.apiEnvironment)
         )
         appContainer.viewsProvider.register(
-            dependencyFactory: { ProductRepository(httpDispatcher: appContainer.httpDispatcher) },
-            forType: ProductRepositoryProtocol.self
+            dependencyFactory: { ProductsRepository(httpDispatcher: appContainer.httpDispatcher) },
+            forType: ProductsRepositoryProtocol.self
         )
         appContainer.viewsProvider.register(
             dependencyFactory: { ImagesRepository() },

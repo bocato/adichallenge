@@ -3,7 +3,7 @@ import Foundation
 import NetworkingInterface
 import RepositoryInterface
 
-public final class ProductRepository: ProductRepositoryProtocol {
+public final class ProductsRepository: ProductsRepositoryProtocol {
     // MARK: - Dependencies
 
     private let httpDispatcher: HTTPRequestDispatcherProtocol
@@ -21,7 +21,7 @@ public final class ProductRepository: ProductRepositoryProtocol {
 
     // MARK: - Public API
 
-    public func getAll() -> AnyPublisher<[Product], ProductRepositoryError> {
+    public func getAll() -> AnyPublisher<[Product], ProductsRepositoryError> {
         let request: DefaultAPIRequest = .init(
             method: .get,
             path: "/product"
@@ -38,7 +38,7 @@ public final class ProductRepository: ProductRepositoryProtocol {
             .eraseToAnyPublisher()
     }
 
-    public func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductRepositoryError> {
+    public func getProductWithID(_ id: Int) -> AnyPublisher<Product, ProductsRepositoryError> {
         let path = "/product/\(id)"
         let request: DefaultAPIRequest = .init(
             method: .get,

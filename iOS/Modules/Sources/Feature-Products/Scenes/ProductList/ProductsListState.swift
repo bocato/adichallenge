@@ -20,10 +20,28 @@ extension ProductsListState {
 
 // MARK: - View Data Models
 
-struct ProductRowData: Identifiable, Equatable {
-    let id: String
+struct ProductRowData: Identifiable, Equatable {let id: String
     let groupName: String
     let name: String
     let description: String
     let price: String // formatted
 }
+#if DEBUG
+extension ProductRowData {
+    static func fixture(
+        id: String = "id",
+        groupName: String = "groupName",
+        name: String = "name",
+        description: String = "description",
+        price: String = "price"
+    ) -> Self {
+        .init(
+            id: id,
+            groupName: groupName,
+            name: name,
+            description: description,
+            price: price
+        )
+    }
+}
+#endif

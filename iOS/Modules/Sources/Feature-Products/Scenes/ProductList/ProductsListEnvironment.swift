@@ -6,7 +6,7 @@ import RepositoryInterface
 import SwiftUIViewProviderInterface
 
 struct ProductsListEnvironment: ResolvableEnvironment {
-    @Dependency var productsRepository: ProductRepositoryProtocol
+    @Dependency var productsRepository: ProductsRepositoryProtocol
     @Dependency var imagesRepository: ImagesRepositoryProtocol
     var currencyFormatter: CurrencyFormatterProtocol
     var mainQueue: AnySchedulerOf<DispatchQueue>
@@ -22,7 +22,7 @@ struct ProductsListEnvironment: ResolvableEnvironment {
 #if DEBUG
 extension ProductsListEnvironment {
     static func fixture(
-        productsRepository: ProductRepositoryProtocol = ProductRepositoryDummy(),
+        productsRepository: ProductsRepositoryProtocol = ProductsRepositoryDummy(),
         imagesRepository: ImagesRepositoryProtocol =  ImagesRepositoryDummy(),
         currencyFormatter: CurrencyFormatterProtocol = CurrencyFormatterDummy(),
         mainQueue: AnySchedulerOf<DispatchQueue> = DispatchQueue.global().eraseToAnyScheduler()

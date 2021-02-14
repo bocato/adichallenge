@@ -16,4 +16,18 @@ public final class ImagesRepositoryDummy: ImagesRepositoryProtocol {
         Empty().eraseToAnyPublisher()
     }
 }
+
+public final class ImagesRepositoryStub: ImagesRepositoryProtocol {
+    public init() {}
+    
+    public var imageDataToBeReturned: Data?
+    public func getImageDataFromURL(
+        _ urlString: String
+    ) -> AnyPublisher<Data?, Never> {
+        Result<Data?, Never>
+            .success(imageDataToBeReturned)
+            .publisher
+            .eraseToAnyPublisher()
+    }
+}
 #endif
