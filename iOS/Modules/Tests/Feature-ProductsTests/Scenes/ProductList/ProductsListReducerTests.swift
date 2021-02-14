@@ -7,6 +7,7 @@ import XCTest
 
 final class ProductsListReducerTests: XCTestCase {
     // MARK: - Properties
+    
     private var initialState = ProductsListState()
     private let productsRepositoryStub = ProductsRepositoryStub()
     private let imagesRepositoryStub = ImagesRepositoryStub()
@@ -44,12 +45,9 @@ final class ProductsListReducerTests: XCTestCase {
         testStore.assert(
             .send(.updateSearchTerm(searchTerm)) { nextState in
                 nextState.searchInput = searchTerm
-                XCTAssertEqual(nextState.isFiltering, true)
-                XCTAssertEqual(nextState.showFilteringView, false)
-                XCTAssertEqual(nextState.showEmptyFilterResults, true)
             },
             .receive(.filterProductsByTerm(searchTerm)) { nextState in
-                nextState.filteredProductRows = []
+                nextState.filteredProductRows = nil
             }
         )
     }
@@ -80,6 +78,8 @@ final class ProductsListReducerTests: XCTestCase {
         testStore.assert(
             .send(.loadData) { nextState in
                 nextState.isLoading = true
+                nextState.apiError = nil
+                nextState.productRows = []
             },
             .do { self.mainQueueFake.advance() },
             .receive(.loadProductsResponse(.success(productsMock))) { nextState in

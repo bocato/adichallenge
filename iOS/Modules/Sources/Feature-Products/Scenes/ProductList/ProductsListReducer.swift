@@ -15,6 +15,8 @@ let productsListReducer = ProductsListReducer { state, action, environment in
 
     case .loadData:
         state.isLoading = true
+        state.apiError = nil
+        state.productRows = []
         return environment
             .productsRepository
             .getAll()
@@ -60,12 +62,13 @@ let productsListReducer = ProductsListReducer { state, action, environment in
 
     case let .filterProductsByTerm(filter):
         let cleanFilter = filter.lowercased()
-        state.filteredProductRows = state
+        let filterResult = state
             .productRows
             .filter {
                 $0.description.lowercased().contains(cleanFilter) ||
                     $0.name.lowercased().contains(cleanFilter)
             }
+        state.filteredProductRows = filterResult.isEmpty ? nil : filterResult
         return .none
     }
 }

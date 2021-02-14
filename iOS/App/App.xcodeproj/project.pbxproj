@@ -14,7 +14,6 @@
 		E5BF31BF25D1543500AF0234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5BF31BE25D1543500AF0234 /* Assets.xcassets */; };
 		E5BF31C225D1543500AF0234 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5BF31C125D1543500AF0234 /* Preview Assets.xcassets */; };
 		E5BF31CD25D1543600AF0234 /* AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31CC25D1543600AF0234 /* AppTests.swift */; };
-		E5BF31D825D1543600AF0234 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF31D725D1543600AF0234 /* AppUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +58,6 @@
 		E5BF31CC25D1543600AF0234 /* AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTests.swift; sourceTree = "<group>"; };
 		E5BF31CE25D1543600AF0234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5BF31D325D1543600AF0234 /* AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5BF31D725D1543600AF0234 /* AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITests.swift; sourceTree = "<group>"; };
-		E5BF31D925D1543600AF0234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +100,6 @@
 			children = (
 				E5BF31B925D1543400AF0234 /* App */,
 				E5BF31CB25D1543600AF0234 /* AppTests */,
-				E5BF31D625D1543600AF0234 /* AppUITests */,
 				E5BF31B825D1543400AF0234 /* Products */,
 				E5BF31EB25D1AC5B00AF0234 /* Frameworks */,
 			);
@@ -145,15 +141,6 @@
 				E5BF31CE25D1543600AF0234 /* Info.plist */,
 			);
 			path = AppTests;
-			sourceTree = "<group>";
-		};
-		E5BF31D625D1543600AF0234 /* AppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				E5BF31D725D1543600AF0234 /* AppUITests.swift */,
-				E5BF31D925D1543600AF0234 /* Info.plist */,
-			);
-			path = AppUITests;
 			sourceTree = "<group>";
 		};
 		E5BF31EB25D1AC5B00AF0234 /* Frameworks */ = {
@@ -313,7 +300,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5BF31D825D1543600AF0234 /* AppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

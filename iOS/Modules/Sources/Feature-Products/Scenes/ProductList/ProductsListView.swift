@@ -29,8 +29,8 @@ struct ProductsListView: View {
                     contentView(viewStore)
                         .overlay(loadingView(viewStore.isLoading))
                         .overlay(filteringView(viewStore))
-                        .overlay(emptyContentView(viewStore))
                         .overlay(errorView(viewStore))
+                        .overlay(emptyContentView(viewStore))
                 }
                 .navigationBarTitle(L10n.ProductList.navigationBarTitle)
                 .onAppear { viewStore.send(.loadData) }
@@ -43,7 +43,7 @@ struct ProductsListView: View {
     @ViewBuilder
     private func contentView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) -> some View {
         List {
-            let productRows = viewStore.isFiltering ? viewStore.filteredProductRows : viewStore.productRows
+            let productRows = getProductRowsData(for: viewStore)
             ForEach(productRows) { product in
                 ProductsListRow(
                     data: product,
@@ -63,10 +63,30 @@ struct ProductsListView: View {
             Spacer()
         }
     }
+    
+    @ViewBuilder
+    private func filteringView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) -> some View {
+        if viewStore.showFilteringView {
+            InformationView(
+                data: .init(
+                    title: L10n.ProductList.FilteringView.text,
+                    image: .init(sfSymbol: "doc.text.magnifyingglass")
+                )
+            )
+        }
+        else if viewStore.showEmptyFilterResults {
+            InformationView(
+                data: .init(
+                    title: L10n.ProductList.FilteringView.emptyResults,
+                    image: .init(sfSymbol: "hand.thumbsdown")
+                )
+            )
+        }
+    }
 
     @ViewBuilder
     private func emptyContentView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) -> some View {
-        if viewStore.productRows.isEmpty && !viewStore.isLoading {
+        if viewStore.showEmptyContentView {
             EmptyContentView(
                 title: L10n.ProductList.EmptyView.title,
                 subtitle: L10n.ProductList.EmptyView.subtitle,
@@ -81,24 +101,15 @@ struct ProductsListView: View {
             ErrorView(onRetry: { viewStore.send(.loadData) })
         }
     }
-
-    @ViewBuilder
-    private func filteringView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) -> some View {
-        if viewStore.showFilteringView {
-            InformationView(
-                data: .init(
-                    title: L10n.ProductList.FilteringView.text,
-                    image: .init(sfSymbol: "doc.text.magnifyingglass")
-                )
-            )
-        } else if viewStore.showEmptyFilterResults {
-            InformationView(
-                data: .init(
-                    title: L10n.ProductList.FilteringView.emptyResults,
-                    image: .init(sfSymbol: "hand.thumbsdown")
-                )
-            )
+    
+    // MARK: - Helper Methods
+    
+    private func getProductRowsData(for viewStore: ViewStore<ProductsListState, ProductsListAction>) -> [ProductRowData] {
+        var productRows = viewStore.productRows
+        if let filteredProductRows = viewStore.filteredProductRows, viewStore.isFiltering {
+            productRows = filteredProductRows
         }
+        return productRows
     }
 }
 

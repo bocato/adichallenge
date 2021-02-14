@@ -30,15 +30,19 @@ let package = Package(
     ],
     dependencies: [
         // MARK: - Third Party
-
         .package(
             url: "https://github.com/pointfreeco/swift-composable-architecture.git",
             from: "0.9.0"
         ),
+//        .package(
+//            url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
+//            from: "1.8.2"
+//        ),
         .package(
+            name: "SnapshotTesting",
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
             from: "1.8.2"
-        ),
+        )
     ],
     targets: [
         // MARK: - Core Modules
@@ -164,7 +168,10 @@ let package = Package(
         .testTarget(
             name: "Feature-ProductsTests",
             dependencies: [
+                // Internal Dependencies
                 "Feature-Products",
+                // Third Party Dependencies
+                "SnapshotTesting",
             ]
         ),
     ]

@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E5BF31B625D1543400AF0234"
-               BuildableName = "App.app"
-               BlueprintName = "App"
-               ReferencedContainer = "container:App.xcodeproj">
+               BlueprintIdentifier = "Modules"
+               BuildableName = "Modules"
+               BlueprintName = "Modules"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,75 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
-      <CodeCoverageTargets>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E5BF31B625D1543400AF0234"
-            BuildableName = "App.app"
-            BlueprintName = "App"
-            ReferencedContainer = "container:App.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CacheKitTests"
-            BuildableName = "CacheKitTests"
-            BlueprintName = "CacheKitTests"
-            ReferencedContainer = "container:../Modules">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CoreUITests"
-            BuildableName = "CoreUITests"
-            BlueprintName = "CoreUITests"
-            ReferencedContainer = "container:../Modules">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Feature-ProductsTests"
-            BuildableName = "Feature-ProductsTests"
-            BlueprintName = "Feature-ProductsTests"
-            ReferencedContainer = "container:../Modules">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FoundationKitTests"
-            BuildableName = "FoundationKitTests"
-            BlueprintName = "FoundationKitTests"
-            ReferencedContainer = "container:../Modules">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "NetworkingTests"
-            BuildableName = "NetworkingTests"
-            BlueprintName = "NetworkingTests"
-            ReferencedContainer = "container:../Modules">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "RepositoryTests"
-            BuildableName = "RepositoryTests"
-            BlueprintName = "RepositoryTests"
-            ReferencedContainer = "container:../Modules">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "SwiftUIViewProviderTests"
-            BuildableName = "SwiftUIViewProviderTests"
-            BlueprintName = "SwiftUIViewProviderTests"
-            ReferencedContainer = "container:../Modules">
-         </BuildableReference>
-      </CodeCoverageTargets>
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E5BF31C725D1543600AF0234"
-               BuildableName = "AppTests.xctest"
-               BlueprintName = "AppTests"
-               ReferencedContainer = "container:App.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -104,7 +36,7 @@
                BlueprintIdentifier = "CacheKitTests"
                BuildableName = "CacheKitTests"
                BlueprintName = "CacheKitTests"
-               ReferencedContainer = "container:../Modules">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -114,7 +46,7 @@
                BlueprintIdentifier = "CoreUITests"
                BuildableName = "CoreUITests"
                BlueprintName = "CoreUITests"
-               ReferencedContainer = "container:../Modules">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -124,7 +56,7 @@
                BlueprintIdentifier = "Feature-ProductsTests"
                BuildableName = "Feature-ProductsTests"
                BlueprintName = "Feature-ProductsTests"
-               ReferencedContainer = "container:../Modules">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -134,7 +66,7 @@
                BlueprintIdentifier = "FoundationKitTests"
                BuildableName = "FoundationKitTests"
                BlueprintName = "FoundationKitTests"
-               ReferencedContainer = "container:../Modules">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -144,7 +76,7 @@
                BlueprintIdentifier = "NetworkingTests"
                BuildableName = "NetworkingTests"
                BlueprintName = "NetworkingTests"
-               ReferencedContainer = "container:../Modules">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -154,7 +86,7 @@
                BlueprintIdentifier = "RepositoryTests"
                BuildableName = "RepositoryTests"
                BlueprintName = "RepositoryTests"
-               ReferencedContainer = "container:../Modules">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -164,7 +96,7 @@
                BlueprintIdentifier = "SwiftUIViewProviderTests"
                BuildableName = "SwiftUIViewProviderTests"
                BlueprintName = "SwiftUIViewProviderTests"
-               ReferencedContainer = "container:../Modules">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -179,16 +111,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E5BF31B625D1543400AF0234"
-            BuildableName = "App.app"
-            BlueprintName = "App"
-            ReferencedContainer = "container:App.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -196,16 +118,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E5BF31B625D1543400AF0234"
-            BuildableName = "App.app"
-            BlueprintName = "App"
-            ReferencedContainer = "container:App.xcodeproj">
+            BlueprintIdentifier = "Modules"
+            BuildableName = "Modules"
+            BlueprintName = "Modules"
+            ReferencedContainer = "container:">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
