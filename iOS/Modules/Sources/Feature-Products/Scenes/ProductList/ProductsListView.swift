@@ -113,6 +113,8 @@ struct ProductsListView: View {
     }
 }
 
+// MARK: - Specific Components
+
 struct ProductsListRow: View {
     private let data: ProductRowData
     private var imageLoadingState: LoadingState<Data>
@@ -151,12 +153,3 @@ struct ProductsListRow: View {
     }
 }
 
-// #if DEBUG
-// struct ProductsListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            ProductsListView()
-//        }
-//    }
-// }
-// #endif

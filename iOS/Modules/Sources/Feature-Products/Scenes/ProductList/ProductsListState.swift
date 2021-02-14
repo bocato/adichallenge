@@ -39,7 +39,8 @@ extension ProductsListState {
 
 // MARK: - View Data Models
 
-struct ProductRowData: Identifiable, Equatable {let id: String
+struct ProductRowData: Identifiable, Equatable {
+    let id: String
     let groupName: String
     let name: String
     let description: String

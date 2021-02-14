@@ -33,10 +33,36 @@ struct ProductViewData: Equatable {
     let reviews: [Review]
 }
 extension ProductViewData {
-    struct Review: Equatable {
-        let locale: String
+    struct Review: Equatable, Identifiable {
+        let id: String
+        let flagEmoji: String
         let rating: Int
         let text: String
+        
+        fileprivate init(
+            id: String,
+            flagEmoji: String,
+            rating: Int,
+            text: String
+        ) {
+            self.id = id
+            self.flagEmoji = flagEmoji
+            self.rating = rating
+            self.text = text
+        }
+        
+        init(
+            flagEmoji: String,
+            rating: Int,
+            text: String
+        ) {
+            self.init(
+                id: UUID().uuidString,
+                flagEmoji: flagEmoji,
+                rating: rating,
+                text: text
+            )
+        }
     }
 }
 
@@ -58,12 +84,14 @@ extension ProductViewData {
 }
 extension ProductViewData.Review {
     static func fixture(
-        locale: String = "locale",
+        id: String = "id",
+        flagEmoji: String = "🇧🇷",
         rating: Int = 5,
         text: String = "text"
     ) -> Self {
         .init(
-            locale: locale,
+            id: id,
+            flagEmoji: flagEmoji,
             rating: rating,
             text: text
         )

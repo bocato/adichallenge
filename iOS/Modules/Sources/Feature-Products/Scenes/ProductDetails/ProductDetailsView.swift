@@ -21,7 +21,6 @@ struct ProductDetailsView: View {
             contentView(viewStore)
                 .overlay(loadingView(viewStore.isLoading))
                 .overlay(errorView(viewStore))
-                
         }
     }
 
@@ -69,17 +68,13 @@ struct ProductDetailsView: View {
                 }
                 Text(product.description)
             }
-//            List {
-//                ForEach(productRows) { product in
-//                    ProductsListRow(
-//                        data: product,
-//                        imageLoadingState: viewStore.productImageStates[product.id] ?? .loading
-//                    )
-//                    .onTapGesture { viewStore.send(.showDetailsForProductWithID(product.id)) }
-//                }
-//            }
-//            .padding(.bottom, DS.Spacing.tiny)
+            List {
+                ForEach(product.reviews) { review in
+                    ProductReviewRow(data: review)
+                }
+            }
         }
+        .padding(.bottom, DS.Spacing.tiny)
     }
 
     @ViewBuilder
@@ -95,6 +90,32 @@ struct ProductDetailsView: View {
     private func errorView(_ viewStore: ViewStore<ProductDetailsState, ProductDetailsAction>) -> some View {
         if viewStore.apiError != nil {
             ErrorView(onRetry: { viewStore.send(.loadData) })
+        }
+    }
+}
+
+// MARK: - Specific Components
+
+struct ProductReviewRow: View {
+    typealias Data = ProductViewData.Review
+    private let data: Data
+
+    init(data: Data) {
+        self.data = data
+    }
+
+    var body: some View {
+        VStack(spacing: DS.Spacing.tiny) {
+            HStack {
+                Text(data.flagEmoji)
+                Spacer()
+                ForEach(0..<data.rating) { _ in
+                    Text(" ⭐️ ")
+                }
+            }
+            Text(data.text)
+                .font(.body)
+                .foregroundColor(.secondary)
         }
     }
 }

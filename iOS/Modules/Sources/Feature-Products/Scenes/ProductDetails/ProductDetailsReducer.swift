@@ -26,7 +26,13 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
                 data.price,
                 currencyCode: data.currency
             ),
-            reviews: data.reviews.map(ProductViewData.Review.init)
+            reviews: data.reviews.map { domainObject -> ProductViewData.Review in
+                .init(
+                    flagEmoji: environment.emojiConverter.emojiFlag(for: domainObject.locale),
+                    rating: domainObject.rating,
+                    text: domainObject.text
+                )
+            }
         )
         return .none // TODO: Load image
 //        return Effect.init {
@@ -52,16 +58,5 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
     case let .updateProductImageState(newLoadingState):
         state.productImageState = newLoadingState
         return .none
-    }
-}
-
-// MARK: - Mappers
-private extension ProductViewData.Review {
-    init(_ domainEntity: ProductReview) {
-        self.init(
-            locale: domainEntity.locale,
-            rating: domainEntity.rating,
-            text: domainEntity.text
-        )
     }
 }
