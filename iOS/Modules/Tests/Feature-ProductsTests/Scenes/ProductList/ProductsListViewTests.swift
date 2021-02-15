@@ -3,6 +3,7 @@ import CoreUI
 import FoundationKit
 import SwiftUI
 import SnapshotTesting
+import DependencyManagerInterface
 import XCTest
 @testable import Feature_Products
 
@@ -26,7 +27,10 @@ final class ProductsListViewTests: XCTestCase {
             environment: environment
         )
     }()
-    private lazy var sut: ProductsListView = .init(store: store)
+    private lazy var sut: ProductsListView = .init(
+        container: DependenciesContainerDummy(),
+        store: store
+    )
     private lazy var sutContainer: UIHostingController<ProductsListView> = {
         let hostingController: UIHostingController = .init(
             rootView: sut

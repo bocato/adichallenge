@@ -7,6 +7,5 @@ enum ProductsListAction: Equatable {
     case loadData
     case loadProductsResponse(Result<[Product], ProductsRepositoryError>)
     case updateProductImageState(for: String, to: LoadingState<Data>)
-    case showDetailsForProductWithID(String)
     case filterProductsByTerm(String)
 }

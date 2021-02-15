@@ -20,8 +20,8 @@ let package = Package(
                 "Networking",
                 "RepositoryInterface",
                 "Repository",
-                "SwiftUIViewProviderInterface",
-                "SwiftUIViewProvider",
+                "DependencyManagerInterface",
+                "DependencyManager",
 
                 // Feature Modules
                 "Feature-Products",
@@ -34,10 +34,6 @@ let package = Package(
             url: "https://github.com/pointfreeco/swift-composable-architecture.git",
             from: "0.9.0"
         ),
-//        .package(
-//            url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
-//            from: "1.8.2"
-//        ),
         .package(
             name: "SnapshotTesting",
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
@@ -118,22 +114,22 @@ let package = Package(
             ]
         ),
 
-        // SwiftUIViewProvider Module
+        // DependencyManager Module
         .target(
-            name: "SwiftUIViewProviderInterface",
+            name: "DependencyManagerInterface",
             dependencies: []
         ),
         .target(
-            name: "SwiftUIViewProvider",
+            name: "DependencyManager",
             dependencies: [
-                "SwiftUIViewProviderInterface",
+                "DependencyManagerInterface",
             ]
         ),
         .testTarget(
-            name: "SwiftUIViewProviderTests",
+            name: "DependencyManagerTests",
             dependencies: [
-                "SwiftUIViewProviderInterface",
-                "SwiftUIViewProvider",
+                "DependencyManagerInterface",
+                "DependencyManager",
             ]
         ),
 
@@ -157,7 +153,7 @@ let package = Package(
                 // Internal Dependencies
                 "CoreUI",
                 "RepositoryInterface",
-                "SwiftUIViewProviderInterface",
+                "DependencyManagerInterface",
                 // Third Party Dependencies
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ],

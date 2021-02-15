@@ -2,21 +2,41 @@ import ComposableArchitecture
 import CoreUI
 import FoundationKit
 import SwiftUI
+import DependencyManagerInterface
 
-struct ProductsListView: View {
+public struct ProductsListView: View {
     // MARK: - Dependencies
 
+    private let container: DependenciesContainerInterface
     private let store: Store<ProductsListState, ProductsListAction>
 
     // MARK: - Initialization
+    
+    public init() {
+        let container = ProductsFeature.container()
+        let environment = ProductsListEnvironment()
+        environment.initialize(withContainer: container)
+        self.init(
+            container: container,
+            store: .init(
+                initialState: .init(),
+                reducer: productsListReducer,
+                environment: environment
+            )
+        )
+    }
 
-    init(store: Store<ProductsListState, ProductsListAction>) {
+    init(
+        container: DependenciesContainerInterface,
+        store: Store<ProductsListState, ProductsListAction>
+    ) {
         self.store = store
+        self.container = container
     }
 
     // MARK: - Body
 
-    var body: some View {
+    public var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
                 VStack {
@@ -45,14 +65,25 @@ struct ProductsListView: View {
         List {
             let productRows = getProductRowsData(for: viewStore)
             ForEach(productRows) { product in
-                ProductsListRow(
-                    data: product,
-                    imageLoadingState: viewStore.productImageStates[product.id] ?? .loading
+                NavigationLink(
+                    destination: ProductDetailsView(
+                        productName: product.name,
+                        productID: product.id,
+                        container: container
+                    ),
+                    label: {
+                        ProductsListRow(
+                            data: product,
+                            imageLoadingState: viewStore.productImageStates[product.id] ?? .loading
+                        )
+                    }
                 )
-                .onTapGesture { viewStore.send(.showDetailsForProductWithID(product.id)) }
             }
         }
         .padding(.bottom, DS.Spacing.tiny)
+//        .opacity(viewStore.showFilteringView ? 0 : 1)
+//        .opacity(viewStore.showEmptyFilterResults ? 0 : 1)
+//        .opacity(viewStore.showEmptyContentView ? 0 : 1)
     }
 
     @ViewBuilder
@@ -112,52 +143,3 @@ struct ProductsListView: View {
         return productRows
     }
 }
-
-// MARK: - Specific Components
-
-struct ProductsListRow: View {
-    private let data: ProductRowData
-    private var imageLoadingState: LoadingState<Data>
-
-    init(
-        data: ProductRowData,
-        imageLoadingState: LoadingState<Data>
-    ) {
-        self.data = data
-        self.imageLoadingState = imageLoadingState
-    }
-
-    var body: some View {
-        HStack(alignment: .top, spacing: DS.Spacing.tiny) {
-            LoadableImageView(
-                inState: imageLoadingState,
-                ofSize: .init(width: 80, height: 80),
-                placeholder: {
-                    Image(systemName: "photo.on.rectangle.angled")
-                        .resizable()
-                        .frame(
-                            width: DS.LayoutSize.large.width,
-                            height: DS.LayoutSize.large.height
-                        )
-                        .foregroundColor(.secondary)
-                }
-            )
-            VStack(alignment: .leading, spacing: DS.Spacing.tiny) {
-                Text(data.name)
-                    .bold()
-                    .foregroundColor(.primary)
-                Text(data.description)
-                Text(data.price)
-            }
-            Spacer()
-            VStack(alignment: .center) {
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.body)
-                    
-                Spacer()
-            }
-        }
-    }
-}
-

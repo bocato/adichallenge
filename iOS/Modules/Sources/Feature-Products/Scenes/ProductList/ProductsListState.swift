@@ -9,7 +9,6 @@ struct ProductsListState: Equatable {
     var productRows: [ProductRowData]
     var filteredProductRows: [ProductRowData]?
     var productImageStates: [String: LoadingState<Data>]
-    var selectedProductID: String?
     
     init(
         isLoading: Bool = false,
@@ -17,8 +16,7 @@ struct ProductsListState: Equatable {
         searchInput: String = "",
         productRows: [ProductRowData] = [],
         filteredProductRows: [ProductRowData]? = nil,
-        productImageStates: [String: LoadingState<Data>] = [:],
-        selectedProductID: String? = nil
+        productImageStates: [String: LoadingState<Data>] = [:]
     ) {
         self.isLoading = isLoading
         self.apiError = apiError
@@ -26,7 +24,6 @@ struct ProductsListState: Equatable {
         self.productRows = productRows
         self.filteredProductRows = filteredProductRows
         self.productImageStates = productImageStates
-        self.selectedProductID = selectedProductID
     }
 }
 

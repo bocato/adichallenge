@@ -1,5 +1,5 @@
 import Foundation
-import SwiftUIViewProviderInterface
+import DependencyManagerInterface
 
 /// The concrete implementation of a dependency store
 public final class DependenciesContainer: DependenciesContainerInterface {

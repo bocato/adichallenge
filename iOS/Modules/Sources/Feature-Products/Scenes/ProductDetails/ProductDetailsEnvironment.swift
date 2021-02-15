@@ -3,7 +3,7 @@ import ComposableArchitecture
 import CoreUI
 import Foundation
 import RepositoryInterface
-import SwiftUIViewProviderInterface
+import DependencyManagerInterface
 
 struct ProductDetailsEnvironment: ResolvableEnvironment {
     @Dependency var productsRepository: ProductsRepositoryProtocol

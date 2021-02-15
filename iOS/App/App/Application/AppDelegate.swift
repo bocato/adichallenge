@@ -5,19 +5,19 @@ import NetworkingInterface
 import Repository
 import RepositoryInterface
 import SwiftUI
-import SwiftUIViewProvider
-import SwiftUIViewProviderInterface
+import DependencyManagerInterface
+import DependencyManager
 import UIKit
 
 struct AppContainer {
-    let viewsProvider: SwiftUIViewsProviderInterface
+    let dependenciesContainer: DependenciesContainerInterface
     let httpDispatcher: HTTPRequestDispatcherProtocol
     let apiEnvironment: APIEnvironmentProvider
 }
 
 extension AppContainer {
     static let live: Self = .init(
-        viewsProvider: SwiftUIViewsProvider(),
+        dependenciesContainer: DependenciesContainer(),
         httpDispatcher: HTTPRequestDispatcher(),
         apiEnvironment: APIEnvironment.shared
     )
@@ -35,32 +35,34 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         appContainer = .live
-        registerRouteHandlers(
-            for: appContainer.viewsProvider
-        )
         registerDependencies(
             using: appContainer
+        )
+        initializeModules(
+            with: appContainer
         )
         return true
     }
 
     // MARK: - Dependency Registration
 
-    private func registerRouteHandlers(for viewProvider: FeatureDependenciesRegistering) {
-        viewProvider.register(routesHandler: ProductsFeatureRoutesHandler())
-    }
-
     private func registerDependencies(using appContainer: AppContainer) {
+        appContainer.dependenciesContainer.register(
+            factory: { ProductsRepository(httpDispatcher: appContainer.httpDispatcher) },
+            forMetaType: ProductsRepositoryProtocol.self
+        )
+        appContainer.dependenciesContainer.register(
+            factory: { ImagesRepository() },
+            forMetaType: ImagesRepositoryProtocol.self
+        )
+    }
+    
+    private func initializeModules(with appContainer: AppContainer) {
         RepositoryModule.registerDependencies(
             .init(apiEnvironment: appContainer.apiEnvironment)
         )
-        appContainer.viewsProvider.register(
-            dependencyFactory: { ProductsRepository(httpDispatcher: appContainer.httpDispatcher) },
-            forType: ProductsRepositoryProtocol.self
-        )
-        appContainer.viewsProvider.register(
-            dependencyFactory: { ImagesRepository() },
-            forType: ImagesRepositoryProtocol.self
+        ProductsFeature.initialize(
+            withContainer: appContainer.dependenciesContainer
         )
     }
 }

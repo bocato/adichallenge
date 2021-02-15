@@ -2,6 +2,7 @@ import ComposableArchitecture
 import CoreUI
 import FoundationKit
 import SwiftUI
+import DependencyManagerInterface
 
 struct ProductDetailsView: View {
     // MARK: - Dependencies
@@ -9,6 +10,27 @@ struct ProductDetailsView: View {
     private let store: Store<ProductDetailsState, ProductDetailsAction>
 
     // MARK: - Initialization
+    
+    init(
+        productName: String,
+        productID: String,
+        container: DependenciesContainerInterface? = nil
+    ) {
+        let environment = ProductDetailsEnvironment()
+        environment.initialize(withContainer: container ?? ProductsFeature.container())
+        self.init(
+            store: .init(
+                initialState: .init(
+                    props: .init(
+                        productName: productName,
+                        productID: productID
+                    )
+                ),
+                reducer: productDetailsReducer,
+                environment: environment
+            )
+        )
+    }
 
     init(store: Store<ProductDetailsState,  ProductDetailsAction>) {
         self.store = store
@@ -81,103 +103,6 @@ struct ProductDetailsView: View {
     private func errorView(_ viewStore: ViewStore<ProductDetailsState, ProductDetailsAction>) -> some View {
         if viewStore.apiError != nil {
             ErrorView(onRetry: { viewStore.send(.loadData) })
-        }
-    }
-}
-
-// MARK: - Specific Components
-// TODO: Move this to files...
-
-struct ProductImageContainer: View  {
-    // MARK: - Properties
-    
-    private let imageState: LoadingState<Data>
-    
-    // MARK: - Initialization
-    
-    init(imageState: LoadingState<Data>) {
-        self.imageState = imageState
-    }
-    
-    // MARK: - Body
-    var body: some View {
-        LoadableImageView(
-            inState: imageState,
-            ofSize: .init(
-                width: 250,
-                height: 250
-            ),
-            placeholder: {
-                Image(systemName: "photo.on.rectangle.angled")
-                    .resizable()
-                    .frame(
-                        width: DS.LayoutSize.large.width,
-                        height: DS.LayoutSize.large.height
-                    )
-                    .foregroundColor(.secondary)
-            }
-        )
-    }
-}
-
-struct ProductInfoView: View {
-    // MARK: - Properties
-    
-    private let product: ProductViewData
-    
-    // MARK: - Initialization
-    
-    init(product: ProductViewData) {
-        self.product = product
-    }
-    
-    // MARK: - Body
-    
-    var body: some View {
-        VStack(alignment: .center) {
-            HStack {
-                Text(product.name)
-                    .font(.title)
-                    .foregroundColor(.primary)
-                Spacer()
-                Text(product.price)
-                    .font(.title)
-                    .foregroundColor(.accentColor)
-            }
-            .padding(.horizontal, DS.Spacing.small)
-            .padding(.bottom, DS.Spacing.xxSmall)
-            
-            Text(product.description)
-                .font(.body)
-                .foregroundColor(.secondary)
-        }
-    }
-}
-
-struct ProductReviewRow: View {
-    typealias Data = ProductViewData.Review
-    private let data: Data
-
-    init(data: Data) {
-        self.data = data
-    }
-
-    var body: some View {
-        VStack {
-            HStack {
-                Text("\(L10n.ProductDetails.ProductReviewRow.locale) \(data.flagEmoji)")
-                    .bold()
-                    .font(.body)
-                Spacer()
-                Text("\(L10n.ProductDetails.ProductReviewRow.rating) \(data.rating)")
-                    .bold()
-                    .font(.body)
-            }
-            .padding(.bottom, DS.Spacing.xxSmall)
-            
-            Text(data.text)
-                .font(.body)
-                .foregroundColor(.secondary)
         }
     }
 }
