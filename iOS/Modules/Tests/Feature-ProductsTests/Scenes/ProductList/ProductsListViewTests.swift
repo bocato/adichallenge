@@ -8,7 +8,7 @@ import XCTest
 
 /*
  Notes:
- - The tests were recorded on iPhone 11, with iOS 14.2
+ - The tests were recorded on iPhone 11, with iOS 14.4
 */
 
 final class ProductsListViewTests: XCTestCase {

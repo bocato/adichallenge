@@ -12,7 +12,7 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
         state.apiError = nil
         return environment
             .productsRepository
-            .getProductWithID(state.productID)
+            .getProductWithID(state.props.productID)
             .receive(on: environment.mainQueue)
             .catchToEffect()
             .map(ProductDetailsAction.loadProductResponse)
@@ -29,7 +29,7 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
             reviews: data.reviews.map { domainObject -> ProductViewData.Review in
                 .init(
                     flagEmoji: environment.emojiConverter.emojiFlag(for: domainObject.locale),
-                    rating: domainObject.rating,
+                    rating: environment.emojiConverter.productRatingStars(for: domainObject.rating),
                     text: domainObject.text
                 )
             }

@@ -18,9 +18,13 @@ struct ProductDetailsView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            contentView(viewStore)
-                .overlay(loadingView(viewStore.isLoading))
-                .overlay(errorView(viewStore))
+            Group {
+                contentView(viewStore)
+                    .overlay(loadingView(viewStore.isLoading))
+                    .overlay(errorView(viewStore))
+            }
+            .onAppear { viewStore.send(.loadData) }
+            .navigationBarTitle(viewStore.props.productName)
         }
     }
 
@@ -33,12 +37,14 @@ struct ProductDetailsView: View {
                 for: product,
                 viewStore: viewStore
             )
-        } else if !viewStore.isLoading {
+        } else {
             EmptyContentView(
-                title: "Empty Title",
-                subtitle: "Empty Subtitle",
+                title: L10n.ProductDetails.EmptyView.title,
+                subtitle: L10n.ProductDetails.EmptyView.subtitle,
                 onRefresh: { viewStore.send(.loadData) }
             )
+            .opacity(viewStore.apiError != nil ? .zero : 1)
+            .opacity(viewStore.isLoading ? .zero : 1)
         }
     }
     
@@ -47,27 +53,10 @@ struct ProductDetailsView: View {
         for product: ProductViewData,
         viewStore: ViewStore<ProductDetailsState, ProductDetailsAction>
     ) -> some View {
-        HStack(alignment: .top, spacing: DS.Spacing.tiny) {
-            GeometryReader { geometry in
-                LoadableImageView(
-                    inState: viewStore.productImageState,
-                    ofSize: .init(
-                        width: 400,
-                        height: 400
-                    ),
-                    placeholder: { Rectangle().fill().foregroundColor(.primary) }
-                )
-            }
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: DS.Spacing.tiny) {
-                    Text(product.name)
-                        .bold()
-                        .foregroundColor(.primary)
-                    Text(product.price)
-                        .bold()
-                }
-                Text(product.description)
-            }
+        Group {
+            ProductImageContainer(imageState: viewStore.productImageState)
+            ProductInfoView(product: product)
+            Divider()
             List {
                 ForEach(product.reviews) { review in
                     ProductReviewRow(data: review)
@@ -76,6 +65,8 @@ struct ProductDetailsView: View {
         }
         .padding(.bottom, DS.Spacing.tiny)
     }
+    
+    // MARK: - Stateful Views
 
     @ViewBuilder
     private func loadingView(_ isVisible: Bool) -> some View {
@@ -95,6 +86,73 @@ struct ProductDetailsView: View {
 }
 
 // MARK: - Specific Components
+// TODO: Move this to files...
+
+struct ProductImageContainer: View  {
+    // MARK: - Properties
+    
+    private let imageState: LoadingState<Data>
+    
+    // MARK: - Initialization
+    
+    init(imageState: LoadingState<Data>) {
+        self.imageState = imageState
+    }
+    
+    // MARK: - Body
+    var body: some View {
+        LoadableImageView(
+            inState: imageState,
+            ofSize: .init(
+                width: 250,
+                height: 250
+            ),
+            placeholder: {
+                Image(systemName: "photo.on.rectangle.angled")
+                    .resizable()
+                    .frame(
+                        width: DS.LayoutSize.large.width,
+                        height: DS.LayoutSize.large.height
+                    )
+                    .foregroundColor(.secondary)
+            }
+        )
+    }
+}
+
+struct ProductInfoView: View {
+    // MARK: - Properties
+    
+    private let product: ProductViewData
+    
+    // MARK: - Initialization
+    
+    init(product: ProductViewData) {
+        self.product = product
+    }
+    
+    // MARK: - Body
+    
+    var body: some View {
+        VStack(alignment: .center) {
+            HStack {
+                Text(product.name)
+                    .font(.title)
+                    .foregroundColor(.primary)
+                Spacer()
+                Text(product.price)
+                    .font(.title)
+                    .foregroundColor(.accentColor)
+            }
+            .padding(.horizontal, DS.Spacing.small)
+            .padding(.bottom, DS.Spacing.xxSmall)
+            
+            Text(product.description)
+                .font(.body)
+                .foregroundColor(.secondary)
+        }
+    }
+}
 
 struct ProductReviewRow: View {
     typealias Data = ProductViewData.Review
@@ -105,14 +163,18 @@ struct ProductReviewRow: View {
     }
 
     var body: some View {
-        VStack(spacing: DS.Spacing.tiny) {
+        VStack {
             HStack {
-                Text(data.flagEmoji)
+                Text("\(L10n.ProductDetails.ProductReviewRow.locale) \(data.flagEmoji)")
+                    .bold()
+                    .font(.body)
                 Spacer()
-                ForEach(0..<data.rating) { _ in
-                    Text(" ⭐️ ")
-                }
+                Text("\(L10n.ProductDetails.ProductReviewRow.rating) \(data.rating)")
+                    .bold()
+                    .font(.body)
             }
+            .padding(.bottom, DS.Spacing.xxSmall)
+            
             Text(data.text)
                 .font(.body)
                 .foregroundColor(.secondary)

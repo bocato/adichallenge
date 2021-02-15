@@ -132,7 +132,15 @@ struct ProductsListRow: View {
             LoadableImageView(
                 inState: imageLoadingState,
                 ofSize: .init(width: 80, height: 80),
-                placeholder: { Rectangle().fill().foregroundColor(.primary) }
+                placeholder: {
+                    Image(systemName: "photo.on.rectangle.angled")
+                        .resizable()
+                        .frame(
+                            width: DS.LayoutSize.large.width,
+                            height: DS.LayoutSize.large.height
+                        )
+                        .foregroundColor(.secondary)
+                }
             )
             VStack(alignment: .leading, spacing: DS.Spacing.tiny) {
                 Text(data.name)
@@ -146,7 +154,7 @@ struct ProductsListRow: View {
                 Spacer()
                 Image(systemName: "chevron.right")
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    
                 Spacer()
             }
         }

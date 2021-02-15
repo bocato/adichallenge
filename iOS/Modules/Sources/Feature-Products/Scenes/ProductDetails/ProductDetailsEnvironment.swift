@@ -42,30 +42,3 @@ extension ProductDetailsEnvironment {
     }
 }
 #endif
-
-
-// TODO: MOVE THIS
-
-protocol EmojiConverterProtocol {
-    func emojiFlag(for locale: String) -> String
-}
-
-final class DefaultEmojiConverter: EmojiConverterProtocol {
-    func emojiFlag(for locale: String) -> String {
-        guard let countryCode = locale.split(separator: "_").last else {
-            return ""
-        }
-        // For future reference: https://stackoverflow.com/questions/30402435/swift-turn-a-country-code-into-a-emoji-flag-via-unicode
-        return countryCode
-                .unicodeScalars
-                .map({ 127397 + $0.value })
-                .compactMap(UnicodeScalar.init)
-                .map(String.init)
-                .joined()
-    }
-}
-#if DEBUG
-final class EmojiConverterDummy: EmojiConverterProtocol {
-    func emojiFlag(for locale: String) -> String { "" }
-}
-#endif

@@ -3,26 +3,46 @@ import FoundationKit
 import RepositoryInterface
 
 struct ProductDetailsState: Equatable {
-    let productID: String
+    let props: Props
     var isLoading: Bool
     var apiError: EquatableErrorWrapper?
     var product: ProductViewData?
     var productImageState: LoadingState<Data>
     
     init(
-        productID: String,
+        props: Props,
         isLoading: Bool = false,
         apiError: EquatableErrorWrapper? = nil,
         product: ProductViewData? = nil,
         productImageState: LoadingState<Data> = .empty
     ) {
-        self.productID = productID
+        self.props = props
         self.isLoading = isLoading
         self.apiError = apiError
         self.product = product
         self.productImageState = productImageState
     }
 }
+extension ProductDetailsState {
+    struct Props: Equatable {
+        let productName: String
+        let productID: String
+    }
+}
+
+#if DEBUG
+extension ProductDetailsState.Props {
+    static func fixture(
+        productName: String = "My Product",
+        productID: String = "productID"
+    ) -> Self {
+        .init(
+            productName: productName,
+            productID: productID
+        )
+    }
+}
+#endif
 
 // MARK: - View Data Models
 
@@ -36,13 +56,13 @@ extension ProductViewData {
     struct Review: Equatable, Identifiable {
         let id: String
         let flagEmoji: String
-        let rating: Int
+        let rating: String
         let text: String
         
         fileprivate init(
             id: String,
             flagEmoji: String,
-            rating: Int,
+            rating: String,
             text: String
         ) {
             self.id = id
@@ -53,7 +73,7 @@ extension ProductViewData {
         
         init(
             flagEmoji: String,
-            rating: Int,
+            rating: String,
             text: String
         ) {
             self.init(
@@ -86,7 +106,7 @@ extension ProductViewData.Review {
     static func fixture(
         id: String = "id",
         flagEmoji: String = "🇧🇷",
-        rating: Int = 5,
+        rating: String = "⭐️⭐️⭐️⭐️⭐️",
         text: String = "text"
     ) -> Self {
         .init(
