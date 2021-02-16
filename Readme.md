@@ -13,8 +13,10 @@ Since this project uses [SwiftLint](https://github.com/realm/SwiftLint), [SwiftF
 - `make code_beautify`: runs SwiftFormat and SwiftLint to keep the code in shape based on it's linting and formatting definitions
 
 # Code Coverage
-<iframe id="code_coverage"
+<div>
+  <iframe id="code_coverage"
     width="300"
     height="400"
     src="https://raw.githubusercontent.com/bocato/adichallenge/master/iOS/xcov_report/index.html">
-</iframe>
+  </iframe>
+</div>
