@@ -19,12 +19,13 @@ let addReviewModalReducer = AddReviewModalReducer { state, action, environment i
         state.isLoading = true
         state.errorAlert = nil
         var rating = 0
-        if let userRating = state.rating {
-            rating = userRating
+        if let userRating = state.rating, userRating > 0 {
+            rating = userRating + 1
         }
+        let locale = environment.localeProvider() ?? "en_nl"
         let requestData: PostProductReviewRequestData = .init(
             productID: state.props.productID,
-            locale: "", // TODO: get locale from dependency
+            locale: locale,
             rating: rating,
             text: state.reviewText
         )
@@ -37,20 +38,22 @@ let addReviewModalReducer = AddReviewModalReducer { state, action, environment i
     
     case .saveReviewRequest(.success):
         state.isLoading = false
-        state.shouldDismissItSelf = true
-        return .none
+        return Effect<AddReviewModalAction, Never>(
+            value: .dismissItSelf
+        )
         
     case .saveReviewRequest(.failure):
         state.isLoading = false
-        state.errorAlert = .init( // TODO: Review this later...
-            title: .init(L10n.AddReviewModal.ErrorAlert.title),
-            message: .init(L10n.AddReviewModal.ErrorAlert.message)
+        state.errorAlert = .init(
+            title: TextState(L10n.AddReviewModal.ErrorAlert.title),
+            message: TextState(L10n.AddReviewModal.ErrorAlert.message)
         )
         return .none
         
-    case .cancelReview:
-        state.shouldDismissItSelf = true
-        return .none
+    case .dismissItSelf:
+        return .fireAndForget {
+            environment.dismissClosure()
+        }
         
     case .errorAlertDismissed:
         state.errorAlert = nil

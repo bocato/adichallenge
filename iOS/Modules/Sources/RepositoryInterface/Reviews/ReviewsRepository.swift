@@ -19,4 +19,18 @@ public final class ReviewsRepositoryDummy: ReviewsRepositoryProtocol {
         Empty().eraseToAnyPublisher()
     }
 }
+
+public final class ReviewsRepositoryStub: ReviewsRepositoryProtocol {
+    public init() {}
+    
+    public var getReviewsForProductWithIDResultToBeReturned: Result<[ProductReview], ReviewsRepositoryError> = .success([])
+    public func getReviewsForProductWithID(_ id: String) -> AnyPublisher<[ProductReview], ReviewsRepositoryError> {
+        getReviewsForProductWithIDResultToBeReturned.publisher.eraseToAnyPublisher()
+    }
+    
+    public var postProductReviewResultToBeReturned: Result<Void, ReviewsRepositoryError> = .success(())
+    public func postProductReview(_ review: PostProductReviewRequestData) -> AnyPublisher<Void, ReviewsRepositoryError> {
+        postProductReviewResultToBeReturned.publisher.eraseToAnyPublisher()
+    }
+}
 #endif

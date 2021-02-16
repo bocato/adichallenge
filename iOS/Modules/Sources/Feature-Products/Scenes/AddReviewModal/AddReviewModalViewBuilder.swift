@@ -7,6 +7,7 @@ import DependencyManagerInterface
 
 protocol AddReviewModalBuilding {
     func build(
+        dismiss: @escaping () -> Void,
         productID: String,
         container: DependenciesContainerInterface
     ) -> AnyView
@@ -14,10 +15,13 @@ protocol AddReviewModalBuilding {
 
 final class AddReviewModalBuilder: AddReviewModalBuilding {
     func build(
+        dismiss: @escaping () -> Void,
         productID: String,
         container: DependenciesContainerInterface
     ) -> AnyView {
-        let environment = AddReviewModalEnvironment()
+        let environment = AddReviewModalEnvironment(
+            dismissClosure: dismiss
+        )
         environment.initialize(withContainer: container)
         return AddReviewModalView(
             store: .init(
@@ -38,6 +42,7 @@ final class AddReviewModalBuilder: AddReviewModalBuilding {
 final class AddReviewModalViewBuilderStub: AddReviewModalBuilding {
     var viewToBeReturned: AnyView = .init(EmptyView())
     func build(
+        dismiss: @escaping () -> Void,
         productID: String,
         container: DependenciesContainerInterface
     ) -> AnyView {

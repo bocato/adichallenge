@@ -98,7 +98,7 @@ struct AddReviewModalView: View {
         Group {
             HStack {
                 Button(L10n.AddReviewModal.BottomContainer.Button.cancel) {
-                    viewStore.send(.cancelReview)
+                    viewStore.send(.dismissItSelf)
                 }
                 .buttonStyle(
                     RoundedButtonStyle(

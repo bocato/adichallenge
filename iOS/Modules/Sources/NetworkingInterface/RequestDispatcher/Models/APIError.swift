@@ -44,3 +44,19 @@ public extension Error {
         self as NSError
     }
 }
+
+#if DEBUG
+public extension APIError {
+    static func fixture(
+        code: Int = -1,
+        title: String = "APIError Title",
+        message: String = "APIError Message"
+    ) -> Self {
+        .init(
+            code: code,
+            title: title,
+            message: message
+        )
+    }
+}
+#endif

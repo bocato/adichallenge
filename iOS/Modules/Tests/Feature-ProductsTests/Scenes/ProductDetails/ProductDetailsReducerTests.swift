@@ -82,8 +82,7 @@ final class ProductDetailsReducerTests: XCTestCase {
             mainQueue: mainQueueFake.eraseToAnyScheduler()
         )
         
-        let errorMock: NSError = .init(domain: "APIError", code: -1, userInfo: nil)
-        let apiErrorMock: APIError = .init(rawError: errorMock)
+        let apiErrorMock: APIError = .fixture()
         productsRepositoryStub.getProductWithIDResultToBeReturned = .failure(apiErrorMock)
         
         // When / Then

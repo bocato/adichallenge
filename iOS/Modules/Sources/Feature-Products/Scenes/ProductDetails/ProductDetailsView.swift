@@ -83,6 +83,7 @@ struct ProductDetailsView: View {
             onDismiss: { viewStore.send(.addReviewModalDismissed) },
             content: {
                 addReviewModalBuilder.build(
+                    dismiss: { viewStore.send(.addReviewModalDismissed) },
                     productID: viewStore.props.productID,
                     container: container
                 )

@@ -7,7 +7,7 @@ enum AddReviewModalAction: Equatable {
     case updateReviewText(String)
     case saveReview
     case saveReviewRequest(Result<Void, ReviewsRepositoryError>)
-    case cancelReview
+    case dismissItSelf
     case errorAlertDismissed
     
     static func == (lhs: AddReviewModalAction, rhs: AddReviewModalAction) -> Bool {
@@ -22,7 +22,7 @@ enum AddReviewModalAction: Equatable {
             return true
         case let (.saveReviewRequest(.failure(e1)), .saveReviewRequest(.failure(e2))):
             return e1 == e2
-        case (.cancelReview, .cancelReview):
+        case (.dismissItSelf, .dismissItSelf):
             return true
         case (.errorAlertDismissed, .errorAlertDismissed):
             return true
