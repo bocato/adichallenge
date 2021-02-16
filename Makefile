@@ -12,6 +12,7 @@ environment:
 update_strings: #TODO: Improve this to get all Feature module names and iterate them all...
 	cd iOS/Modules/Sources/Feature-Products/Configuration; swiftgen;
 	cd iOS/Modules/Sources/CoreUI/Configuration; swiftgen;
+	cd iOS/Modules/Sources/Repository/Configuration; swiftgen;
 
 start_server:
 	cd product-reviews-docker-composer;  docker-compose up;

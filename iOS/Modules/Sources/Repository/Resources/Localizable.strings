@@ -1,0 +1,3 @@
+// MARK: - Common
+"common.apiError.title" = "Error";
+"common.apiError.message" = "Unexpected API error.";

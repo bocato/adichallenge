@@ -111,6 +111,10 @@ let package = Package(
                 "RepositoryInterface",
                 "CacheKit",
             ]
+            ,
+            resources: [
+                .process("Resources/Localizable.strings"),
+            ]
         ),
         .testTarget(
             name: "RepositoryTests",

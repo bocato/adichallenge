@@ -10,7 +10,11 @@ final class DefaultAPIErrorMapper: APIErrorMapperProtocol {
         if let httpError = rawError as? HTTPRequestError, case let .apiError(apiError) = httpError {
             return apiError
         } else {
-            return APIError(code: -1, title: "Error", message: "Unexpected API error.")
+            return .init(
+                code: -1,
+                title: L10n.Common.ApiError.title,
+                message: L10n.Common.ApiError.message
+            )
         }
     }
 }
