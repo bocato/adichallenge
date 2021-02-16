@@ -21,11 +21,10 @@ default_platform(:ios)
 platform :ios do
   desc "Description of what the lane does"
   lane :run_xctests do
-    # Resolve SPM packages
-    spm()
-    # Run unit tests
+    # # Run unit tests
     scan(
       workspace: WORKSPACE_PATH,
+      scheme: PROJECT_SCHEME, 
       devices: ["iPhone 11"]
     )
     # Get Code Coverage
@@ -39,6 +38,7 @@ platform :ios do
       include_targets: $app_targets,
       html_report: true
     )
-    sh('open xcov_report/coverage.html')
+    # open the xcov report
+    sh('open ../xcov_report/index.html')
   end
 end

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='RepositoryTests.xctest' tests='34' failures='0'>
+  <testsuite name='AppTests.AppTests' tests='2' failures='0'>
+    <testcase classname='AppTests.AppTests' name='testExample' time='0.002'/>
+    <testcase classname='AppTests.AppTests' name='testPerformanceExample' time='0.269'/>
+  </testsuite>
+  <testsuite name='CacheKitTests.CacheKitDummyTest' tests='1' failures='0'>
+    <testcase classname='CacheKitTests.CacheKitDummyTest' name='test_dummy' time='0.003'/>
+  </testsuite>
+  <testsuite name='CoreUITests.CoreUIDummyTest' tests='1' failures='0'>
+    <testcase classname='CoreUITests.CoreUIDummyTest' name='test_dummy' time='0.003'/>
+  </testsuite>
+  <testsuite name='Feature_ProductsTests.AddReviewModalReducerTests' tests='3' failures='0'>
+    <testcase classname='Feature_ProductsTests.AddReviewModalReducerTests' name='test_saveReview_whenAPIFails_shouldPresentErrorAlert' time='0.009'/>
+    <testcase classname='Feature_ProductsTests.AddReviewModalReducerTests' name='test_updateReviewRating_shouldUpdateState' time='0.001'/>
+    <testcase classname='Feature_ProductsTests.AddReviewModalReducerTests' name='test_updateReviewText_shouldUpdateState' time='0.001'/>
+  </testsuite>
+  <testsuite name='Feature_ProductsTests.DefaultCurrencyFormatterTests' tests='4' failures='0'>
+    <testcase classname='Feature_ProductsTests.DefaultCurrencyFormatterTests' name='test_format_shouldFormatValuesCorrectly' time='0.001'/>
+    <testcase classname='Feature_ProductsTests.DefaultCurrencyFormatterTests' name='test_format_whenCurrencyCodeIsEmpty_itShouldAssumeNL_And_EUR' time='0.001'/>
+    <testcase classname='Feature_ProductsTests.DefaultCurrencyFormatterTests' name='test_format_whenLocaleIsNotProvided_itShouldBeSetTo' time='0.000'/>
+    <testcase classname='Feature_ProductsTests.DefaultCurrencyFormatterTests' name='test_format_whenNumberFormatterReturnsNil_itShouldReturnAnEmptyString' time='0.001'/>
+  </testsuite>
+  <testsuite name='Feature_ProductsTests.DefaultEmojiConverterTests' tests='3' failures='0'>
+    <testcase classname='Feature_ProductsTests.DefaultEmojiConverterTests' name='test_emojiFlag_whenLocaleIsInvalid_itShouldReturnQuestionMarkEmoji' time='0.002'/>
+    <testcase classname='Feature_ProductsTests.DefaultEmojiConverterTests' name='test_emojiFlag_whenLocaleIsValid_itShouldReturnFlagEmoji' time='0.001'/>
+    <testcase classname='Feature_ProductsTests.DefaultEmojiConverterTests' name='test_productRatingStars_shouldReturnTheSameAmountOfStarsRatingParameter' time='0.001'/>
+  </testsuite>
+  <testsuite name='Feature_ProductsTests.ProductDetailsReducerTests' tests='2' failures='0'>
+    <testcase classname='Feature_ProductsTests.ProductDetailsReducerTests' name='test_loadData_whenAPIFails_shouldPresentAPIError' time='0.002'/>
+    <testcase classname='Feature_ProductsTests.ProductDetailsReducerTests' name='test_loadData_whenAPISucceeds_itShouldSetProductInfoAndLoadImage' time='0.002'/>
+  </testsuite>
+  <testsuite name='Feature_ProductsTests.ProductDetailsViewTests' tests='4' failures='0'>
+    <testcase classname='Feature_ProductsTests.ProductDetailsViewTests' name='test_snapshot_apiError' time='0.159'/>
+    <testcase classname='Feature_ProductsTests.ProductDetailsViewTests' name='test_snapshot_emptyAPIResponse' time='0.053'/>
+    <testcase classname='Feature_ProductsTests.ProductDetailsViewTests' name='test_snapshot_list' time='0.097'/>
+    <testcase classname='Feature_ProductsTests.ProductDetailsViewTests' name='test_snapshot_loading' time='0.051'/>
+  </testsuite>
+  <testsuite name='Feature_ProductsTests.ProductsListReducerTests' tests='5' failures='0'>
+    <testcase classname='Feature_ProductsTests.ProductsListReducerTests' name='test_filterProductsByTerm_whenTermIsValid_shouldPresentOnlyFilteredProductRows' time='0.002'/>
+    <testcase classname='Feature_ProductsTests.ProductsListReducerTests' name='test_loadData_whenAPIFails_shouldPresentAPIError' time='0.001'/>
+    <testcase classname='Feature_ProductsTests.ProductsListReducerTests' name='test_loadData_whenAPISucceeds_itShouldSetProductRowsAndLoadProductImages' time='0.002'/>
+    <testcase classname='Feature_ProductsTests.ProductsListReducerTests' name='test_updateSearchTerm_whenInputHasLessThan3Letters_itShoulUpdateTheStateAndShowFilteringView' time='0.001'/>
+    <testcase classname='Feature_ProductsTests.ProductsListReducerTests' name='test_updateSearchTerm_whenInputHasMoreThan3LettersAndProductRowsIsEmpty_itShouldShowNoProductsWereFound' time='0.001'/>
+  </testsuite>
+  <testsuite name='Feature_ProductsTests.ProductsListViewTests' tests='6' failures='0'>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_apiError' time='0.085'/>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_emptyAPIResponse' time='0.064'/>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_emptyFilterResults' time='0.070'/>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_filtering' time='0.061'/>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_list' time='0.091'/>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_loading' time='0.069'/>
+  </testsuite>
+  <testsuite name='FoundationKitTests.CoreFoundationTestDummy' tests='1' failures='0'>
+    <testcase classname='FoundationKitTests.CoreFoundationTestDummy' name='test_this' time='0.003'/>
+  </testsuite>
+  <testsuite name='NetworkingTests.NetworkingTests' tests='1' failures='0'>
+    <testcase classname='NetworkingTests.NetworkingTests' name='testExample' time='0.003'/>
+  </testsuite>
+  <testsuite name='RepositoryTests.RepositoryTests' tests='1' failures='0'>
+    <testcase classname='RepositoryTests.RepositoryTests' name='testExample' time='0.003'/>
+  </testsuite>
+</testsuites>
