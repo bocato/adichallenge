@@ -54,7 +54,7 @@ final class ProductDetailsReducerTests: XCTestCase {
                 nextState.apiError = nil
                 nextState.product = nil
             },
-            .do { self.mainQueueFake.advance() },
+            .do { [mainQueueFake] in mainQueueFake.advance() },
             .receive(.loadProductResponse(.success(productMock))) { nextState in
                 nextState.isLoading = false
                 nextState.product = .fixture(
@@ -90,7 +90,7 @@ final class ProductDetailsReducerTests: XCTestCase {
             .send(.loadData) { nextState in
                 nextState.isLoading = true
             },
-            .do { self.mainQueueFake.advance() },
+            .do { [mainQueueFake] in mainQueueFake.advance() },
             .receive(.loadProductResponse(.failure(apiErrorMock))) { nextState in
                 nextState.isLoading = false
                 nextState.apiError = .init(apiErrorMock)

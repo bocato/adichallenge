@@ -48,13 +48,6 @@ public final class DependenciesContainer: DependenciesContainerInterface {
         }
         dependencyFactories[name] = factory
     }
-
-    #if DEBUG
-        public func swapFactory<T>(forMetaType metaType: T.Type, to newFactory: @escaping DependencyFactory) {
-            let name = String(describing: metaType)
-            dependencyFactories[name] = newFactory
-        }
-    #endif
 }
 
 extension DependenciesContainer {

@@ -4,18 +4,6 @@ import Foundation
 import NetworkingInterface
 import RepositoryInterface
 
-final class InMemoryCache: CacheServiceProtocol {
-    private var cache: [String: Data] = [:]
-
-    func save(data: Data, key: String) throws {
-        cache[key] = data
-    }
-
-    func loadData(from key: String) -> Data? {
-        return cache[key]
-    }
-}
-
 public final class ImagesRepository: ImagesRepositoryProtocol {
     // MARK: - Dependencies
 
@@ -29,7 +17,7 @@ public final class ImagesRepository: ImagesRepositoryProtocol {
         cacheService: CacheServiceProtocol? = nil
     ) {
         self.urlSession = urlSession
-        self.cacheService = cacheService ?? InMemoryCache() // DataCacheService(cacheFileName: "ImagesCache")
+        self.cacheService = cacheService ?? InMemoryCache() // TODO: Use an DiskCache, in the future...
     }
 
     // MARK: - Public Functions
@@ -37,7 +25,7 @@ public final class ImagesRepository: ImagesRepositoryProtocol {
     public func getImageDataFromURL(
         _ urlString: String
     ) -> AnyPublisher<Data?, Never> {
-        if let dataFromCache = cacheService.loadData(from: urlString) {
+        if let dataFromCache = cacheService.loadData(for: urlString) {
             return Result<Data?, Never>
                 .Publisher(.success(dataFromCache))
                 .eraseToAnyPublisher()
@@ -50,10 +38,14 @@ public final class ImagesRepository: ImagesRepositoryProtocol {
                             .Publisher(.success(nil))
                             .eraseToAnyPublisher()
                     }
-                    try? cacheService.save(
-                        data: dataFromNetwork,
-                        key: urlString
-                    )
+                    do {
+                        try cacheService.save(
+                            data: dataFromNetwork,
+                            key: urlString
+                        )
+                    } catch {
+                        print(error)
+                    }
                     return Result<Data?, Never>
                         .Publisher(.success(dataFromNetwork))
                         .eraseToAnyPublisher()

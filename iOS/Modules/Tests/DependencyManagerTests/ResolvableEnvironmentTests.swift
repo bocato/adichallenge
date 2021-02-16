@@ -1,6 +1,6 @@
 import Foundation
-@testable import SwiftUIViewProvider
-import SwiftUIViewProviderInterface
+@testable import DependencyManager
+import DependencyManagerInterface
 import XCTest
 
 final class ResolvableEnvironmentTests: XCTestCase {

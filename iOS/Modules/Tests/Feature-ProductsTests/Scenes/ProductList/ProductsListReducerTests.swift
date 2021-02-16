@@ -81,7 +81,7 @@ final class ProductsListReducerTests: XCTestCase {
                 nextState.apiError = nil
                 nextState.productRows = []
             },
-            .do { self.mainQueueFake.advance() },
+            .do { [mainQueueFake] in mainQueueFake.advance() },
             .receive(.loadProductsResponse(.success(productsMock))) { nextState in
                 nextState.isLoading = false
                 nextState.productRows = [
@@ -118,7 +118,7 @@ final class ProductsListReducerTests: XCTestCase {
             .send(.loadData) { nextState in
                 nextState.isLoading = true
             },
-            .do { self.mainQueueFake.advance() },
+            .do { [mainQueueFake] in mainQueueFake.advance() },
             .receive(.loadProductsResponse(.failure(apiErrorMock))) { nextState in
                 nextState.isLoading = false
                 nextState.apiError = .init(apiErrorMock)
