@@ -57,6 +57,17 @@ public struct SearchBar: View {
                         Spacer()
                     }
                 )
+                .overlay(
+                    HStack {
+                        Spacer()
+                        Image(systemName: "x.circle.fill")
+                            .foregroundColor(.secondary)
+                            .padding(.horizontal, DS.Spacing.base)
+                            .onTapGesture { text = "" }
+                            .transition(.move(edge: .trailing))
+                            .opacity(text.isEmpty ? 0 : 1)
+                    }
+                )
 
             if isEditing {
                 Button(layout.cancelText) {

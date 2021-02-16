@@ -85,9 +85,7 @@ public struct ProductsListView: View {
             }
         }
         .padding(.bottom, DS.Spacing.tiny)
-//        .opacity(viewStore.showFilteringView ? 0 : 1)
-//        .opacity(viewStore.showEmptyFilterResults ? 0 : 1)
-//        .opacity(viewStore.showEmptyContentView ? 0 : 1)
+        .opacity(viewStore.showProductsList ? 1 : 0)
     }
 
     @ViewBuilder

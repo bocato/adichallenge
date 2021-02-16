@@ -1,0 +1,44 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+WORKSPACE_PATH = "Challenge.xcworkspace"
+PROJECT_SCHEME = "App"
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :run_xctests do
+    # Resolve SPM packages
+    spm()
+    # Run unit tests
+    scan(
+      workspace: WORKSPACE_PATH,
+      devices: ["iPhone 11"]
+    )
+    # Get Code Coverage
+    $app_targets = "App.app, " + Dir.children('../Modules/Sources').join(', ')
+    xcov(
+      workspace: WORKSPACE_PATH,
+      scheme: PROJECT_SCHEME,
+      output_directory: 'xcov_report',
+      configuration: 'Debug',
+      include_test_targets: false, 
+      include_targets: $app_targets,
+      html_report: true
+    )
+    sh('open xcov_report/coverage.html')
+  end
+end

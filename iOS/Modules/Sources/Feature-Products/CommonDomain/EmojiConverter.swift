@@ -29,6 +29,7 @@ final class DefaultEmojiConverter: EmojiConverterProtocol {
         return starEmojis
     }
 }
+
 #if DEBUG
 final class EmojiConverterDummy: EmojiConverterProtocol {
     func emojiFlag(for locale: String) -> String { "" }

@@ -127,7 +127,7 @@ final class ProductsListViewTests: XCTestCase {
                 productRows: [
                     .fixture()
                 ],
-                filteredProductRows: []
+                filteredProductRows: nil
             )
         }
         // When

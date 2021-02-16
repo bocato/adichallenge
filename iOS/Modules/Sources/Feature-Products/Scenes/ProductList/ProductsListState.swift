@@ -31,7 +31,8 @@ extension ProductsListState {
     var isFiltering: Bool { searchInput.count > 0 }
     var showEmptyContentView: Bool { productRows.isEmpty && !isLoading && apiError == nil }
     var showFilteringView: Bool { searchInput.count > 0 && searchInput.count < 3 }
-    var showEmptyFilterResults: Bool { searchInput.count >= 3 && filteredProductRows?.isEmpty == true }
+    var showEmptyFilterResults: Bool { searchInput.count >= 3 && filteredProductRows == nil }
+    var showProductsList: Bool { !showEmptyContentView && !showFilteringView && !showEmptyFilterResults }
 }
 
 // MARK: - View Data Models
