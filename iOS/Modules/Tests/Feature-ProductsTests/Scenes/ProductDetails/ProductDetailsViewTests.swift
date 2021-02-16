@@ -1,16 +1,16 @@
 import ComposableArchitecture
 import CoreUI
-import FoundationKit
-import SwiftUI
-import SnapshotTesting
-import XCTest
 import DependencyManagerInterface
 @testable import Feature_Products
+import FoundationKit
+import SnapshotTesting
+import SwiftUI
+import XCTest
 
 /*
  Notes:
  - The tests were recorded on iPhone 11, with iOS 14.4
-*/
+ */
 
 final class ProductDetailsViewTests: XCTestCase {
     // MARK: - Properties
@@ -27,10 +27,12 @@ final class ProductDetailsViewTests: XCTestCase {
             environment: environment
         )
     }()
+
     private lazy var dependenciesContainerFake: DependenciesContainerFake = {
         let container: DependenciesContainerFake = .init()
         return container
     }()
+
     private lazy var sut: ProductDetailsView = .init(
         container: dependenciesContainerFake,
         store: store
@@ -48,11 +50,11 @@ final class ProductDetailsViewTests: XCTestCase {
     }()
 
     // MARK: - Tests
-    
+
     func test_snapshot_loading() {
         // Given
-        store = store.scope { state -> ProductDetailsState in
-            return .init(
+        store = store.scope { _ -> ProductDetailsState in
+            .init(
                 props: .fixture(),
                 isLoading: true
             )
@@ -66,11 +68,11 @@ final class ProductDetailsViewTests: XCTestCase {
             record: isRecordModeEnabled
         )
     }
-    
+
     func test_snapshot_list() {
         // Given
-        store = store.scope { state -> ProductDetailsState in
-            return .init(
+        store = store.scope { _ -> ProductDetailsState in
+            .init(
                 props: .fixture(),
                 isLoading: false,
                 apiError: nil,
@@ -81,22 +83,28 @@ final class ProductDetailsViewTests: XCTestCase {
                     reviews: [
                         .fixture(
                             rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
-                            text: "Review review review review review review review review review review review..."),
+                            text: "Review review review review review review review review review review review..."
+                        ),
                         .fixture(
                             rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
-                            text: "Review review review review review review review review review review review..."),
+                            text: "Review review review review review review review review review review review..."
+                        ),
                         .fixture(
                             rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
-                            text: "Review review review review review review review review review review review..."),
+                            text: "Review review review review review review review review review review review..."
+                        ),
                         .fixture(
                             rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
-                            text: "Review review review review review review review review review review review..."),
+                            text: "Review review review review review review review review review review review..."
+                        ),
                         .fixture(
                             rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
-                            text: "Review review review review review review review review review review review..."),
+                            text: "Review review review review review review review review review review review..."
+                        ),
                         .fixture(
                             rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
-                            text: "Review review review review review review review review review review review..."),
+                            text: "Review review review review review review review review review review review..."
+                        ),
                     ]
                 )
             )
@@ -110,11 +118,11 @@ final class ProductDetailsViewTests: XCTestCase {
             record: isRecordModeEnabled
         )
     }
-    
+
     func test_snapshot_apiError() {
         // Given
-        store = store.scope { state -> ProductDetailsState in
-            return .init(
+        store = store.scope { _ -> ProductDetailsState in
+            .init(
                 props: .fixture(),
                 isLoading: false,
                 apiError: .init(NSError(domain: "APIError", code: -1, userInfo: nil)), product: nil
@@ -129,11 +137,11 @@ final class ProductDetailsViewTests: XCTestCase {
             record: isRecordModeEnabled
         )
     }
-    
+
     func test_snapshot_emptyAPIResponse() {
         // Given
-        store = store.scope { state -> ProductDetailsState in
-            return .init(
+        store = store.scope { _ -> ProductDetailsState in
+            .init(
                 props: .fixture(),
                 isLoading: false,
                 apiError: nil,

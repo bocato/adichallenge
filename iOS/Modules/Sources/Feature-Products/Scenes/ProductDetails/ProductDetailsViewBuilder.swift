@@ -1,9 +1,8 @@
-
 import ComposableArchitecture
 import CoreUI
+import DependencyManagerInterface
 import FoundationKit
 import SwiftUI
-import DependencyManagerInterface
 
 protocol ProductDetailsViewBuilding {
     func build(
@@ -38,14 +37,14 @@ final class ProductDetailsViewBuilder: ProductDetailsViewBuilding {
 }
 
 #if DEBUG
-final class ProductDetailsViewBuilderStub: ProductDetailsViewBuilding {
-    var viewToBeReturned: AnyView = .init(EmptyView())
-    func build(
-        productName: String,
-        productID: String,
-        container: DependenciesContainerInterface
-    ) -> AnyView {
-        viewToBeReturned
+    final class ProductDetailsViewBuilderStub: ProductDetailsViewBuilding {
+        var viewToBeReturned: AnyView = .init(EmptyView())
+        func build(
+            productName _: String,
+            productID _: String,
+            container _: DependenciesContainerInterface
+        ) -> AnyView {
+            viewToBeReturned
+        }
     }
-}
 #endif

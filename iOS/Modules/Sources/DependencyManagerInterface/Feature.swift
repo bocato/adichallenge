@@ -2,16 +2,15 @@ import Foundation
 import SwiftUI
 
 open class Feature {
-    
     private static var dependenciesContainer: DependenciesContainerInterface?
-    
-    open class func  initialize(withContainer container: DependenciesContainerInterface) {
+
+    open class func initialize(withContainer container: DependenciesContainerInterface) {
         guard dependenciesContainer == nil else {
             fatalError("The container should not be started twice!")
         }
         dependenciesContainer = container
     }
-    
+
     open class func resolve<T>(
         _ dependencyType: T.Type,
         file: StaticString = #file,
@@ -26,7 +25,7 @@ open class Feature {
         }
         return instance
     }
-    
+
     open class func container(
         file: StaticString = #file,
         line: UInt = #line

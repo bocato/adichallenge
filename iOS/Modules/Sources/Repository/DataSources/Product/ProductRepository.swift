@@ -19,7 +19,7 @@ public final class ProductsRepository: ProductsRepositoryProtocol {
             apiErrorMapper: DefaultAPIErrorMapper()
         )
     }
-    
+
     init(
         httpDispatcher: HTTPRequestDispatcherProtocol,
         jsonDecoder: JSONDecoder,
@@ -45,7 +45,7 @@ public final class ProductsRepository: ProductsRepositoryProtocol {
                 let domainModels = decodedResponse.map(Product.init(dto:))
                 return domainModels
             }
-            .mapError { [apiErrorMapper] in  apiErrorMapper.parse($0) }
+            .mapError { [apiErrorMapper] in apiErrorMapper.parse($0) }
             .eraseToAnyPublisher()
     }
 
@@ -63,7 +63,7 @@ public final class ProductsRepository: ProductsRepositoryProtocol {
                 let domainModel: Product = .init(dto: decodedResponse)
                 return domainModel
             }
-            .mapError { [apiErrorMapper] in  apiErrorMapper.parse($0) }
+            .mapError { [apiErrorMapper] in apiErrorMapper.parse($0) }
             .eraseToAnyPublisher()
     }
 }

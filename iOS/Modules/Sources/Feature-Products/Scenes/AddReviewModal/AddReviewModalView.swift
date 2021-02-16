@@ -1,16 +1,17 @@
 import ComposableArchitecture
 import CoreUI
+import DependencyManagerInterface
 import FoundationKit
 import SwiftUI
-import DependencyManagerInterface
 
 struct AddReviewModalView: View {
     // MARK: - Dependencies
+
     private let store: Store<AddReviewModalState, AddReviewModalAction>
 
     // MARK: - Initialization
 
-    init(store: Store<AddReviewModalState,  AddReviewModalAction>) {
+    init(store: Store<AddReviewModalState, AddReviewModalAction>) {
         self.store = store
     }
 
@@ -23,7 +24,7 @@ struct AddReviewModalView: View {
                     .font(.largeTitle)
                     .foregroundColor(.accentColor)
                     .padding(.top, DS.Spacing.base)
-                
+
                 Divider()
                 ratingContainer(viewStore)
                 Divider()
@@ -47,9 +48,9 @@ struct AddReviewModalView: View {
                 .font(.title2)
                 .foregroundColor(.secondary)
                 .padding(.bottom, DS.Spacing.xxSmall)
-            
+
             HStack(spacing: DS.Spacing.xxSmall) {
-                ForEach(0..<5) { index in
+                ForEach(0 ..< 5) { index in
                     Button("⭐️") {
                         viewStore.send(.updateReviewRating(index))
                     }
@@ -68,7 +69,7 @@ struct AddReviewModalView: View {
             }
         }
     }
-    
+
     @ViewBuilder
     private func reviewTextContainer(_ viewStore: ViewStore<AddReviewModalState, AddReviewModalAction>) -> some View {
         VStack {
@@ -76,7 +77,7 @@ struct AddReviewModalView: View {
                 .font(.title2)
                 .foregroundColor(.secondary)
                 .padding(.top, DS.Spacing.xxSmall)
-            
+
             TextView(
                 text: viewStore.binding(
                     get: { $0.reviewText },
@@ -92,7 +93,7 @@ struct AddReviewModalView: View {
             )
         }
     }
-    
+
     @ViewBuilder
     private func footerButtonsView(_ viewStore: ViewStore<AddReviewModalState, AddReviewModalAction>) -> some View {
         Group {
@@ -106,7 +107,7 @@ struct AddReviewModalView: View {
                         borderColor: .secondary
                     )
                 )
-                
+
                 Button(L10n.AddReviewModal.BottomContainer.Button.save) {
                     viewStore.send(.saveReview)
                 }
@@ -126,7 +127,7 @@ struct AddReviewModalView: View {
             .overlay(loadingView(viewStore.isLoading))
         }
     }
-    
+
     // MARK: - Stateful Views
 
     @ViewBuilder

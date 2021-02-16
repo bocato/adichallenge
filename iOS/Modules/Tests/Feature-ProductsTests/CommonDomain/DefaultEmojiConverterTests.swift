@@ -1,17 +1,17 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Eduardo Sanches Bocato on 15/02/21.
 //
 
-import Foundation
 @testable import Feature_Products
+import Foundation
 import XCTest
 
 final class DefaultEmojiConverterTests: XCTestCase {
-   // MARK: - Tests
-    
+    // MARK: - Tests
+
     func test_emojiFlag_whenLocaleIsInvalid_itShouldReturnQuestionMarkEmoji() {
         // Given
         let sut = DefaultEmojiConverter()
@@ -21,7 +21,7 @@ final class DefaultEmojiConverterTests: XCTestCase {
         // Then
         XCTAssertEqual(flagEmoji, "❓")
     }
-    
+
     func test_emojiFlag_whenLocaleIsValid_itShouldReturnFlagEmoji() {
         // Given
         let sut = DefaultEmojiConverter()
@@ -31,7 +31,7 @@ final class DefaultEmojiConverterTests: XCTestCase {
         // Then
         XCTAssertNotEqual(flagEmoji, "❓")
     }
-    
+
     func test_productRatingStars_shouldReturnTheSameAmountOfStarsRatingParameter() {
         // Given
         let sut = DefaultEmojiConverter()
@@ -42,4 +42,3 @@ final class DefaultEmojiConverterTests: XCTestCase {
         XCTAssertEqual(starEmojis.count, starsCount)
     }
 }
-

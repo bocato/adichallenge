@@ -1,19 +1,20 @@
-import SwiftUI
 import CoreUI
 import FoundationKit
+import SwiftUI
 
-struct ProductImageContainer: View  {
+struct ProductImageContainer: View {
     // MARK: - Properties
-    
+
     private let imageState: LoadingState<Data>
-    
+
     // MARK: - Initialization
-    
+
     init(imageState: LoadingState<Data>) {
         self.imageState = imageState
     }
-    
+
     // MARK: - Body
+
     var body: some View {
         LoadableImageView(
             inState: imageState,

@@ -12,7 +12,7 @@ public final class ReviewsRepository: ReviewsRepositoryProtocol {
     private let apiErrorMapper: APIErrorMapperProtocol
 
     // MARK: - Initialization
-    
+
     public convenience init(
         httpDispatcher: HTTPRequestDispatcherProtocol
     ) {
@@ -52,26 +52,26 @@ public final class ReviewsRepository: ReviewsRepositoryProtocol {
                 let domainModels = decodedResponse.map(ProductReview.init(dto:))
                 return domainModels
             }
-            .mapError { [apiErrorMapper] in  apiErrorMapper.parse($0) }
+            .mapError { [apiErrorMapper] in apiErrorMapper.parse($0) }
             .eraseToAnyPublisher()
     }
-    
+
     public func postProductReview(_ review: PostProductReviewRequestData) -> AnyPublisher<Void, ReviewsRepositoryError> {
         let path = "/reviews/\(review.productID)"
-        
+
         let bodyParameters = jsonConverter
             .convertToJSON(review)
-        
+
         let request: DefaultAPIRequest = .init(
             method: .post,
             path: path,
             bodyParameters: bodyParameters
         )
-        
+
         return httpDispatcher
             .executeRequest(request)
             .tryMap { _ in () }
-            .mapError { [apiErrorMapper] in  apiErrorMapper.parse($0) }
+            .mapError { [apiErrorMapper] in apiErrorMapper.parse($0) }
             .eraseToAnyPublisher()
     }
 }

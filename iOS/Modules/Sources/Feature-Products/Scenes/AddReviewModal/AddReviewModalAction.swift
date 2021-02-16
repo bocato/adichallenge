@@ -9,7 +9,7 @@ enum AddReviewModalAction: Equatable {
     case saveReviewRequest(Result<Void, ReviewsRepositoryError>)
     case dismissItSelf
     case errorAlertDismissed
-    
+
     static func == (lhs: AddReviewModalAction, rhs: AddReviewModalAction) -> Bool {
         switch (lhs, rhs) {
         case let (.updateReviewRating(r1), .updateReviewRating(r2)):

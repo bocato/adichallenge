@@ -39,34 +39,36 @@ public extension DependenciesContainerInterface {
 }
 
 #if DEBUG
-public final class DependenciesContainerDummy: DependenciesContainerInterface {
-    public init() {}
-    public func get<T>(_ arg: T.Type) -> T? { nil }
-    public func register<T>(
-        factory: @escaping DependencyFactory,
-        forMetaType metaType: T.Type,
-        failureHandler: (String) -> Void
-    ) {}
-}
+    public final class DependenciesContainerDummy: DependenciesContainerInterface {
+        public init() {}
+        public func get<T>(_: T.Type) -> T? { nil }
+        public func register<T>(
+            factory _: @escaping DependencyFactory,
+            forMetaType _: T.Type,
+            failureHandler _: (String) -> Void
+        ) {}
+    }
 
-public final class DependenciesContainerFake: DependenciesContainerInterface {
-    public var dependencyInstances: [String: Any]
-    public init(
-        dependencyInstances: [String: Any] = [:]
-    ) {
-        self.dependencyInstances = dependencyInstances
+    public final class DependenciesContainerFake: DependenciesContainerInterface {
+        public var dependencyInstances: [String: Any]
+        public init(
+            dependencyInstances: [String: Any] = [:]
+        ) {
+            self.dependencyInstances = dependencyInstances
+        }
+
+        public func get<T>(_: T.Type) -> T? {
+            let name = String(describing: T.self)
+            return dependencyInstances[name] as? T
+        }
+
+        public func register<T>(
+            factory _: @escaping DependencyFactory,
+            forMetaType metaType: T.Type,
+            failureHandler _: (String) -> Void
+        ) {
+            let name = String(describing: T.self)
+            dependencyInstances[name] = metaType
+        }
     }
-    public func get<T>(_ arg: T.Type) -> T? {
-        let name = String(describing: T.self)
-        return dependencyInstances[name] as? T
-    }
-    public func register<T>(
-        factory: @escaping DependencyFactory,
-        forMetaType metaType: T.Type,
-        failureHandler: (String) -> Void
-    ) {
-        let name = String(describing: T.self)
-        dependencyInstances[name] = metaType
-    }
-}
 #endif

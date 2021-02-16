@@ -1,12 +1,12 @@
 import CacheKit
+import DependencyManager
+import DependencyManagerInterface
 import Feature_Products
 import Networking
 import NetworkingInterface
 import Repository
 import RepositoryInterface
 import SwiftUI
-import DependencyManagerInterface
-import DependencyManager
 import UIKit
 
 struct AppContainer {
@@ -60,7 +60,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             forMetaType: ImagesRepositoryProtocol.self
         )
     }
-    
+
     private func initializeModules(with appContainer: AppContainer) {
         RepositoryModule.registerDependencies(
             .init(apiEnvironment: appContainer.apiEnvironment)

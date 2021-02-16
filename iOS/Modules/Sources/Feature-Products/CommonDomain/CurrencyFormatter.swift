@@ -23,17 +23,17 @@ extension CurrencyFormatterProtocol {
 
 final class DefaultCurrencyFormatter: CurrencyFormatterProtocol {
     // MARK: - Dependencies
-    
+
     private let numberFormatter: NumberFormatter
-    
+
     // MARK: - Initialization
-    
+
     init(numberFormatter: NumberFormatter = .init()) {
         self.numberFormatter = numberFormatter
     }
-    
+
     // MARK: - Public API
-    
+
     func format(
         _ value: Double,
         forLocale localeIdentifier: String,
@@ -48,20 +48,20 @@ final class DefaultCurrencyFormatter: CurrencyFormatterProtocol {
 }
 
 #if DEBUG
-final class CurrencyFormatterDummy: CurrencyFormatterProtocol {
-    func format(
-        _ value: Double,
-        forLocale localeIdentifier: String,
-        currencyCode: String
-    ) -> String { "" }
-}
+    final class CurrencyFormatterDummy: CurrencyFormatterProtocol {
+        func format(
+            _: Double,
+            forLocale _: String,
+            currencyCode _: String
+        ) -> String { "" }
+    }
 
-final class CurrencyFormatterStub: CurrencyFormatterProtocol {
-    var valueToBeReturned = ""
-    func format(
-        _ value: Double,
-        forLocale localeIdentifier: String,
-        currencyCode: String
-    ) -> String { valueToBeReturned }
-}
+    final class CurrencyFormatterStub: CurrencyFormatterProtocol {
+        var valueToBeReturned = ""
+        func format(
+            _: Double,
+            forLocale _: String,
+            currencyCode _: String
+        ) -> String { valueToBeReturned }
+    }
 #endif

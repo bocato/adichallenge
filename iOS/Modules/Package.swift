@@ -30,6 +30,7 @@ let package = Package(
     ],
     dependencies: [
         // MARK: - Third Party
+
         .package(
             url: "https://github.com/pointfreeco/swift-composable-architecture.git",
             from: "0.9.0"
@@ -110,8 +111,8 @@ let package = Package(
                 "NetworkingInterface",
                 "RepositoryInterface",
                 "CacheKit",
-            ]
-            ,
+            ],
+
             resources: [
                 .process("Resources/Localizable.strings"),
             ]

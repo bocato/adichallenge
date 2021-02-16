@@ -1,7 +1,7 @@
 import Combine
 import ComposableArchitecture
-import RepositoryInterface
 import FoundationKit
+import RepositoryInterface
 
 typealias ProductDetailsReducer = Reducer<ProductDetailsState, ProductDetailsAction, ProductDetailsEnvironment>
 
@@ -51,11 +51,11 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
     case let .updateProductImageState(newLoadingState):
         state.productImageState = newLoadingState
         return .none
-        
+
     case .showAddReviewModal:
         state.isAddReviewModalShown = true
         return .none
-        
+
     case .addReviewModalDismissed:
         state.isAddReviewModalShown = false
         return .none

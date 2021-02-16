@@ -1,13 +1,13 @@
 import ComposableArchitecture
-import RepositoryInterface
-import NetworkingInterface
-import FoundationKit
-import XCTest
 @testable import Feature_Products
+import FoundationKit
+import NetworkingInterface
+import RepositoryInterface
+import XCTest
 
 final class ProductsListReducerTests: XCTestCase {
     // MARK: - Properties
-    
+
     private var initialState = ProductsListState()
     private let productsRepositoryStub = ProductsRepositoryStub()
     private let imagesRepositoryStub = ImagesRepositoryStub()
@@ -15,15 +15,15 @@ final class ProductsListReducerTests: XCTestCase {
     private let mainQueueFake = DispatchQueue.testScheduler
     private lazy var productsListEnvironment: ProductsListEnvironment = .fixture()
     private lazy var testStore: TestStore = {
-        return .init(
+        .init(
             initialState: initialState,
             reducer: productsListReducer,
             environment: productsListEnvironment
         )
     }()
-    
+
     // MARK: - Tests
-    
+
     func test_updateSearchTerm_whenInputHasLessThan3Letters_itShoulUpdateTheStateAndShowFilteringView() {
         // Given
         let searchTerm = "Ab"
@@ -36,7 +36,7 @@ final class ProductsListReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_updateSearchTerm_whenInputHasMoreThan3LettersAndProductRowsIsEmpty_itShouldShowNoProductsWereFound() {
         // Given
         let searchTerm = "Abc"
@@ -51,7 +51,7 @@ final class ProductsListReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_loadData_whenAPISucceeds_itShouldSetProductRowsAndLoadProductImages() {
         // Given
         initialState.productRows = []
@@ -61,7 +61,7 @@ final class ProductsListReducerTests: XCTestCase {
             currencyFormatter: DefaultCurrencyFormatter(),
             mainQueue: mainQueueFake.eraseToAnyScheduler()
         )
-        
+
         let firstProduct: Product = .fixture(
             name: "Product A",
             currency: "",
@@ -70,10 +70,10 @@ final class ProductsListReducerTests: XCTestCase {
         )
         let productsMock: [Product] = [firstProduct]
         productsRepositoryStub.getAllResultToBeReturned = .success(productsMock)
-        
+
         let imageDataMock: Data = .init()
         imagesRepositoryStub.imageDataToBeReturned = imageDataMock
-        
+
         // When / Then
         testStore.assert(
             .send(.loadData) { nextState in
@@ -91,17 +91,17 @@ final class ProductsListReducerTests: XCTestCase {
                         name: firstProduct.name,
                         description: firstProduct.description,
                         price: "€ 1,23"
-                    )
+                    ),
                 ]
             },
             .receive(.updateProductImageState(for: firstProduct.id, to: .loaded(imageDataMock))) { nextState in
                 nextState.productImageStates = [
-                    "\(firstProduct.id)": .loaded(imageDataMock)
+                    "\(firstProduct.id)": .loaded(imageDataMock),
                 ]
             }
         )
     }
-    
+
     func test_loadData_whenAPIFails_shouldPresentAPIError() {
         // Given
         initialState.productRows = []
@@ -109,10 +109,10 @@ final class ProductsListReducerTests: XCTestCase {
             productsRepository: productsRepositoryStub,
             mainQueue: mainQueueFake.eraseToAnyScheduler()
         )
-        
+
         let apiErrorMock: APIError = .fixture()
         productsRepositoryStub.getAllResultToBeReturned = .failure(apiErrorMock)
-        
+
         // When / Then
         testStore.assert(
             .send(.loadData) { nextState in
@@ -125,7 +125,7 @@ final class ProductsListReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_filterProductsByTerm_whenTermIsValid_shouldPresentOnlyFilteredProductRows() {
         // Given
         let searchTerm = "Abc"

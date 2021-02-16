@@ -1,7 +1,7 @@
 import Combine
 import ComposableArchitecture
-import RepositoryInterface
 import FoundationKit
+import RepositoryInterface
 
 typealias AddReviewModalReducer = Reducer<AddReviewModalState, AddReviewModalAction, AddReviewModalEnvironment>
 
@@ -10,11 +10,11 @@ let addReviewModalReducer = AddReviewModalReducer { state, action, environment i
     case let .updateReviewRating(score):
         state.rating = score
         return .none
-        
+
     case let .updateReviewText(text):
         state.reviewText = text
         return .none
-        
+
     case .saveReview:
         state.isLoading = true
         state.errorAlert = nil
@@ -35,13 +35,13 @@ let addReviewModalReducer = AddReviewModalReducer { state, action, environment i
             .receive(on: environment.mainQueue)
             .catchToEffect()
             .map(AddReviewModalAction.saveReviewRequest)
-    
+
     case .saveReviewRequest(.success):
         state.isLoading = false
         return Effect<AddReviewModalAction, Never>(
             value: .dismissItSelf
         )
-        
+
     case .saveReviewRequest(.failure):
         state.isLoading = false
         state.errorAlert = .init(
@@ -49,12 +49,12 @@ let addReviewModalReducer = AddReviewModalReducer { state, action, environment i
             message: TextState(L10n.AddReviewModal.ErrorAlert.message)
         )
         return .none
-        
+
     case .dismissItSelf:
         return .fireAndForget {
             environment.dismissClosure()
         }
-        
+
     case .errorAlertDismissed:
         state.errorAlert = nil
         return .none

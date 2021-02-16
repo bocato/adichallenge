@@ -1,8 +1,8 @@
 import ComposableArchitecture
 import CoreUI
+import DependencyManagerInterface
 import FoundationKit
 import SwiftUI
-import DependencyManagerInterface
 
 struct ProductDetailsView: View {
     // MARK: - Dependencies
@@ -56,7 +56,7 @@ struct ProductDetailsView: View {
             .opacity(viewStore.isLoading ? .zero : 1)
         }
     }
-    
+
     @ViewBuilder
     private func productDetailsView(
         for product: ProductViewData,
@@ -91,7 +91,7 @@ struct ProductDetailsView: View {
         )
         .padding(.bottom, DS.Spacing.tiny)
     }
-    
+
     // MARK: - Stateful Views
 
     @ViewBuilder

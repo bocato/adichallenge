@@ -1,17 +1,17 @@
 import ComposableArchitecture
 import CoreUI
-import FoundationKit
-import SwiftUI
-import SnapshotTesting
 import DependencyManagerInterface
-import RepositoryInterface
-import XCTest
 @testable import Feature_Products
+import FoundationKit
+import RepositoryInterface
+import SnapshotTesting
+import SwiftUI
+import XCTest
 
 /*
  Notes:
  - The tests were recorded on iPhone 11, with iOS 14.4
-*/
+ */
 
 final class ProductsListViewTests: XCTestCase {
     // MARK: - Properties
@@ -28,12 +28,14 @@ final class ProductsListViewTests: XCTestCase {
             environment: environment
         )
     }()
+
     private lazy var dependenciesContainerFake: DependenciesContainerFake = {
         let container: DependenciesContainerFake = .init()
         container.register(factory: ProductsRepositoryDummy.init, forMetaType: ProductsRepositoryProtocol.self)
         container.register(factory: ReviewsRepositoryDummy.init, forMetaType: ReviewsRepositoryProtocol.self)
         return container
     }()
+
     private let productDetailsViewBuilderStub: ProductDetailsViewBuilderStub = .init()
     private lazy var sut: ProductsListView = .init(
         container: dependenciesContainerFake,
@@ -49,11 +51,11 @@ final class ProductsListViewTests: XCTestCase {
     }()
 
     // MARK: - Tests
-    
+
     func test_snapshot_loading() {
         // Given
-        store = store.scope { state -> ProductsListState in
-            return .init(
+        store = store.scope { _ -> ProductsListState in
+            .init(
                 isLoading: true
             )
         }
@@ -66,23 +68,23 @@ final class ProductsListViewTests: XCTestCase {
             record: isRecordModeEnabled
         )
     }
-    
+
     func test_snapshot_list() {
         // Given
-        store = store.scope { state -> ProductsListState in
-            return .init(
+        store = store.scope { _ -> ProductsListState in
+            .init(
                 isLoading: false,
                 productRows: [
                     .fixture(id: "ID 1", name: "Product 1"),
                     .fixture(id: "ID 2", name: "Product 2"),
                     .fixture(id: "ID 3", name: "Product 3"),
-                    .fixture(id: "ID 4", name: "Product 4")
+                    .fixture(id: "ID 4", name: "Product 4"),
                 ],
                 productImageStates: [
                     "ID 1": .empty,
                     "ID 2": .empty,
                     "ID 3": .empty,
-                    "ID 4": .empty
+                    "ID 4": .empty,
                 ]
             )
         }
@@ -95,15 +97,15 @@ final class ProductsListViewTests: XCTestCase {
             record: isRecordModeEnabled
         )
     }
-    
+
     func test_snapshot_filtering() {
         // Given
-        store = store.scope { state -> ProductsListState in
-            return .init(
+        store = store.scope { _ -> ProductsListState in
+            .init(
                 isLoading: false,
                 searchInput: "AB",
                 productRows: [
-                    .fixture()
+                    .fixture(),
                 ],
                 filteredProductRows: []
             )
@@ -117,15 +119,15 @@ final class ProductsListViewTests: XCTestCase {
             record: isRecordModeEnabled
         )
     }
-    
+
     func test_snapshot_emptyFilterResults() {
         // Given
-        store = store.scope { state -> ProductsListState in
-            return .init(
+        store = store.scope { _ -> ProductsListState in
+            .init(
                 isLoading: false,
                 searchInput: "ABCD",
                 productRows: [
-                    .fixture()
+                    .fixture(),
                 ],
                 filteredProductRows: nil
             )
@@ -139,11 +141,11 @@ final class ProductsListViewTests: XCTestCase {
             record: isRecordModeEnabled
         )
     }
-    
+
     func test_snapshot_apiError() {
         // Given
-        store = store.scope { state -> ProductsListState in
-            return .init(
+        store = store.scope { _ -> ProductsListState in
+            .init(
                 isLoading: false,
                 apiError: .init(NSError(domain: "APIError", code: -1, userInfo: nil))
             )
@@ -157,11 +159,11 @@ final class ProductsListViewTests: XCTestCase {
             record: isRecordModeEnabled
         )
     }
-    
+
     func test_snapshot_emptyAPIResponse() {
         // Given
-        store = store.scope { state -> ProductsListState in
-            return .init(
+        store = store.scope { _ -> ProductsListState in
+            .init(
                 isLoading: false,
                 productRows: []
             )

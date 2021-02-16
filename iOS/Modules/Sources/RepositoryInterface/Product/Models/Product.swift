@@ -27,26 +27,27 @@ public struct Product: Equatable {
         self.reviews = reviews
     }
 }
+
 #if DEBUG
-extension Product {
-    public static func fixture(
-        id: String = "id",
-        name: String = "name",
-        currency: String = "currency",
-        price: Double = .zero,
-        description: String = "description",
-        imageURL: String = "imageURL",
-        reviews: [ProductReview] = []
-    ) -> Self {
-        .init(
-            id: id,
-            name: name,
-            currency: currency,
-            price: price,
-            description: description,
-            imageURL: imageURL,
-            reviews: reviews
-        )
+    extension Product {
+        public static func fixture(
+            id: String = "id",
+            name: String = "name",
+            currency: String = "currency",
+            price: Double = .zero,
+            description: String = "description",
+            imageURL: String = "imageURL",
+            reviews: [ProductReview] = []
+        ) -> Self {
+            .init(
+                id: id,
+                name: name,
+                currency: currency,
+                price: price,
+                description: description,
+                imageURL: imageURL,
+                reviews: reviews
+            )
+        }
     }
-}
 #endif

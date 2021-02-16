@@ -55,7 +55,7 @@ let productsListReducer = ProductsListReducer { state, action, environment in
     case let .updateProductImageState(productID, newLoadingState):
         state.productImageStates[productID] = newLoadingState
         return .none
-        
+
     case let .filterProductsByTerm(filter):
         let cleanFilter = filter.lowercased()
         let filterResult = state

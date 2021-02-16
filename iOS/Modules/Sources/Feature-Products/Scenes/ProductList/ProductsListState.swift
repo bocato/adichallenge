@@ -9,7 +9,7 @@ struct ProductsListState: Equatable {
     var productRows: [ProductRowData]
     var filteredProductRows: [ProductRowData]?
     var productImageStates: [String: LoadingState<Data>]
-    
+
     init(
         isLoading: Bool = false,
         apiError: EquatableErrorWrapper? = nil,
@@ -44,22 +44,23 @@ struct ProductRowData: Identifiable, Equatable {
     let description: String
     let price: String // formatted
 }
+
 #if DEBUG
-extension ProductRowData {
-    static func fixture(
-        id: String = "id",
-        groupName: String = "groupName",
-        name: String = "name",
-        description: String = "description",
-        price: String = "price"
-    ) -> Self {
-        .init(
-            id: id,
-            groupName: groupName,
-            name: name,
-            description: description,
-            price: price
-        )
+    extension ProductRowData {
+        static func fixture(
+            id: String = "id",
+            groupName: String = "groupName",
+            name: String = "name",
+            description: String = "description",
+            price: String = "price"
+        ) -> Self {
+            .init(
+                id: id,
+                groupName: groupName,
+                name: name,
+                description: description,
+                price: price
+            )
+        }
     }
-}
 #endif

@@ -1,7 +1,7 @@
+import ComposableArchitecture
 import Foundation
 import FoundationKit
 import RepositoryInterface
-import ComposableArchitecture
 
 struct AddReviewModalState: Equatable {
     let props: Props
@@ -10,7 +10,7 @@ struct AddReviewModalState: Equatable {
     var reviewText: String
     var errorAlert: AlertState<AddReviewModalAction>?
     var shouldDismissItSelf: Bool
-    
+
     init(
         props: Props,
         isLoading: Bool = false,
@@ -27,6 +27,7 @@ struct AddReviewModalState: Equatable {
         self.shouldDismissItSelf = shouldDismissItSelf
     }
 }
+
 extension AddReviewModalState {
     struct Props: Equatable {
         let productID: String
@@ -34,15 +35,15 @@ extension AddReviewModalState {
 }
 
 #if DEBUG
-extension AddReviewModalState.Props {
-    static func fixture(
-        productID: String = "productID"
-    ) -> Self {
-        .init(
-            productID: productID
-        )
+    extension AddReviewModalState.Props {
+        static func fixture(
+            productID: String = "productID"
+        ) -> Self {
+            .init(
+                productID: productID
+            )
+        }
     }
-}
 #endif
 
 // MARK: - View Data Models

@@ -1,28 +1,28 @@
 import ComposableArchitecture
-import RepositoryInterface
-import NetworkingInterface
-import FoundationKit
-import XCTest
 @testable import Feature_Products
+import FoundationKit
+import NetworkingInterface
+import RepositoryInterface
+import XCTest
 
 final class ProductDetailsReducerTests: XCTestCase {
     // MARK: - Properties
-    
+
     private var initialState: ProductDetailsState = .init(props: .fixture())
     private let productsRepositoryStub = ProductsRepositoryStub()
     private let imagesRepositoryStub = ImagesRepositoryStub()
     private let mainQueueFake = DispatchQueue.testScheduler
     private lazy var productDetailsEnvironment: ProductDetailsEnvironment = .fixture()
     private lazy var testStore: TestStore = {
-        return .init(
+        .init(
             initialState: initialState,
             reducer: productDetailsReducer,
             environment: productDetailsEnvironment
         )
     }()
-    
+
     // MARK: - Tests
-    
+
     func test_loadData_whenAPISucceeds_itShouldSetProductInfoAndLoadImage() {
         // Given
         let productMock: Product = .fixture(
@@ -43,10 +43,10 @@ final class ProductDetailsReducerTests: XCTestCase {
             mainQueue: mainQueueFake.eraseToAnyScheduler()
         )
         productsRepositoryStub.getProductWithIDResultToBeReturned = .success(productMock)
-        
+
         let imageDataMock: Data = .init()
         imagesRepositoryStub.imageDataToBeReturned = imageDataMock
-        
+
         // When / Then
         testStore.assert(
             .send(.loadData) { nextState in
@@ -63,7 +63,7 @@ final class ProductDetailsReducerTests: XCTestCase {
                     price: "€ 1,23",
                     reviews: [
                         .fixture(flagEmoji: "🇧🇷", rating: "⭐️⭐️"),
-                        .fixture(flagEmoji: "🇧🇷", rating: "⭐️⭐️")
+                        .fixture(flagEmoji: "🇧🇷", rating: "⭐️⭐️"),
                     ]
                 )
             },
@@ -72,7 +72,7 @@ final class ProductDetailsReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_loadData_whenAPIFails_shouldPresentAPIError() {
         // Given
         initialState.product = nil
@@ -81,10 +81,10 @@ final class ProductDetailsReducerTests: XCTestCase {
             imagesRepository: imagesRepositoryStub,
             mainQueue: mainQueueFake.eraseToAnyScheduler()
         )
-        
+
         let apiErrorMock: APIError = .fixture()
         productsRepositoryStub.getProductWithIDResultToBeReturned = .failure(apiErrorMock)
-        
+
         // When / Then
         testStore.assert(
             .send(.loadData) { nextState in

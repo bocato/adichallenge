@@ -10,8 +10,8 @@ public struct PostProductReviewRequestData: Encodable {
         case locale, rating, text
         case productID = "productId"
     }
-    
-    public  init(
+
+    public init(
         productID: String,
         locale: String,
         rating: Int,
@@ -23,4 +23,3 @@ public struct PostProductReviewRequestData: Encodable {
         self.text = text
     }
 }
-

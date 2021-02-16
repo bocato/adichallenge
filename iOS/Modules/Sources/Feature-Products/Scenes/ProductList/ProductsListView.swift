@@ -1,8 +1,8 @@
 import ComposableArchitecture
 import CoreUI
+import DependencyManagerInterface
 import FoundationKit
 import SwiftUI
-import DependencyManagerInterface
 
 public struct ProductsListView: View {
     // MARK: - Dependencies
@@ -12,7 +12,7 @@ public struct ProductsListView: View {
     private let store: Store<ProductsListState, ProductsListAction>
 
     // MARK: - Initialization
-    
+
     public init() {
         let container = ProductsFeature.container()
         let environment = ProductsListEnvironment()
@@ -70,11 +70,11 @@ public struct ProductsListView: View {
             ForEach(productRows) { product in
                 NavigationLink(
                     destination:
-                        productDetailsViewBuilder.build(
-                            productName: product.name,
-                            productID: product.id,
-                            container: container
-                        ),
+                    productDetailsViewBuilder.build(
+                        productName: product.name,
+                        productID: product.id,
+                        container: container
+                    ),
                     label: {
                         ProductsListRow(
                             data: product,
@@ -96,7 +96,7 @@ public struct ProductsListView: View {
             Spacer()
         }
     }
-    
+
     @ViewBuilder
     private func filteringView(_ viewStore: ViewStore<ProductsListState, ProductsListAction>) -> some View {
         if viewStore.showFilteringView {
@@ -106,8 +106,7 @@ public struct ProductsListView: View {
                     image: .init(sfSymbol: "doc.text.magnifyingglass")
                 )
             )
-        }
-        else if viewStore.showEmptyFilterResults {
+        } else if viewStore.showEmptyFilterResults {
             InformationView(
                 data: .init(
                     title: L10n.ProductList.FilteringView.emptyResults,
@@ -134,9 +133,9 @@ public struct ProductsListView: View {
             ErrorView(onRetry: { viewStore.send(.loadData) })
         }
     }
-    
+
     // MARK: - Helper Methods
-    
+
     private func getProductRowsData(for viewStore: ViewStore<ProductsListState, ProductsListAction>) -> [ProductRowData] {
         var productRows = viewStore.productRows
         if let filteredProductRows = viewStore.filteredProductRows, viewStore.isFiltering {

@@ -1,27 +1,27 @@
 import ComposableArchitecture
-import RepositoryInterface
-import NetworkingInterface
-import FoundationKit
-import XCTest
 @testable import Feature_Products
+import FoundationKit
+import NetworkingInterface
+import RepositoryInterface
+import XCTest
 
 final class AddReviewModalReducerTests: XCTestCase {
     // MARK: - Properties
-    
+
     private var initialState: AddReviewModalState = .init(props: .fixture())
     private let reviewsRepositoryStub = ReviewsRepositoryStub()
     private let mainQueueFake = DispatchQueue.testScheduler
     private lazy var addReviewModalEnvironment: AddReviewModalEnvironment = .fixture()
     private lazy var testStore: TestStore = {
-        return .init(
+        .init(
             initialState: initialState,
             reducer: addReviewModalReducer,
             environment: addReviewModalEnvironment
         )
     }()
-    
+
     // MARK: - Tests
-    
+
     func test_updateReviewRating_shouldUpdateState() {
         // Given
         initialState.rating = nil
@@ -32,7 +32,7 @@ final class AddReviewModalReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_updateReviewText_shouldUpdateState() {
         // Given
         initialState.reviewText = ""
@@ -43,17 +43,17 @@ final class AddReviewModalReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_saveReview_whenAPIFails_shouldPresentErrorAlert() {
         // Given
         addReviewModalEnvironment = .fixture(
             reviewsRepository: reviewsRepositoryStub,
             mainQueue: mainQueueFake.eraseToAnyScheduler()
         )
-        
+
         let apiErrorMock: APIError = .fixture()
         reviewsRepositoryStub.postProductReviewResultToBeReturned = .failure(apiErrorMock)
-        
+
         // When / Then
         testStore.assert(
             .send(.saveReview) { nextState in

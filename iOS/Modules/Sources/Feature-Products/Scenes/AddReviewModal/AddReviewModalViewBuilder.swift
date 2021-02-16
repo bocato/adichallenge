@@ -1,9 +1,8 @@
-
 import ComposableArchitecture
 import CoreUI
+import DependencyManagerInterface
 import FoundationKit
 import SwiftUI
-import DependencyManagerInterface
 
 protocol AddReviewModalBuilding {
     func build(
@@ -39,14 +38,14 @@ final class AddReviewModalBuilder: AddReviewModalBuilding {
 }
 
 #if DEBUG
-final class AddReviewModalViewBuilderStub: AddReviewModalBuilding {
-    var viewToBeReturned: AnyView = .init(EmptyView())
-    func build(
-        dismiss: @escaping () -> Void,
-        productID: String,
-        container: DependenciesContainerInterface
-    ) -> AnyView {
-        viewToBeReturned
+    final class AddReviewModalViewBuilderStub: AddReviewModalBuilding {
+        var viewToBeReturned: AnyView = .init(EmptyView())
+        func build(
+            dismiss _: @escaping () -> Void,
+            productID _: String,
+            container _: DependenciesContainerInterface
+        ) -> AnyView {
+            viewToBeReturned
+        }
     }
-}
 #endif

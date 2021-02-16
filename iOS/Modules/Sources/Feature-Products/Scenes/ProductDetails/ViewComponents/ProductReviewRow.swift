@@ -21,7 +21,7 @@ struct ProductReviewRow: View {
                     .font(.body)
             }
             .padding(.bottom, DS.Spacing.xxSmall)
-            
+
             Text(data.text)
                 .font(.body)
                 .foregroundColor(.secondary)

@@ -1,9 +1,9 @@
 import Combine
 import ComposableArchitecture
 import CoreUI
+import DependencyManagerInterface
 import Foundation
 import RepositoryInterface
-import DependencyManagerInterface
 
 struct AddReviewModalEnvironment: ResolvableEnvironment {
     @Dependency var reviewsRepository: ReviewsRepositoryProtocol
@@ -23,20 +23,20 @@ struct AddReviewModalEnvironment: ResolvableEnvironment {
 }
 
 #if DEBUG
-extension AddReviewModalEnvironment {
-    static func fixture(
-        reviewsRepository: ReviewsRepositoryProtocol = ReviewsRepositoryDummy(),
-        dismissClosure: @escaping () -> Void = {},
-        localeProvider: @escaping () -> String? = { nil },
-        mainQueue: AnySchedulerOf<DispatchQueue> = DispatchQueue.global().eraseToAnyScheduler()
-    ) -> Self {
-        var instance: Self = .init(
-            dismissClosure: dismissClosure,
-            localeProvider: localeProvider,
-            mainQueue: mainQueue
-        )
-        instance._reviewsRepository = .resolvedValue(reviewsRepository)
-        return instance
+    extension AddReviewModalEnvironment {
+        static func fixture(
+            reviewsRepository: ReviewsRepositoryProtocol = ReviewsRepositoryDummy(),
+            dismissClosure: @escaping () -> Void = {},
+            localeProvider: @escaping () -> String? = { nil },
+            mainQueue: AnySchedulerOf<DispatchQueue> = DispatchQueue.global().eraseToAnyScheduler()
+        ) -> Self {
+            var instance: Self = .init(
+                dismissClosure: dismissClosure,
+                localeProvider: localeProvider,
+                mainQueue: mainQueue
+            )
+            instance._reviewsRepository = .resolvedValue(reviewsRepository)
+            return instance
+        }
     }
-}
 #endif
