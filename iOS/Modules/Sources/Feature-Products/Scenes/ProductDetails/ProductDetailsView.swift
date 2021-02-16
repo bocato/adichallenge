@@ -10,27 +10,6 @@ struct ProductDetailsView: View {
     private let store: Store<ProductDetailsState, ProductDetailsAction>
 
     // MARK: - Initialization
-    
-    init(
-        productName: String,
-        productID: String,
-        container: DependenciesContainerInterface? = nil
-    ) {
-        let environment = ProductDetailsEnvironment()
-        environment.initialize(withContainer: container ?? ProductsFeature.container())
-        self.init(
-            store: .init(
-                initialState: .init(
-                    props: .init(
-                        productName: productName,
-                        productID: productID
-                    )
-                ),
-                reducer: productDetailsReducer,
-                environment: environment
-            )
-        )
-    }
 
     init(store: Store<ProductDetailsState,  ProductDetailsAction>) {
         self.store = store
@@ -84,6 +63,12 @@ struct ProductDetailsView: View {
                     ProductReviewRow(data: review)
                 }
             }
+            Button(L10n.ProductDetails.Button.addReview) {
+                print("")
+            }
+            .frame(height: DS.LayoutSize.large.height)
+            .buttonStyle(RoundedButtonStyle())
+            .padding(.bottom, DS.Spacing.tiny)
         }
         .padding(.bottom, DS.Spacing.tiny)
     }

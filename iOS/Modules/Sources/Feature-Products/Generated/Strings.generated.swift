@@ -14,6 +14,12 @@ import Foundation
 internal enum L10n {
 
   internal enum ProductDetails {
+    internal enum Button {
+      /// Add Review
+      internal static var addReview: String {
+        L10n.tr("Localizable", "productDetails.button.addReview")
+      }
+    }
     internal enum EmptyView {
       /// We could not find the content for this page, try again soon...
       internal static var subtitle: String {

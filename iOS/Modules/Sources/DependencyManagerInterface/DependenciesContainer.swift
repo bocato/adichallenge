@@ -48,4 +48,25 @@ public final class DependenciesContainerDummy: DependenciesContainerInterface {
         failureHandler: (String) -> Void
     ) {}
 }
+
+public final class DependenciesContainerFake: DependenciesContainerInterface {
+    public var dependencyInstances: [String: Any]
+    public init(
+        dependencyInstances: [String: Any] = [:]
+    ) {
+        self.dependencyInstances = dependencyInstances
+    }
+    public func get<T>(_ arg: T.Type) -> T? {
+        let name = String(describing: T.self)
+        return dependencyInstances[name] as? T
+    }
+    public func register<T>(
+        factory: @escaping DependencyFactory,
+        forMetaType metaType: T.Type,
+        failureHandler: (String) -> Void
+    ) {
+        let name = String(describing: T.self)
+        dependencyInstances[name] = metaType
+    }
+}
 #endif

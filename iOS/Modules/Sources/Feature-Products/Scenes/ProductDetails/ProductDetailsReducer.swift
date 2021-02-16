@@ -34,21 +34,13 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
                 )
             }
         )
-        return .none // TODO: Load image
-//        return Effect.init {
-//            environment
-//                .imagesRepository
-//                .getImageDataFromURL(data.imageURL)
-//                .receive(on: environment.mainQueue)
-//                .eraseToEffect()
-//                .map { data -> LoadingState<Data> in
-//                    guard let data = data else {
-//                        return .empty
-//                    }
-//                    return .loaded(data)
-//                }
-//                .map { .updateProductImageState }
-//        }
+        return environment
+            .imagesRepository
+            .getImageDataFromURL(data.imageURL)
+            .receive(on: environment.mainQueue)
+            .eraseToEffect()
+            .map { $0.map(LoadingState.loaded) ?? .empty }
+            .map { .updateProductImageState($0) }
 
     case let .loadProductResponse(.failure(error)):
         state.isLoading = false

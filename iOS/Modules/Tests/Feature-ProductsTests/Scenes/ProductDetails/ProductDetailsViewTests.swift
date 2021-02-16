@@ -74,6 +74,21 @@ final class ProductDetailsViewTests: XCTestCase {
                         .fixture(
                             rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
                             text: "Review review review review review review review review review review review..."),
+                        .fixture(
+                            rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
+                            text: "Review review review review review review review review review review review..."),
+                        .fixture(
+                            rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
+                            text: "Review review review review review review review review review review review..."),
+                        .fixture(
+                            rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
+                            text: "Review review review review review review review review review review review..."),
+                        .fixture(
+                            rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
+                            text: "Review review review review review review review review review review review..."),
+                        .fixture(
+                            rating: "⭐️⭐️⭐️⭐️⭐️⭐️",
+                            text: "Review review review review review review review review review review review..."),
                     ]
                 )
             )

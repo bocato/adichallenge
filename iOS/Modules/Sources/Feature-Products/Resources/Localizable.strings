@@ -10,3 +10,4 @@
 "productDetails.emptyView.subtitle" = "We could not find the content for this page, try again soon...";
 "productDetails.productReviewRow.locale" = "Locale:";
 "productDetails.productReviewRow.rating" = "Rating:";
+"productDetails.button.addReview" = "Add Review";

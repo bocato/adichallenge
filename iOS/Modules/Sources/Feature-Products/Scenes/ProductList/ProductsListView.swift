@@ -8,6 +8,7 @@ public struct ProductsListView: View {
     // MARK: - Dependencies
 
     private let container: DependenciesContainerInterface
+    private let productDetailsViewBuilder: ProductDetailsViewBuilding
     private let store: Store<ProductsListState, ProductsListAction>
 
     // MARK: - Initialization
@@ -28,10 +29,12 @@ public struct ProductsListView: View {
 
     init(
         container: DependenciesContainerInterface,
+        productDetailsViewBuilder: ProductDetailsViewBuilding = ProductDetailsViewBuilder(),
         store: Store<ProductsListState, ProductsListAction>
     ) {
-        self.store = store
         self.container = container
+        self.productDetailsViewBuilder = productDetailsViewBuilder
+        self.store = store
     }
 
     // MARK: - Body
@@ -66,11 +69,12 @@ public struct ProductsListView: View {
             let productRows = getProductRowsData(for: viewStore)
             ForEach(productRows) { product in
                 NavigationLink(
-                    destination: ProductDetailsView(
-                        productName: product.name,
-                        productID: product.id,
-                        container: container
-                    ),
+                    destination:
+                        productDetailsViewBuilder.build(
+                            productName: product.name,
+                            productID: product.id,
+                            container: container
+                        ),
                     label: {
                         ProductsListRow(
                             data: product,

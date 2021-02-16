@@ -78,6 +78,8 @@ public struct InformationView: View {
                     actionButton.text,
                     action: actionButton.action
                 )
+                .buttonStyle(RoundedButtonStyle())
+                .frame(height: DS.LayoutSize.large.height)
             }
         }
         .alignmentGuide(VerticalAlignment.center) { $0[VerticalAlignment.center] * 1.1 }
