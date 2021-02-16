@@ -8,19 +8,22 @@ struct ProductDetailsState: Equatable {
     var apiError: EquatableErrorWrapper?
     var product: ProductViewData?
     var productImageState: LoadingState<Data>
+    var isAddReviewModalShown: Bool
     
     init(
         props: Props,
         isLoading: Bool = false,
         apiError: EquatableErrorWrapper? = nil,
         product: ProductViewData? = nil,
-        productImageState: LoadingState<Data> = .empty
+        productImageState: LoadingState<Data> = .empty,
+        isAddReviewModalShown: Bool = false
     ) {
         self.props = props
         self.isLoading = isLoading
         self.apiError = apiError
         self.product = product
         self.productImageState = productImageState
+        self.isAddReviewModalShown = isAddReviewModalShown
     }
 }
 extension ProductDetailsState {

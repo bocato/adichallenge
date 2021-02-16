@@ -51,5 +51,11 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
     case let .updateProductImageState(newLoadingState):
         state.productImageState = newLoadingState
         return .none
+        
+    case .showAddReviewModal:
+        return .none // TODO: Implement
+        
+    case .addReviewModalDismissed:
+        return .none // TODO: Implement
     }
 }

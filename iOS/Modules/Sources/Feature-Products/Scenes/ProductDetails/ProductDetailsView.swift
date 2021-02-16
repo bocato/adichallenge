@@ -7,11 +7,16 @@ import DependencyManagerInterface
 struct ProductDetailsView: View {
     // MARK: - Dependencies
 
+    private let addReviewModalBuilder: AddReviewModalBuilding
     private let store: Store<ProductDetailsState, ProductDetailsAction>
 
     // MARK: - Initialization
 
-    init(store: Store<ProductDetailsState,  ProductDetailsAction>) {
+    init(
+        addReviewModalBuilder: AddReviewModalBuilding = AddReviewModalBuilder(),
+        store: Store<ProductDetailsState,  ProductDetailsAction>
+    ) {
+        self.addReviewModalBuilder = addReviewModalBuilder
         self.store = store
     }
 
@@ -64,11 +69,22 @@ struct ProductDetailsView: View {
                 }
             }
             Button(L10n.ProductDetails.Button.addReview) {
-                print("")
+                viewStore.send(.showAddReviewModal)
             }
             .frame(height: DS.LayoutSize.large.height)
             .buttonStyle(RoundedButtonStyle())
             .padding(.bottom, DS.Spacing.tiny)
+        }
+        .sheet(
+            isPresented: .constant(viewStore.isAddReviewModalShown),
+            onDismiss: { viewStore.send(.addReviewModalDismissed) }
+        ) {
+            addReviewModalBuilder
+                .build(
+                    productID: "", // TODO: IMPLEMENT!
+                    container: ProductsFeature.container() // TODO: Change this
+                )
+//            )
         }
         .padding(.bottom, DS.Spacing.tiny)
     }

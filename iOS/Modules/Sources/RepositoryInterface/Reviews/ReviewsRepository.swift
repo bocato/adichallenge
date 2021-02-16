@@ -5,13 +5,17 @@ import NetworkingInterface
 public typealias ReviewsRepositoryError = APIError
 
 public protocol ReviewsRepositoryProtocol {
-    func getReviewForProductWithID(_ id: Int) -> AnyPublisher<[ProductReview], ReviewsRepositoryError>
+    func getReviewsForProductWithID(_ id: String) -> AnyPublisher<[ProductReview], ReviewsRepositoryError>
+    func postProductReview(_ review: PostProductReviewRequestData) -> AnyPublisher<Void, ReviewsRepositoryError>
 }
 
 #if DEBUG
 public final class ReviewsRepositoryDummy: ReviewsRepositoryProtocol {
     public init() {}
-    public func getReviewForProductWithID(_ id: Int) -> AnyPublisher<[ProductReview], ReviewsRepositoryError> {
+    public func getReviewsForProductWithID(_ id: String) -> AnyPublisher<[ProductReview], ReviewsRepositoryError> {
+        Empty().eraseToAnyPublisher()
+    }
+    public func postProductReview(_ review: PostProductReviewRequestData) -> AnyPublisher<Void, ReviewsRepositoryError> {
         Empty().eraseToAnyPublisher()
     }
 }
