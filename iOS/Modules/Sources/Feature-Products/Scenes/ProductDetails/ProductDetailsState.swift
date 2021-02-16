@@ -8,7 +8,7 @@ struct ProductDetailsState: Equatable {
     var apiError: EquatableErrorWrapper?
     var product: ProductViewData?
     var productImageState: LoadingState<Data>
-    var isAddReviewModalShown: Bool
+    var isAddReviewModalShown: Bool = false
     
     init(
         props: Props,

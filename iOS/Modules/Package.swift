@@ -38,7 +38,12 @@ let package = Package(
             name: "SnapshotTesting",
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
             from: "1.8.2"
-        )
+        ),
+        .package(
+            name: "SwiftSoup",
+            url: "https://github.com/scinfu/SwiftSoup.git",
+            from: "1.7.4"
+        ),
     ],
     targets: [
         // MARK: - Core Modules
@@ -78,7 +83,10 @@ let package = Package(
         .target(
             name: "Networking",
             dependencies: [
+                // Internal Dependencies
                 "NetworkingInterface",
+                // Third Party Dependencies
+                .product(name: "SwiftSoup", package: "SwiftSoup"),
             ]
         ),
         .testTarget(

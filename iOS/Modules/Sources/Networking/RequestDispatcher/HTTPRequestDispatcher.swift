@@ -1,8 +1,8 @@
 import Combine
 import Foundation
 import NetworkingInterface
+import SwiftSoup
 
-// TODO: Handle Reachability
 public final class HTTPRequestDispatcher: HTTPRequestDispatcherProtocol {
     // MARK: - Dependencies
 
@@ -56,9 +56,21 @@ public final class HTTPRequestDispatcher: HTTPRequestDispatcherProtocol {
 
     private func parseError(with data: Data, code: Int) -> HTTPRequestError {
         guard
-            let dictionary = try? jsonSerializer.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+            let errorHMTLString = String(data: data, encoding: .utf8)
         else { return .unexpectedAPIError }
-        let error: NSError = .init(domain: "Networking", code: code, userInfo: dictionary)
-        return .apiError(.init(rawError: error))
+        do {
+            let htmlDocument: Document = try SwiftSoup.parse(errorHMTLString)
+            let title = try htmlDocument.attr("title")
+            let message = try htmlDocument.attr("body")
+            return .apiError(
+                .init(
+                    code: code,
+                    title: title,
+                    message: message
+                )
+            )
+        } catch {
+            return .unexpectedAPIError
+        }
     }
 }

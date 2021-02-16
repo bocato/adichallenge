@@ -53,9 +53,11 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
         return .none
         
     case .showAddReviewModal:
-        return .none // TODO: Implement
+        state.isAddReviewModalShown = true
+        return .none
         
     case .addReviewModalDismissed:
-        return .none // TODO: Implement
+        state.isAddReviewModalShown = false
+        return .none
     }
 }

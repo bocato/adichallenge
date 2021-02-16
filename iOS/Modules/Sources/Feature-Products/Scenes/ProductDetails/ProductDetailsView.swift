@@ -8,15 +8,18 @@ struct ProductDetailsView: View {
     // MARK: - Dependencies
 
     private let addReviewModalBuilder: AddReviewModalBuilding
+    private let container: DependenciesContainerInterface
     private let store: Store<ProductDetailsState, ProductDetailsAction>
 
     // MARK: - Initialization
 
     init(
         addReviewModalBuilder: AddReviewModalBuilding = AddReviewModalBuilder(),
-        store: Store<ProductDetailsState,  ProductDetailsAction>
+        container: DependenciesContainerInterface? = nil,
+        store: Store<ProductDetailsState, ProductDetailsAction>
     ) {
         self.addReviewModalBuilder = addReviewModalBuilder
+        self.container = container ?? ProductsFeature.container()
         self.store = store
     }
 
@@ -77,15 +80,14 @@ struct ProductDetailsView: View {
         }
         .sheet(
             isPresented: .constant(viewStore.isAddReviewModalShown),
-            onDismiss: { viewStore.send(.addReviewModalDismissed) }
-        ) {
-            addReviewModalBuilder
-                .build(
-                    productID: "", // TODO: IMPLEMENT!
-                    container: ProductsFeature.container() // TODO: Change this
+            onDismiss: { viewStore.send(.addReviewModalDismissed) },
+            content: {
+                addReviewModalBuilder.build(
+                    productID: viewStore.props.productID,
+                    container: container
                 )
-//            )
-        }
+            }
+        )
         .padding(.bottom, DS.Spacing.tiny)
     }
     

@@ -52,6 +52,10 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             forMetaType: ProductsRepositoryProtocol.self
         )
         appContainer.dependenciesContainer.register(
+            factory: { ReviewsRepository(httpDispatcher: appContainer.httpDispatcher) },
+            forMetaType: ReviewsRepositoryProtocol.self
+        )
+        appContainer.dependenciesContainer.register(
             factory: { ImagesRepository() },
             forMetaType: ImagesRepositoryProtocol.self
         )

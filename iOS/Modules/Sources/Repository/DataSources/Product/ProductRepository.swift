@@ -8,15 +8,26 @@ public final class ProductsRepository: ProductsRepositoryProtocol {
 
     private let httpDispatcher: HTTPRequestDispatcherProtocol
     private let jsonDecoder: JSONDecoder
+    private let apiErrorMapper: APIErrorMapperProtocol
 
     // MARK: - Initialization
 
-    public init(
+    public convenience init(httpDispatcher: HTTPRequestDispatcherProtocol) {
+        self.init(
+            httpDispatcher: httpDispatcher,
+            jsonDecoder: .init(),
+            apiErrorMapper: DefaultAPIErrorMapper()
+        )
+    }
+    
+    init(
         httpDispatcher: HTTPRequestDispatcherProtocol,
-        jsonDecoder: JSONDecoder = JSONDecoder()
+        jsonDecoder: JSONDecoder,
+        apiErrorMapper: APIErrorMapperProtocol
     ) {
         self.httpDispatcher = httpDispatcher
         self.jsonDecoder = jsonDecoder
+        self.apiErrorMapper = apiErrorMapper
     }
 
     // MARK: - Public API
@@ -34,7 +45,7 @@ public final class ProductsRepository: ProductsRepositoryProtocol {
                 let domainModels = decodedResponse.map(Product.init(dto:))
                 return domainModels
             }
-            .mapError { APIError(rawError: $0) }
+            .mapError { [apiErrorMapper] in  apiErrorMapper.parse($0) }
             .eraseToAnyPublisher()
     }
 
@@ -52,7 +63,7 @@ public final class ProductsRepository: ProductsRepositoryProtocol {
                 let domainModel: Product = .init(dto: decodedResponse)
                 return domainModel
             }
-            .mapError { APIError(rawError: $0) }
+            .mapError { [apiErrorMapper] in  apiErrorMapper.parse($0) }
             .eraseToAnyPublisher()
     }
 }

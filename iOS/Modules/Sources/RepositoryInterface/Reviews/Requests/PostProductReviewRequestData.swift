@@ -23,4 +23,4 @@ public struct PostProductReviewRequestData: Encodable {
         self.text = text
     }
 }
-G
+

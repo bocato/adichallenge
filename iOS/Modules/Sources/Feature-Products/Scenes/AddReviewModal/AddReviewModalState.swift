@@ -1,20 +1,30 @@
 import Foundation
 import FoundationKit
 import RepositoryInterface
+import ComposableArchitecture
 
 struct AddReviewModalState: Equatable {
     let props: Props
     var isLoading: Bool
-    var apiError: EquatableErrorWrapper?
+    var rating: Int?
+    var reviewText: String
+    var errorAlert: AlertState<AddReviewModalAction>?
+    var shouldDismissItSelf: Bool
     
     init(
         props: Props,
         isLoading: Bool = false,
-        apiError: EquatableErrorWrapper? = nil
+        rating: Int? = nil,
+        reviewText: String = "",
+        errorAlert: AlertState<AddReviewModalAction>? = nil,
+        shouldDismissItSelf: Bool = false
     ) {
         self.props = props
         self.isLoading = isLoading
-        self.apiError = apiError
+        self.rating = rating
+        self.reviewText = reviewText
+        self.errorAlert = errorAlert
+        self.shouldDismissItSelf = shouldDismissItSelf
     }
 }
 extension AddReviewModalState {
