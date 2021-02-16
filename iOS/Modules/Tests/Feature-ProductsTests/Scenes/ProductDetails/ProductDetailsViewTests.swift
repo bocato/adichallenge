@@ -28,13 +28,13 @@ final class ProductDetailsViewTests: XCTestCase {
         )
     }()
 
-    private lazy var dependenciesContainerFake: DependenciesContainerFake = {
-        let container: DependenciesContainerFake = .init()
+    private lazy var dependenciesContainerMock: DependenciesContainerMock = {
+        let container: DependenciesContainerMock = .init()
         return container
     }()
 
     private lazy var sut: ProductDetailsView = .init(
-        container: dependenciesContainerFake,
+        container: dependenciesContainerMock,
         store: store
     )
     private lazy var sutContainer: UINavigationController = {

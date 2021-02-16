@@ -14,14 +14,15 @@ let package = Package(
             type: .dynamic,
             targets: [
                 // Core Modules
-                "FoundationKit",
+                "CacheKit",
                 "CoreUI",
+                "DependencyManagerInterface",
+                "DependencyManager",
+                "FoundationKit",
                 "NetworkingInterface",
                 "Networking",
                 "RepositoryInterface",
                 "Repository",
-                "DependencyManagerInterface",
-                "DependencyManager",
 
                 // Feature Modules
                 "Feature-Products",

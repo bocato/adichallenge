@@ -29,8 +29,8 @@ final class ProductsListViewTests: XCTestCase {
         )
     }()
 
-    private lazy var dependenciesContainerFake: DependenciesContainerFake = {
-        let container: DependenciesContainerFake = .init()
+    private lazy var dependenciesContainerMock: DependenciesContainerMock = {
+        let container: DependenciesContainerMock = .init()
         container.register(factory: ProductsRepositoryDummy.init, forMetaType: ProductsRepositoryProtocol.self)
         container.register(factory: ReviewsRepositoryDummy.init, forMetaType: ReviewsRepositoryProtocol.self)
         return container
@@ -38,7 +38,7 @@ final class ProductsListViewTests: XCTestCase {
 
     private let productDetailsViewBuilderStub: ProductDetailsViewBuilderStub = .init()
     private lazy var sut: ProductsListView = .init(
-        container: dependenciesContainerFake,
+        container: dependenciesContainerMock,
         productDetailsViewBuilder: productDetailsViewBuilderStub,
         store: store
     )

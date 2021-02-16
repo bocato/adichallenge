@@ -32,6 +32,8 @@ struct AddReviewModalView: View {
                 footerButtonsView(viewStore)
                     .frame(height: DS.LayoutSize.large.height)
             }
+            .disabled(viewStore.isLoading)
+            .padding(.bottom, DS.Spacing.xxSmall)
             .alert(
                 store.scope(state: { $0.errorAlert }),
                 dismiss: .errorAlertDismissed
@@ -120,9 +122,9 @@ struct AddReviewModalView: View {
                     style: .continuous
                 )
                 .stroke(Color.secondary)
-                .frame(height: DS.LayoutSize.large.height)
+                .frame(height: DS.LayoutSize.large.height + 2)
                 .opacity(viewStore.isLoading ? 1 : 0)
-                .padding()
+                .padding(.all, DS.Spacing.tiny)
             )
             .overlay(loadingView(viewStore.isLoading))
         }

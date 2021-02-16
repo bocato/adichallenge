@@ -21,6 +21,7 @@ final class ProductDetailsViewBuilder: ProductDetailsViewBuilding {
         let environment = ProductDetailsEnvironment()
         environment.initialize(withContainer: container)
         return ProductDetailsView(
+            container: container,
             store: .init(
                 initialState: .init(
                     props: .init(
