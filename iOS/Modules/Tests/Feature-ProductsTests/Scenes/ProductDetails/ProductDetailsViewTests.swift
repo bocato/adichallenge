@@ -4,6 +4,7 @@ import FoundationKit
 import SwiftUI
 import SnapshotTesting
 import XCTest
+import DependencyManagerInterface
 @testable import Feature_Products
 
 /*
@@ -26,7 +27,14 @@ final class ProductDetailsViewTests: XCTestCase {
             environment: environment
         )
     }()
-    private lazy var sut: ProductDetailsView = .init(store: store)
+    private lazy var dependenciesContainerFake: DependenciesContainerFake = {
+        let container: DependenciesContainerFake = .init()
+        return container
+    }()
+    private lazy var sut: ProductDetailsView = .init(
+        container: dependenciesContainerFake,
+        store: store
+    )
     private lazy var sutContainer: UINavigationController = {
         let hostingController: UIHostingController = .init(
             rootView: sut
