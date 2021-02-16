@@ -59,7 +59,7 @@ extension ProductViewData {
         let rating: String
         let text: String
         
-        fileprivate init(
+        init(
             id: String,
             flagEmoji: String,
             rating: String,
@@ -69,19 +69,6 @@ extension ProductViewData {
             self.flagEmoji = flagEmoji
             self.rating = rating
             self.text = text
-        }
-        
-        init(
-            flagEmoji: String,
-            rating: String,
-            text: String
-        ) {
-            self.init(
-                id: UUID().uuidString,
-                flagEmoji: flagEmoji,
-                rating: rating,
-                text: text
-            )
         }
     }
 }

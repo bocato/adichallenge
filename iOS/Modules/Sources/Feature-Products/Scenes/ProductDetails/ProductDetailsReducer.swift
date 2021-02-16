@@ -28,6 +28,7 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
             ),
             reviews: data.reviews.map { domainObject -> ProductViewData.Review in
                 .init(
+                    id: environment.generateUUIDString(),
                     flagEmoji: environment.emojiConverter.emojiFlag(for: domainObject.locale),
                     rating: environment.emojiConverter.productRatingStars(for: domainObject.rating),
                     text: domainObject.text
