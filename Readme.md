@@ -11,3 +11,6 @@ Since this project uses [SwiftLint](https://github.com/realm/SwiftLint), [SwiftF
 - `make start_server`: starts the local server
 - `make run_tests`: runs the test suite with XCov and opens the html report
 - `make code_beautify`: runs SwiftFormat and SwiftLint to keep the code in shape based on it's linting and formatting definitions
+
+# Last Test Report
+![Last Test Report](https://i.imgur.com/CFHlxkt.png)
