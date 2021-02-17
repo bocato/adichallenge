@@ -7,12 +7,12 @@ import RepositoryInterface
 
 struct AddReviewModalEnvironment: ResolvableEnvironment {
     @Dependency var reviewsRepository: ReviewsRepositoryProtocol
-    var dismissClosure: () -> Void
+    var dismissClosure: (Bool) -> Void
     var localeProvider: () -> String?
     var mainQueue: AnySchedulerOf<DispatchQueue>
 
     init(
-        dismissClosure: @escaping () -> Void = {},
+        dismissClosure: @escaping (Bool) -> Void,
         localeProvider: @escaping () -> String? = { Locale.autoupdatingCurrent.languageCode },
         mainQueue: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler()
     ) {
@@ -26,7 +26,7 @@ struct AddReviewModalEnvironment: ResolvableEnvironment {
     extension AddReviewModalEnvironment {
         static func fixture(
             reviewsRepository: ReviewsRepositoryProtocol = ReviewsRepositoryDummy(),
-            dismissClosure: @escaping () -> Void = {},
+            dismissClosure: @escaping (Bool) -> Void = { _ in false },
             localeProvider: @escaping () -> String? = { nil },
             mainQueue: AnySchedulerOf<DispatchQueue> = DispatchQueue.global().eraseToAnyScheduler()
         ) -> Self {

@@ -6,7 +6,7 @@ import SwiftUI
 
 protocol AddReviewModalBuilding {
     func build(
-        dismiss: @escaping () -> Void,
+        onDismiss: @escaping (Bool) -> Void,
         productID: String,
         container: DependenciesContainerInterface
     ) -> AnyView
@@ -14,12 +14,12 @@ protocol AddReviewModalBuilding {
 
 final class AddReviewModalBuilder: AddReviewModalBuilding {
     func build(
-        dismiss: @escaping () -> Void,
+        onDismiss: @escaping (Bool) -> Void,
         productID: String,
         container: DependenciesContainerInterface
     ) -> AnyView {
         let environment = AddReviewModalEnvironment(
-            dismissClosure: dismiss
+            dismissClosure: onDismiss
         )
         environment.initialize(withContainer: container)
         return AddReviewModalView(
@@ -41,7 +41,7 @@ final class AddReviewModalBuilder: AddReviewModalBuilding {
     final class AddReviewModalViewBuilderStub: AddReviewModalBuilding {
         var viewToBeReturned: AnyView = .init(EmptyView())
         func build(
-            dismiss _: @escaping () -> Void,
+            onDismiss _: @escaping (Bool) -> Void,
             productID _: String,
             container _: DependenciesContainerInterface
         ) -> AnyView {

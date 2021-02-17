@@ -38,8 +38,8 @@ let addReviewModalReducer = AddReviewModalReducer { state, action, environment i
 
     case .saveReviewRequest(.success):
         state.isLoading = false
-        return Effect<AddReviewModalAction, Never>(
-            value: .dismissItSelf
+        return .init(
+            value: .dismissItSelf(true)
         )
 
     case .saveReviewRequest(.failure):
@@ -50,9 +50,9 @@ let addReviewModalReducer = AddReviewModalReducer { state, action, environment i
         )
         return .none
 
-    case .dismissItSelf:
+    case let .dismissItSelf(didAddNewReview):
         return .fireAndForget {
-            environment.dismissClosure()
+            environment.dismissClosure(didAddNewReview)
         }
 
     case .errorAlertDismissed:

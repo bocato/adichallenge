@@ -7,10 +7,10 @@ protocol EmojiConverterProtocol {
 
 final class DefaultEmojiConverter: EmojiConverterProtocol {
     func emojiFlag(for locale: String) -> String {
-        let isValidLocale = locale.range(of: #"[A-z]*_[A-z]*"#, options: .regularExpression) != nil
+        let isValidLocale = locale.range(of: #"[A-z]*-[A-z]*"#, options: .regularExpression) != nil
         guard
             isValidLocale,
-            let countryCode = locale.split(separator: "_").last
+            let countryCode = locale.split(separator: "-").last
         else { return "❓" }
         // For future reference: https://stackoverflow.com/questions/30402435/swift-turn-a-country-code-into-a-emoji-flag-via-unicode
         return countryCode

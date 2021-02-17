@@ -25,7 +25,7 @@ final class DefaultEmojiConverterTests: XCTestCase {
     func test_emojiFlag_whenLocaleIsValid_itShouldReturnFlagEmoji() {
         // Given
         let sut = DefaultEmojiConverter()
-        let validLocale = "pt_br"
+        let validLocale = "pt-BR"
         // When
         let flagEmoji = sut.emojiFlag(for: validLocale)
         // Then

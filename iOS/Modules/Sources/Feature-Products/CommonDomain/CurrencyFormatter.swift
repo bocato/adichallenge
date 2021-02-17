@@ -15,7 +15,7 @@ extension CurrencyFormatterProtocol {
     ) -> String {
         format(
             value,
-            forLocale: "nl_NL",
+            forLocale: "nl-NL",
             currencyCode: currencyCode
         )
     }

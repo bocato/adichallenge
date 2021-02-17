@@ -24,6 +24,10 @@ final class ProductDetailsViewBuilderTests: XCTestCase {
             factory: ImagesRepositoryDummy.init,
             forMetaType: ImagesRepositoryProtocol.self
         )
+        dependenciesContainerMock.register(
+            factory: ReviewsRepositoryDummy.init,
+            forMetaType: ReviewsRepositoryProtocol.self
+        )
         // When
         _ = sut.build(
             productName: "productName",
@@ -31,6 +35,6 @@ final class ProductDetailsViewBuilderTests: XCTestCase {
             container: dependenciesContainerMock
         )
         // Then
-        XCTAssertEqual(dependenciesContainerMock.getCallCount, 2)
+        XCTAssertEqual(dependenciesContainerMock.getCallCount, 3)
     }
 }

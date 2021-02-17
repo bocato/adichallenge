@@ -6,9 +6,14 @@ private var dependenciesHolder: RepositoryModule.Dependencies?
 public enum RepositoryModule {
     public struct Dependencies {
         let apiEnvironment: APIEnvironmentProvider
+        let baseURLProvider: BaseURLProviding
 
-        public init(apiEnvironment: APIEnvironmentProvider) {
+        public init(
+            apiEnvironment: APIEnvironmentProvider,
+            baseURLProvider: BaseURLProviding? = nil
+        ) {
             self.apiEnvironment = apiEnvironment
+            self.baseURLProvider = baseURLProvider ?? DefaultBaseURLProvider()
         }
     }
 

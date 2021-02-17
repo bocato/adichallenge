@@ -23,7 +23,7 @@ public struct ProductReview: Equatable {
     extension ProductReview {
         public static func fixture(
             productID: String = "Product ID",
-            locale: String = "pt_BR",
+            locale: String = "pt-BR",
             rating: Int = 2,
             text: String = "text"
         ) -> Self {

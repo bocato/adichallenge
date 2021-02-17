@@ -2,23 +2,23 @@ import Foundation
 import NetworkingInterface
 
 extension URLRequestProtocol {
-    var baseURL: URL {
+    var apiEnvironment: APIEnvironmentProvider {
         get {
-            let value = storedBaseURL ?? RepositoryModule.dependencies().apiEnvironment.baseURL
+            let value = apiEnvironmentInstance ?? RepositoryModule.dependencies().apiEnvironment
             return value
         }
-        set { storedBaseURL = newValue }
+        set { apiEnvironmentInstance = newValue }
     }
 
-    private var storedBaseURL: URL? {
+    private var apiEnvironmentInstance: APIEnvironmentProvider? {
         get {
-            let objcAssociatedObject = objc_getAssociatedObject(self, &AssociatedKeys.storedBaseURLKey)
-            return objcAssociatedObject as? URL
+            let objcAssociatedObject = objc_getAssociatedObject(self, &AssociatedKeys.apiEnvironmentInstanceKey)
+            return objcAssociatedObject as? APIEnvironmentProvider
         }
         set {
             objc_setAssociatedObject(
                 self,
-                &AssociatedKeys.storedBaseURLKey,
+                &AssociatedKeys.apiEnvironmentInstanceKey,
                 newValue,
                 objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC
             )
@@ -27,5 +27,5 @@ extension URLRequestProtocol {
 }
 
 private enum AssociatedKeys {
-    static var storedBaseURLKey = "baseURLKey"
+    static var apiEnvironmentInstanceKey = "apiEnvironmentInstanceKey"
 }

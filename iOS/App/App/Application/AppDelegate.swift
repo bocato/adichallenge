@@ -19,7 +19,10 @@ extension AppContainer {
     static let live: Self = .init(
         dependenciesContainer: DependenciesContainer(),
         httpDispatcher: HTTPRequestDispatcher(),
-        apiEnvironment: APIEnvironment.shared
+        apiEnvironment: APIEnvironment(
+            currentEnvironment: .development,
+            baseURLProvider: DefaultBaseURLProvider()
+        )
     )
 }
 

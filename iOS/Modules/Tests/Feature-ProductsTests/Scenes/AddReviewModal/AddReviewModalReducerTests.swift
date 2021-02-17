@@ -47,10 +47,14 @@ final class AddReviewModalReducerTests: XCTestCase {
     func test_saveReview_whenLocaleIsNilAndRatingIsGreaterThanZero_andRequestSucceeds_itShouldSendTheCorrectRequest_then() {
         // Given
         initialState.rating = 1
+        var dismissClosureValuePassed: Bool?
         var dismissClosureCalled = false
         addReviewModalEnvironment = .fixture(
             reviewsRepository: reviewsRepositoryMock,
-            dismissClosure: { dismissClosureCalled =  true },
+            dismissClosure: { valuePassed in
+                dismissClosureValuePassed = valuePassed
+                dismissClosureCalled =  true
+            },
             localeProvider: { nil },
             mainQueue: mainQueueFake.eraseToAnyScheduler()
         )
@@ -68,7 +72,8 @@ final class AddReviewModalReducerTests: XCTestCase {
                 XCTAssertEqual(reviewsRepositoryMock.postProductReviewRequestPassed?.locale, "en_nl")
                 XCTAssertEqual(reviewsRepositoryMock.postProductReviewRequestPassed?.rating, 2)
             },
-            .receive(.dismissItSelf) { _ in
+            .receive(.dismissItSelf(true)) { _ in
+                XCTAssertEqual(dismissClosureValuePassed, true)
                 XCTAssertTrue(dismissClosureCalled)
             }
         )
@@ -77,10 +82,14 @@ final class AddReviewModalReducerTests: XCTestCase {
     func test_saveReview_whenRatingNil_andRequestSucceeds_itShouldSendTheCorrectRequest_thenDismissItself() {
         // Given
         initialState.rating = nil
+        var dismissClosureValuePassed: Bool?
         var dismissClosureCalled = false
         addReviewModalEnvironment = .fixture(
             reviewsRepository: reviewsRepositoryMock,
-            dismissClosure: { dismissClosureCalled =  true },
+            dismissClosure: { valuePassed in
+                dismissClosureValuePassed = valuePassed
+                dismissClosureCalled =  true
+            },
             mainQueue: mainQueueFake.eraseToAnyScheduler()
         )
         
@@ -96,8 +105,9 @@ final class AddReviewModalReducerTests: XCTestCase {
                 nextState.isLoading = false
                 XCTAssertEqual(reviewsRepositoryMock.postProductReviewRequestPassed?.rating, 0)
             },
-            .receive(.dismissItSelf) { _ in
+            .receive(.dismissItSelf(true)) { _ in
                 XCTAssertTrue(dismissClosureCalled)
+                XCTAssertEqual(dismissClosureValuePassed, true)
             }
         )
     }

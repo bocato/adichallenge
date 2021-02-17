@@ -80,10 +80,10 @@ struct ProductDetailsView: View {
         }
         .sheet(
             isPresented: .constant(viewStore.isAddReviewModalShown),
-            onDismiss: { viewStore.send(.addReviewModalDismissed) },
+            onDismiss: { viewStore.send(.addReviewModalDismissed(false)) },
             content: {
                 addReviewModalBuilder.build(
-                    dismiss: { viewStore.send(.addReviewModalDismissed) },
+                    onDismiss: { [weak viewStore] in viewStore?.send(.addReviewModalDismissed($0)) },
                     productID: viewStore.props.productID,
                     container: container
                 )

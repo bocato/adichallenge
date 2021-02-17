@@ -7,7 +7,7 @@ enum AddReviewModalAction: Equatable {
     case updateReviewText(String)
     case saveReview
     case saveReviewRequest(Result<Void, ReviewsRepositoryError>)
-    case dismissItSelf
+    case dismissItSelf(Bool)
     case errorAlertDismissed
 
     static func == (lhs: AddReviewModalAction, rhs: AddReviewModalAction) -> Bool {

@@ -22,7 +22,7 @@ final class AddReviewModalBuilderTests: XCTestCase {
         )
         // When
         _ = sut.build(
-            dismiss: {},
+            onDismiss: { _ in false },
             productID: "productID",
             container: dependenciesContainerMock
         )

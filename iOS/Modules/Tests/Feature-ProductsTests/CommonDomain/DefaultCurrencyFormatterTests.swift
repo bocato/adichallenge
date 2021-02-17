@@ -10,7 +10,7 @@ final class DefaultCurrencyFormatterTests: XCTestCase {
         // When
         _ = sut.format(1.23, currencyCode: "EUR")
         // Then
-        XCTAssertEqual(sut.localeIdentifierPassed, "nl_NL")
+        XCTAssertEqual(sut.localeIdentifierPassed, "nl-NL")
     }
 
     func test_format_whenNumberFormatterReturnsNil_itShouldReturnAnEmptyString() {
@@ -36,7 +36,7 @@ final class DefaultCurrencyFormatterTests: XCTestCase {
         // Given
         let sut: DefaultCurrencyFormatter = .init()
         // When
-        let formattedValue = sut.format(1.23, forLocale: "pt_BR", currencyCode: "BRL")
+        let formattedValue = sut.format(1.23, forLocale: "pt-BR", currencyCode: "BRL")
         // Then
         XCTAssertEqual(formattedValue, "R$ 1,23")
     }

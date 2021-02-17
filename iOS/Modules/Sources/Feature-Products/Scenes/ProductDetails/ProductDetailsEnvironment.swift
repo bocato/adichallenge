@@ -8,6 +8,7 @@ import RepositoryInterface
 struct ProductDetailsEnvironment: ResolvableEnvironment {
     @Dependency var productsRepository: ProductsRepositoryProtocol
     @Dependency var imagesRepository: ImagesRepositoryProtocol
+    @Dependency var reviewsRepository: ReviewsRepositoryProtocol
     var currencyFormatter: CurrencyFormatterProtocol
     var emojiConverter: EmojiConverterProtocol
     var generateUUIDString: () -> String
@@ -31,6 +32,7 @@ struct ProductDetailsEnvironment: ResolvableEnvironment {
         static func fixture(
             productsRepository: ProductsRepositoryProtocol = ProductsRepositoryDummy(),
             imagesRepository: ImagesRepositoryProtocol = ImagesRepositoryDummy(),
+            reviewsRepository: ReviewsRepositoryProtocol = ReviewsRepositoryDummy(),
             currencyFormatter: CurrencyFormatterProtocol = CurrencyFormatterDummy(),
             emojiConverter: EmojiConverterProtocol = EmojiConverterDummy(),
             generateUUIDString: @escaping () -> String = { "id" },
@@ -44,6 +46,7 @@ struct ProductDetailsEnvironment: ResolvableEnvironment {
             )
             instance._productsRepository = .resolvedValue(productsRepository)
             instance._imagesRepository = .resolvedValue(imagesRepository)
+            instance._reviewsRepository = .resolvedValue(reviewsRepository)
             return instance
         }
     }

@@ -7,5 +7,7 @@ enum ProductDetailsAction: Equatable {
     case loadProductResponse(Result<Product, ProductsRepositoryError>)
     case updateProductImageState(LoadingState<Data>)
     case showAddReviewModal
-    case addReviewModalDismissed
+    case addReviewModalDismissed(Bool)
+    case fetchProductReviews
+    case fetchProductReviewsResponse(Result<[ProductReview], ProductsRepositoryError>)
 }

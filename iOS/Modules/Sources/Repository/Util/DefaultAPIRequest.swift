@@ -2,6 +2,7 @@ import Foundation
 import NetworkingInterface
 
 struct DefaultAPIRequest: URLRequestProtocol {
+    var baseURL: URL { apiEnvironment.baseURL(forEndpoint: path) }
     let path: String?
     let method: HTTPMethod
     let bodyParameters: [String: Any]?

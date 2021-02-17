@@ -1,9 +1,12 @@
 import Foundation
 import SwiftUI
 
-open class Feature {
-    private static var dependenciesContainer: DependenciesContainerInterface?
+open class Module {
+    internal static var dependenciesContainer: DependenciesContainerInterface?
 
+    // This should not be initilized, maybe this will change in the future
+    init() { fatalError("Init should not be called.") }
+    
     open class func initialize(withContainer container: DependenciesContainerInterface) {
         guard dependenciesContainer == nil else {
             fatalError("The container should not be started twice!")
@@ -32,7 +35,7 @@ open class Feature {
     ) -> DependenciesContainerInterface {
         guard let containerInstance = dependenciesContainer else {
             fatalError(
-                "You should initialize the feature with a container before using it!",
+                "You should initialize the module with a container before using it!",
                 file: file,
                 line: line
             )
