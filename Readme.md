@@ -2,7 +2,7 @@
 # General Information
 
 ## Environment setup
-Since this project uses [SwiftLint](https://github.com/realm/SwiftLint), [SwiftFormat](https://github.com/nicklockwood/SwiftFormat), [Fastlane](https://fastlane.tools) and [Swiftgen](https://github.com/SwiftGen/SwiftGen), you need to install those dependencies on your machine for it to build. To do that, run `make environment` from the project's root folder.
+Since this project uses [SwiftLint](https://github.com/realm/SwiftLint), [SwiftFormat](https://github.com/nicklockwood/SwiftFormat), [Fastlane](https://fastlane.tools) and [Swiftgen](https://github.com/SwiftGen/SwiftGen), you need to install those dependencies on your machine to use it properly. To do that, run `make environment` from the project's root folder.
 
 # Makefile commands
 - `make clean`: cleans iOS derived data.
