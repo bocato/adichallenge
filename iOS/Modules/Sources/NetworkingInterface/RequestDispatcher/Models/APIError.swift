@@ -40,12 +40,6 @@ public struct APIError: Error, CustomNSError, Equatable {
     }
 }
 
-public extension Error {
-    func asNSError() -> NSError {
-        self as NSError
-    }
-}
-
 #if DEBUG
     public extension APIError {
         static func fixture(

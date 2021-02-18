@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import FoundationKit
 
 open class Module {
     internal static var dependenciesContainer: DependenciesContainerInterface?
@@ -9,7 +10,7 @@ open class Module {
     
     open class func initialize(withContainer container: DependenciesContainerInterface) {
         guard dependenciesContainer == nil else {
-            fatalError("The container should not be started twice!")
+            FoundationKit.fatalError("The container should not be started twice!")
         }
         dependenciesContainer = container
     }
@@ -20,7 +21,7 @@ open class Module {
         line: UInt = #line
     ) -> T {
         guard let instance = container(file: file, line: line).get(dependencyType) else {
-            fatalError(
+            FoundationKit.fatalError(
                 "You should register the dependency before trying to use it!",
                 file: file,
                 line: line
@@ -34,7 +35,7 @@ open class Module {
         line: UInt = #line
     ) -> DependenciesContainerInterface {
         guard let containerInstance = dependenciesContainer else {
-            fatalError(
+            FoundationKit.fatalError(
                 "You should initialize the module with a container before using it!",
                 file: file,
                 line: line

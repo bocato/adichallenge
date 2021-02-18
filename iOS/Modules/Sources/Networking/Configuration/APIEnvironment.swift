@@ -1,5 +1,6 @@
 import Foundation
 import NetworkingInterface
+import FoundationKit
 
 /// Defines a single instance for the EnvironmentProvider
 public final class APIEnvironment: APIEnvironmentProvider {
@@ -29,7 +30,7 @@ public final class APIEnvironment: APIEnvironmentProvider {
         line: UInt
     ) -> URL {
         guard let url = baseURLProvider.baseURL(for: endpoint, environment: currentEnvironment) else {
-            fatalError(
+            FoundationKit.fatalError(
                 "There are no requests without a baseURL, it must be set!",
                 file: file,
                 line: line

@@ -23,6 +23,7 @@ let package = Package(
                 "Networking",
                 "RepositoryInterface",
                 "Repository",
+                "TestingToolkit",
 
                 // Feature Modules
                 "Feature-Products",
@@ -87,6 +88,7 @@ let package = Package(
             dependencies: [
                 // Internal Dependencies
                 "NetworkingInterface",
+                "FoundationKit",
                 // Third Party Dependencies
                 .product(name: "SwiftSoup", package: "SwiftSoup"),
             ]
@@ -94,8 +96,13 @@ let package = Package(
         .testTarget(
             name: "NetworkingTests",
             dependencies: [
+                // Internal Dependencies
                 "NetworkingInterface",
                 "Networking",
+                "FoundationKit",
+                "TestingToolkit",
+                // Third Party Dependencies
+                "SnapshotTesting",
             ]
         ),
 
@@ -144,6 +151,8 @@ let package = Package(
             dependencies: [
                 "DependencyManagerInterface",
                 "DependencyManager",
+                "FoundationKit",
+                "TestingToolkit",
             ]
         ),
 
@@ -156,6 +165,14 @@ let package = Package(
             name: "CacheKitTests",
             dependencies: [
                 "CacheKit",
+            ]
+        ),
+        
+        // CacheKit Module
+        .target(
+            name: "TestingToolkit",
+            dependencies: [
+                "FoundationKit"
             ]
         ),
 

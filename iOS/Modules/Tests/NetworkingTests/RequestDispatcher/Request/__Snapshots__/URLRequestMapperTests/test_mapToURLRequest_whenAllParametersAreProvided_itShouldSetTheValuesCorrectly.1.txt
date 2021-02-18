@@ -1,0 +1,20 @@
+▿ www.testapi.com/mypath
+  ▿ url: Optional<URL>
+    - some: www.testapi.com/mypath
+  - cachePolicy: 0
+  - timeoutInterval: 60.0
+  - mainDocumentURL: Optional<URL>.none
+  - networkServiceType: NSURLRequestNetworkServiceType.NSURLRequestNetworkServiceType
+  - allowsCellularAccess: true
+  ▿ httpMethod: Optional<String>
+    - some: "GET"
+  ▿ allHTTPHeaderFields: Optional<Dictionary<String, String>>
+    ▿ some: 1 key/value pair
+      ▿ (2 elements)
+        - key: "request"
+        - value: "header"
+  ▿ httpBody: Optional<Data>
+    - some: 20 bytes
+  - httpBodyStream: Optional<NSInputStream>.none
+  - httpShouldHandleCookies: true
+  - httpShouldUsePipelining: false

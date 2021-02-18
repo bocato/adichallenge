@@ -1,20 +1,19 @@
 import XCTest
-@testable import DependencyManagerInterface
-@testable import DependencyManager
+import FoundationKit
 
 extension XCTestCase {
     /// Defines a way to create a `fatalError` expectation.
     /// - Parameter expectedMessage: The message to be shown when the expectation fails.
     /// - Parameter timeout: The expectation timeout.
     /// - Parameter testcase: The block of code that can throw a fatal error.
-    func expectFatalError(
+    public func expectFatalError(
         expectedMessage: String,
         timeout: TimeInterval = 2.0,
         testcase: @escaping () -> Void
     ) {
         let expectation = self.expectation(description: "expectingFatalError")
         var assertionMessage: String?
-        DependencyManagerInterface.FatalErrorUtil.replaceFatalError { message, _, _ in
+        FoundationKit.FatalErrorUtil.replaceFatalError { message, _, _ in
             assertionMessage = message
             expectation.fulfill()
             self.unreachable()
@@ -24,7 +23,7 @@ extension XCTestCase {
 
         waitForExpectations(timeout: timeout) { _ in
             XCTAssertEqual(assertionMessage, expectedMessage)
-            DependencyManagerInterface.FatalErrorUtil.restoreFatalError()
+            FoundationKit.FatalErrorUtil.restoreFatalError()
         }
     }
 
