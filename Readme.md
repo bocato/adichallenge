@@ -13,4 +13,4 @@ Since this project uses [SwiftLint](https://github.com/realm/SwiftLint), [SwiftF
 - `make code_beautify`: runs SwiftFormat and SwiftLint to keep the code in shape based on it's linting and formatting definitions
 
 # Last Test Report
-![Last Test Report](https://i.imgur.com/CFHlxkt.png)
+![Last Test Report](https://i.imgur.com/QyjXTB5.png)
