@@ -1,6 +1,6 @@
-import XCTest
-@testable import DependencyManagerInterface
 @testable import DependencyManager
+@testable import DependencyManagerInterface
+import XCTest
 
 extension XCTestCase {
     /// Defines a way to create a `fatalError` expectation.

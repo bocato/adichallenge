@@ -36,7 +36,7 @@ final class ProductDetailsReducerTests: XCTestCase {
             generateUUIDString: { "id" },
             mainQueue: mainQueueFake.eraseToAnyScheduler()
         )
-        
+
         let productMock: Product = .fixture(
             currency: "",
             price: 1.23,
@@ -49,7 +49,7 @@ final class ProductDetailsReducerTests: XCTestCase {
 
         let imageDataMock: Data = .init()
         imagesRepositoryStub.imageDataToBeReturned = imageDataMock
-        
+
         let newReviewsMock: [ProductReview] = [
             .fixture(productID: "User Review  1", rating: 3),
             .fixture(productID: "User Review  2", rating: 4),
@@ -72,7 +72,7 @@ final class ProductDetailsReducerTests: XCTestCase {
                     price: "€ 1,23",
                     reviews: [
                         .fixture(flagEmoji: "🇧🇷", rating: "⭐️"),
-                        .fixture(flagEmoji: "🇧🇷", rating: "⭐️⭐️")
+                        .fixture(flagEmoji: "🇧🇷", rating: "⭐️⭐️"),
                     ]
                 )
             },
@@ -89,7 +89,7 @@ final class ProductDetailsReducerTests: XCTestCase {
                         .fixture(flagEmoji: "🇧🇷", rating: "⭐️"),
                         .fixture(flagEmoji: "🇧🇷", rating: "⭐️⭐️"),
                         .fixture(flagEmoji: "🇧🇷", rating: "⭐️⭐️⭐️"),
-                        .fixture(flagEmoji: "🇧🇷", rating: "⭐️⭐️⭐️⭐️")
+                        .fixture(flagEmoji: "🇧🇷", rating: "⭐️⭐️⭐️⭐️"),
                     ]
                 )
             }
@@ -120,7 +120,7 @@ final class ProductDetailsReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_showAddReviewModal_shouldSetIsAddReviewModalShown() {
         testStore.assert(
             .send(.showAddReviewModal) { nextState in
@@ -128,7 +128,7 @@ final class ProductDetailsReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_addReviewModalDismissed_whenViewsUpdateIsNotNeeded_shouldDismissAddReviewModal() {
         testStore.assert(
             .send(.addReviewModalDismissed(false)) { nextState in
@@ -136,7 +136,7 @@ final class ProductDetailsReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_addReviewModalDismissed_whenViewsUpdateIsNeeded_shouldLoadData() {
         testStore.assert(
             .send(.addReviewModalDismissed(true)) { nextState in

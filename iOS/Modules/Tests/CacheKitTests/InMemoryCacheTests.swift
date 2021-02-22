@@ -1,9 +1,9 @@
-import XCTest
 @testable import CacheKit
+import XCTest
 
 final class InMemoryCacheTests: XCTestCase {
     // MARK: - Tests
-    
+
     func test_save_shouldSetDataOnNSCache() {
         // Given
         let memory: NSCache<NSString, NSData> = .init()
@@ -22,7 +22,7 @@ final class InMemoryCacheTests: XCTestCase {
         XCTAssertNotNil(objectFromCache)
         XCTAssertEqual(objectFromCache, dataToBeSaved)
     }
-    
+
     func test_loadData_shouldReturnDataFromNSCache() {
         // Given
         let dataOnCache = Data()

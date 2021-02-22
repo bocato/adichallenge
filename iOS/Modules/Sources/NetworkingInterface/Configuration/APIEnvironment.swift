@@ -4,7 +4,7 @@ import Foundation
 public protocol APIEnvironmentProvider {
     /// Defines the current enviroment
     var currentEnvironment: APIEnvironmentIdentifier { get set }
-    
+
     /// Provides de base URL for the services
     func baseURL<Endpoint>(
         forEndpoint endpoint: Endpoint,

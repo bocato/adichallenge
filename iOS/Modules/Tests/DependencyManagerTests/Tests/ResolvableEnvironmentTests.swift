@@ -1,6 +1,6 @@
-import Foundation
 @testable import DependencyManager
 import DependencyManagerInterface
+import Foundation
 import XCTest
 
 final class ResolvableEnvironmentTests: XCTestCase {

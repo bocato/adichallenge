@@ -1,6 +1,6 @@
-import Foundation
 @testable import DependencyManager
 @testable import DependencyManagerInterface
+import Foundation
 import XCTest
 
 final class DependencyTests: XCTestCase {

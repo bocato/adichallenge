@@ -4,8 +4,9 @@ import NetworkingInterface
 /// Defines a single instance for the EnvironmentProvider
 public final class APIEnvironment: APIEnvironmentProvider {
     // MARK: - Dependencies
+
     private let baseURLProvider: BaseURLProviding
-    
+
     // MARK: - Public Properties
 
     /// Defines the current enviroment
@@ -22,7 +23,7 @@ public final class APIEnvironment: APIEnvironmentProvider {
     }
 
     // MARK: - Public API
-    
+
     public func baseURL<Endpoint>(
         forEndpoint endpoint: Endpoint,
         file: StaticString,

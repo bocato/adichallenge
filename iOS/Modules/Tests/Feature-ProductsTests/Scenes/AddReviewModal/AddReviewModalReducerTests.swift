@@ -43,7 +43,7 @@ final class AddReviewModalReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_saveReview_whenLocaleIsNilAndRatingIsGreaterThanZero_andRequestSucceeds_itShouldSendTheCorrectRequest_then() {
         // Given
         initialState.rating = 1
@@ -53,12 +53,12 @@ final class AddReviewModalReducerTests: XCTestCase {
             reviewsRepository: reviewsRepositoryMock,
             dismissClosure: { valuePassed in
                 dismissClosureValuePassed = valuePassed
-                dismissClosureCalled =  true
+                dismissClosureCalled = true
             },
             localeProvider: { nil },
             mainQueue: mainQueueFake.eraseToAnyScheduler()
         )
-        
+
         reviewsRepositoryMock.postProductReviewResultToBeReturned = .success(())
 
         // When / Then
@@ -78,7 +78,7 @@ final class AddReviewModalReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_saveReview_whenRatingNil_andRequestSucceeds_itShouldSendTheCorrectRequest_thenDismissItself() {
         // Given
         initialState.rating = nil
@@ -88,11 +88,11 @@ final class AddReviewModalReducerTests: XCTestCase {
             reviewsRepository: reviewsRepositoryMock,
             dismissClosure: { valuePassed in
                 dismissClosureValuePassed = valuePassed
-                dismissClosureCalled =  true
+                dismissClosureCalled = true
             },
             mainQueue: mainQueueFake.eraseToAnyScheduler()
         )
-        
+
         reviewsRepositoryMock.postProductReviewResultToBeReturned = .success(())
 
         // When / Then
@@ -138,7 +138,7 @@ final class AddReviewModalReducerTests: XCTestCase {
             }
         )
     }
-    
+
     func test_errorAlertDismissed_shouldSetErrorAlertAsNil() {
         // Given
         initialState.errorAlert = .init(title: TextState("Tests!"))

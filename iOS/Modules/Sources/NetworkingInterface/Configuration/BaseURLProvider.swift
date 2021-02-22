@@ -10,12 +10,12 @@ public protocol BaseURLProviding {
 }
 
 #if DEBUG
-public final class BaseURLProviderStub: BaseURLProviding {
-    public init() {}
-    public var urlToBeReturned: URL?
-    public func baseURL<Endpoint>(
-        for endpoint: Endpoint,
-        environment: APIEnvironmentIdentifier
-    ) -> URL? { urlToBeReturned }
-}
+    public final class BaseURLProviderStub: BaseURLProviding {
+        public init() {}
+        public var urlToBeReturned: URL?
+        public func baseURL<Endpoint>(
+            for _: Endpoint,
+            environment _: APIEnvironmentIdentifier
+        ) -> URL? { urlToBeReturned }
+    }
 #endif

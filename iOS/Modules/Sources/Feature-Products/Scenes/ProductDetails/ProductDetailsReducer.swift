@@ -48,7 +48,7 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
             ),
             .init(value: .fetchProductReviews)
         )
-        
+
     case let .loadProductResponse(.failure(error)):
         state.isLoading = false
         state.apiError = .init(error)
@@ -68,7 +68,7 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
             return .init(value: .loadData)
         }
         return .none
-        
+
     case .fetchProductReviews:
         return environment
             .reviewsRepository
@@ -76,7 +76,7 @@ let productDetailsReducer = ProductDetailsReducer { state, action, environment i
             .receive(on: environment.mainQueue)
             .catchToEffect()
             .map(ProductDetailsAction.fetchProductReviewsResponse)
-    
+
     case let .fetchProductReviewsResponse(result):
         if case let .success(data) = result, let currentProductData = state.product {
             let reviewModels = data.map { domainObject -> ProductViewData.Review in

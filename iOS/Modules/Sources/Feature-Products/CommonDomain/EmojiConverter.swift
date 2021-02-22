@@ -31,20 +31,20 @@ final class DefaultEmojiConverter: EmojiConverterProtocol {
 }
 
 #if DEBUG
-final class EmojiConverterDummy: EmojiConverterProtocol {
-    func emojiFlag(for _: String) -> String { "" }
-    func productRatingStars(for _: Int) -> String { "" }
-}
+    final class EmojiConverterDummy: EmojiConverterProtocol {
+        func emojiFlag(for _: String) -> String { "" }
+        func productRatingStars(for _: Int) -> String { "" }
+    }
 
-final class EmojiConverterStub: EmojiConverterProtocol {
-    var emojiFlagToBeReturned = "🇧🇷"
-    func emojiFlag(for _: String) -> String {
-        emojiFlagToBeReturned
+    final class EmojiConverterStub: EmojiConverterProtocol {
+        var emojiFlagToBeReturned = "🇧🇷"
+        func emojiFlag(for _: String) -> String {
+            emojiFlagToBeReturned
+        }
+
+        var ratingStarsToBeReturned = "⭐️⭐️⭐️⭐️"
+        func productRatingStars(for _: Int) -> String {
+            return ratingStarsToBeReturned
+        }
     }
-    
-    var ratingStarsToBeReturned = "⭐️⭐️⭐️⭐️"
-    func productRatingStars(for _: Int) -> String {
-        return ratingStarsToBeReturned
-    }
-}
 #endif

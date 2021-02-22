@@ -28,7 +28,7 @@ final class AddReviewModalViewViewTests: XCTestCase {
             environment: environment
         )
     }()
-    
+
     private lazy var sut: AddReviewModalView = .init(
         store: store
     )
@@ -59,7 +59,7 @@ final class AddReviewModalViewViewTests: XCTestCase {
             record: isRecordModeEnabled
         )
     }
-    
+
     func test_snapshot_emptyInputs() {
         // Given
         store = store.scope { _ -> AddReviewModalState in
@@ -77,7 +77,7 @@ final class AddReviewModalViewViewTests: XCTestCase {
             record: isRecordModeEnabled
         )
     }
-    
+
     func test_snapshot_filledInputs() {
         // Given
         store = store.scope { _ -> AddReviewModalState in

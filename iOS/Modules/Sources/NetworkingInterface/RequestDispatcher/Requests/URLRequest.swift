@@ -19,23 +19,23 @@ extension URLRequestProtocol {
 }
 
 public struct AnyURLRequest: URLRequestProtocol {
-     public private(set) var baseURL: URL
-     public private(set) var path: String?
-     public private(set) var method: HTTPMethod
-     public private(set) var bodyParameters: [String: Any]?
-     public private(set) var headers: [String: String]?
+    public private(set) var baseURL: URL
+    public private(set) var path: String?
+    public private(set) var method: HTTPMethod
+    public private(set) var bodyParameters: [String: Any]?
+    public private(set) var headers: [String: String]?
 
-      public init(
-         baseURL: URL,
-         path: String? = nil,
-         method: HTTPMethod,
-         bodyParameters: [String : Any]? = nil,
-         headers: [String : String]? = nil
-     ) {
-         self.baseURL = baseURL
-         self.path = path
-         self.method = method
-         self.bodyParameters = bodyParameters
-         self.headers = headers
-     }
- }
+    public init(
+        baseURL: URL,
+        path: String? = nil,
+        method: HTTPMethod,
+        bodyParameters: [String: Any]? = nil,
+        headers: [String: String]? = nil
+    ) {
+        self.baseURL = baseURL
+        self.path = path
+        self.method = method
+        self.bodyParameters = bodyParameters
+        self.headers = headers
+    }
+}

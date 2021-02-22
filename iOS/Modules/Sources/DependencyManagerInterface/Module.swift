@@ -6,7 +6,7 @@ open class Module {
 
     // This should not be initilized, maybe this will change in the future
     init() { fatalError("Init should not be called.") }
-    
+
     open class func initialize(withContainer container: DependenciesContainerInterface) {
         guard dependenciesContainer == nil else {
             fatalError("The container should not be started twice!")

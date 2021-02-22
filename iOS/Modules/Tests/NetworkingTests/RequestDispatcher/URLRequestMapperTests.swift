@@ -1,11 +1,11 @@
-import NetworkingInterface
 @testable import Networking
+import NetworkingInterface
 import SnapshotTesting
 import XCTest
 
 final class URLRequestMapperTests: XCTestCase {
     // MARK: - Tests
-    
+
     func test_mapToURLRequest_whenAllParametersAreProvided_itShouldSetTheValuesCorrectly() throws {
         // Given
         let baseURL = try XCTUnwrap(URL(string: "www.testapi.com"))
@@ -14,10 +14,10 @@ final class URLRequestMapperTests: XCTestCase {
             path: "mypath",
             method: .get,
             bodyParameters: [
-                "body": "parameter"
+                "body": "parameter",
             ],
             headers: [
-                "request": "header"
+                "request": "header",
             ]
         )
         // When
@@ -28,7 +28,7 @@ final class URLRequestMapperTests: XCTestCase {
         // Then
         assertSnapshot(matching: urlRequest, as: .dump)
     }
-    
+
     func test_mapToURLRequest_whenMinimumParametersAreProvided_itShouldSetTheValuesCorrectly() throws {
         // Given
         let baseURL = try XCTUnwrap(URL(string: "www.testapi.com"))
@@ -44,7 +44,7 @@ final class URLRequestMapperTests: XCTestCase {
         // Then
         assertSnapshot(matching: urlRequest, as: .dump)
     }
-    
+
     func test_mapToURLRequest_whenPathIsNotProvided_itShouldSetTheValuesCorrectly() throws {
         // Given
         let baseURL = try XCTUnwrap(URL(string: "www.testapi.com"))
@@ -52,10 +52,10 @@ final class URLRequestMapperTests: XCTestCase {
             baseURL: baseURL,
             method: .get,
             bodyParameters: [
-                "body": "parameter"
+                "body": "parameter",
             ],
             headers: [
-                "request": "header"
+                "request": "header",
             ]
         )
         // When
@@ -66,7 +66,7 @@ final class URLRequestMapperTests: XCTestCase {
         // Then
         assertSnapshot(matching: urlRequest, as: .dump)
     }
-    
+
     func test_mapToURLRequest_whenBodyParametersIsNotProvided_itShouldSetTheValuesCorrectly() throws {
         // Given
         let baseURL = try XCTUnwrap(URL(string: "www.testapi.com"))
@@ -75,7 +75,7 @@ final class URLRequestMapperTests: XCTestCase {
             path: "mypath",
             method: .get,
             headers: [
-                "request": "header"
+                "request": "header",
             ]
         )
         // When
@@ -86,7 +86,7 @@ final class URLRequestMapperTests: XCTestCase {
         // Then
         assertSnapshot(matching: urlRequest, as: .dump)
     }
-    
+
     func test_mapToURLRequest_whenHeadersNotProvided_itShouldSetTheValuesCorrectly() throws {
         // Given
         let baseURL = try XCTUnwrap(URL(string: "www.testapi.com"))
@@ -95,7 +95,7 @@ final class URLRequestMapperTests: XCTestCase {
             path: "mypath",
             method: .get,
             bodyParameters: [
-                "body": "parameter"
+                "body": "parameter",
             ]
         )
         // When
@@ -106,7 +106,7 @@ final class URLRequestMapperTests: XCTestCase {
         // Then
         assertSnapshot(matching: urlRequest, as: .dump)
     }
-    
+
 //    func test_mapToURLRequest_whenJSONSerializationFails_itShouldThrowAnError() throws {
 //        // Given
 //        let baseURL = try XCTUnwrap(URL(string: "www.testapi.com"))
@@ -122,10 +122,11 @@ final class URLRequestMapperTests: XCTestCase {
 }
 
 // MARK: - Test Doubles
+
 final class JSONSerializationFake: JSONSerialization {
     static var dataToBeReturned: Data = .init()
     static var errorToBeThrown: Error?
-    override class func data(withJSONObject obj: Any, options opt: JSONSerialization.WritingOptions = []) throws -> Data {
+    override class func data(withJSONObject _: Any, options _: JSONSerialization.WritingOptions = []) throws -> Data {
         if let error = errorToBeThrown {
             throw error
         }

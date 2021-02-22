@@ -1,15 +1,15 @@
-import Foundation
 @testable import DependencyManager
 @testable import DependencyManagerInterface
+import Foundation
 import XCTest
 
 final class ModuleTests: XCTestCase {
     // MARK: - Properties
-    
+
     private lazy var dependenciesContainerMock: DependenciesContainerMock = .init()
-    
+
     // MARK: - Tests
-    
+
     func test_init_shouldNotBeCalled() {
         // Given
         let sut = ModuleEntryPoint.self
@@ -20,7 +20,7 @@ final class ModuleTests: XCTestCase {
             testcase: { _ = sut.init() }
         )
     }
-    
+
     func test_initialize_shouldSetDependenciesContainerInstance() {
         // Given
         let sut = ModuleEntryPoint.self
@@ -30,7 +30,7 @@ final class ModuleTests: XCTestCase {
         // Then
         XCTAssertNotNil(sut.dependenciesContainer)
     }
-    
+
     func test_initialize_shouldNotBeCalledTwice() {
         // Given
         let sut = ModuleEntryPoint.self
@@ -42,7 +42,7 @@ final class ModuleTests: XCTestCase {
             testcase: { sut.initialize(withContainer: self.dependenciesContainerMock) }
         )
     }
-    
+
     func test_resolve_whenTryingToResolveAnUnregisteredDependency_itShouldThrowFatalError() {
         // Given
         let sut = ModuleEntryPoint.self
@@ -55,7 +55,7 @@ final class ModuleTests: XCTestCase {
             testcase: { _ = sut.resolve(SomeDependencyProtocol.self) }
         )
     }
-    
+
     func test_resolve_whenTryingToResolveAnRegisteredDependency_itShouldReturnTheExpectedInstance() {
         // Given
         let myDependencyInstance: SomeDependencyObject = .init()
@@ -72,7 +72,7 @@ final class ModuleTests: XCTestCase {
         // Then
         XCTAssertTrue(resolvedInstance === myDependencyInstance)
     }
-    
+
     func test_container_whenItWasNotInitialized_shouldThrowFatalError() {
         // Given
         let sut = ModuleEntryPoint.self
@@ -84,7 +84,7 @@ final class ModuleTests: XCTestCase {
             testcase: { _ = sut.container() }
         )
     }
-    
+
     func test_container_shouldReturnModuleContainer() {
         // Given
         let sut = ModuleEntryPoint.self

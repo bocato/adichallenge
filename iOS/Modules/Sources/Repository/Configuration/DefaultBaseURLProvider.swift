@@ -5,14 +5,14 @@ import NetworkingInterface
 // And have more intricate logic to select the correct enviroments and such
 public final class DefaultBaseURLProvider: BaseURLProviding {
     // MARK: - Initialization
-    
+
     public init() {}
-    
+
     // MARK: - Public API
-    
+
     public func baseURL<Endpoint>(
         for endpoint: Endpoint,
-        environment: APIEnvironmentIdentifier
+        environment _: APIEnvironmentIdentifier
     ) -> URL? {
         guard let path = endpoint as? String else { return nil }
         if path.contains("/product") {

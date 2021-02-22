@@ -1,17 +1,17 @@
 import ComposableArchitecture
 import CoreUI
 import DependencyManagerInterface
-import RepositoryInterface
-import Repository
 @testable import Feature_Products
 import FoundationKit
+import Repository
+import RepositoryInterface
 import SnapshotTesting
 import SwiftUI
 import XCTest
 
 final class ProductDetailsViewBuilderTests: XCTestCase {
     // MARK: - Tests
-    
+
     func test_build_shouldResolveAllEnvironmentDependenciesWithContainer() {
         // Given
         let sut: ProductDetailsViewBuilder = .init()
