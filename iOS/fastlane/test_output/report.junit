@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<testsuites name='AppTests.xctest' tests='64' failures='0'>
+<testsuites name='AppTests.xctest' tests='68' failures='0'>
   <testsuite name='CacheKitTests.InMemoryCacheTests' tests='2' failures='0'>
     <testcase classname='CacheKitTests.InMemoryCacheTests' name='test_loadData_shouldReturnDataFromNSCache' time='0.003'/>
-    <testcase classname='CacheKitTests.InMemoryCacheTests' name='test_save_shouldSetDataOnNSCache' time='0.001'/>
+    <testcase classname='CacheKitTests.InMemoryCacheTests' name='test_save_shouldSetDataOnNSCache' time='0.000'/>
   </testsuite>
   <testsuite name='CoreUITests.CoreUIDummyTest' tests='1' failures='0'>
     <testcase classname='CoreUITests.CoreUIDummyTest' name='test_dummy' time='0.003'/>
   </testsuite>
   <testsuite name='DependencyManagerTests.DependenciesContainerTests' tests='6' failures='0'>
-    <testcase classname='DependencyManagerTests.DependenciesContainerTests' name='test_get_whenAFactoryIsRegistered_andTheDependencyWasAlreadyUsed_itShouldBeRetrievedFromMemory' time='0.003'/>
+    <testcase classname='DependencyManagerTests.DependenciesContainerTests' name='test_get_whenAFactoryIsRegistered_andTheDependencyWasAlreadyUsed_itShouldBeRetrievedFromMemory' time='0.004'/>
     <testcase classname='DependencyManagerTests.DependenciesContainerTests' name='test_get_whenAFactoryIsRegistered_butTheDependencyWasNeverUsed_itShouldBeCreatedAndStoredInMemory' time='0.001'/>
     <testcase classname='DependencyManagerTests.DependenciesContainerTests' name='test_get_whenTheDependencyWasNotRegistered_itShouldReturnNill' time='0.000'/>
     <testcase classname='DependencyManagerTests.DependenciesContainerTests' name='test_get_whenTheFactoryForADependencyIsRegistered_itShouldReturnTheRegisteredInstance' time='0.000'/>
@@ -18,11 +18,11 @@
   <testsuite name='DependencyManagerTests.DependencyTests' tests='4' failures='0'>
     <testcase classname='DependencyManagerTests.DependencyTests' name='test_resolve_shouldCrash_whenResolvedTwice' time='0.001'/>
     <testcase classname='DependencyManagerTests.DependencyTests' name='test_resolve_shouldCrash_whenTheDependencyWasNotRegistred' time='0.001'/>
-    <testcase classname='DependencyManagerTests.DependencyTests' name='test_resolvedValue_shouldInitWithValidInstance' time='0.001'/>
-    <testcase classname='DependencyManagerTests.DependencyTests' name='test_wrappedValue_shouldNotCallContainer_whenTheResolvedValueIsNotNil' time='0.000'/>
+    <testcase classname='DependencyManagerTests.DependencyTests' name='test_resolvedValue_shouldInitWithValidInstance' time='0.000'/>
+    <testcase classname='DependencyManagerTests.DependencyTests' name='test_wrappedValue_shouldNotCallContainer_whenTheResolvedValueIsNotNil' time='0.001'/>
   </testsuite>
   <testsuite name='DependencyManagerTests.ModuleTests' tests='7' failures='0'>
-    <testcase classname='DependencyManagerTests.ModuleTests' name='test_container_shouldReturnModuleContainer' time='0.000'/>
+    <testcase classname='DependencyManagerTests.ModuleTests' name='test_container_shouldReturnModuleContainer' time='0.001'/>
     <testcase classname='DependencyManagerTests.ModuleTests' name='test_container_whenItWasNotInitialized_shouldThrowFatalError' time='0.001'/>
     <testcase classname='DependencyManagerTests.ModuleTests' name='test_init_shouldNotBeCalled' time='0.001'/>
     <testcase classname='DependencyManagerTests.ModuleTests' name='test_initialize_shouldNotBeCalledTwice' time='0.001'/>
@@ -38,16 +38,16 @@
   </testsuite>
   <testsuite name='Feature_ProductsTests.AddReviewModalReducerTests' tests='6' failures='0'>
     <testcase classname='Feature_ProductsTests.AddReviewModalReducerTests' name='test_errorAlertDismissed_shouldSetErrorAlertAsNil' time='0.003'/>
-    <testcase classname='Feature_ProductsTests.AddReviewModalReducerTests' name='test_saveReview_whenAPIFails_shouldPresentErrorAlert' time='0.005'/>
-    <testcase classname='Feature_ProductsTests.AddReviewModalReducerTests' name='test_saveReview_whenLocaleIsNilAndRatingIsGreaterThanZero_andRequestSucceeds_itShouldSendTheCorrectRequest_then' time='0.001'/>
+    <testcase classname='Feature_ProductsTests.AddReviewModalReducerTests' name='test_saveReview_whenAPIFails_shouldPresentErrorAlert' time='0.004'/>
+    <testcase classname='Feature_ProductsTests.AddReviewModalReducerTests' name='test_saveReview_whenLocaleIsNilAndRatingIsGreaterThanZero_andRequestSucceeds_itShouldSendTheCorrectRequest_then' time='0.002'/>
     <testcase classname='Feature_ProductsTests.AddReviewModalReducerTests' name='test_saveReview_whenRatingNil_andRequestSucceeds_itShouldSendTheCorrectRequest_thenDismissItself' time='0.001'/>
     <testcase classname='Feature_ProductsTests.AddReviewModalReducerTests' name='test_updateReviewRating_shouldUpdateState' time='0.001'/>
     <testcase classname='Feature_ProductsTests.AddReviewModalReducerTests' name='test_updateReviewText_shouldUpdateState' time='0.001'/>
   </testsuite>
   <testsuite name='Feature_ProductsTests.AddReviewModalViewViewTests' tests='3' failures='0'>
-    <testcase classname='Feature_ProductsTests.AddReviewModalViewViewTests' name='test_snapshot_emptyInputs' time='0.276'/>
-    <testcase classname='Feature_ProductsTests.AddReviewModalViewViewTests' name='test_snapshot_filledInputs' time='0.098'/>
-    <testcase classname='Feature_ProductsTests.AddReviewModalViewViewTests' name='test_snapshot_loading' time='0.102'/>
+    <testcase classname='Feature_ProductsTests.AddReviewModalViewViewTests' name='test_snapshot_emptyInputs' time='0.231'/>
+    <testcase classname='Feature_ProductsTests.AddReviewModalViewViewTests' name='test_snapshot_filledInputs' time='0.094'/>
+    <testcase classname='Feature_ProductsTests.AddReviewModalViewViewTests' name='test_snapshot_loading' time='0.109'/>
   </testsuite>
   <testsuite name='Feature_ProductsTests.DefaultCurrencyFormatterTests' tests='4' failures='0'>
     <testcase classname='Feature_ProductsTests.DefaultCurrencyFormatterTests' name='test_format_shouldFormatValuesCorrectly' time='0.001'/>
@@ -56,7 +56,7 @@
     <testcase classname='Feature_ProductsTests.DefaultCurrencyFormatterTests' name='test_format_whenNumberFormatterReturnsNil_itShouldReturnAnEmptyString' time='0.000'/>
   </testsuite>
   <testsuite name='Feature_ProductsTests.DefaultEmojiConverterTests' tests='3' failures='0'>
-    <testcase classname='Feature_ProductsTests.DefaultEmojiConverterTests' name='test_emojiFlag_whenLocaleIsInvalid_itShouldReturnQuestionMarkEmoji' time='0.000'/>
+    <testcase classname='Feature_ProductsTests.DefaultEmojiConverterTests' name='test_emojiFlag_whenLocaleIsInvalid_itShouldReturnQuestionMarkEmoji' time='0.001'/>
     <testcase classname='Feature_ProductsTests.DefaultEmojiConverterTests' name='test_emojiFlag_whenLocaleIsValid_itShouldReturnFlagEmoji' time='0.001'/>
     <testcase classname='Feature_ProductsTests.DefaultEmojiConverterTests' name='test_productRatingStars_shouldReturnTheSameAmountOfStarsRatingParameter' time='0.000'/>
   </testsuite>
@@ -64,44 +64,48 @@
     <testcase classname='Feature_ProductsTests.ProductDetailsReducerTests' name='test_addReviewModalDismissed_whenViewsUpdateIsNeeded_shouldLoadData' time='0.002'/>
     <testcase classname='Feature_ProductsTests.ProductDetailsReducerTests' name='test_addReviewModalDismissed_whenViewsUpdateIsNotNeeded_shouldDismissAddReviewModal' time='0.001'/>
     <testcase classname='Feature_ProductsTests.ProductDetailsReducerTests' name='test_loadData_whenAPIFails_shouldPresentAPIError' time='0.001'/>
-    <testcase classname='Feature_ProductsTests.ProductDetailsReducerTests' name='test_loadData_whenBothAPISucceeds_itShouldSetProductInfo_loadImage_andThenLoadReviews' time='0.002'/>
+    <testcase classname='Feature_ProductsTests.ProductDetailsReducerTests' name='test_loadData_whenBothAPISucceeds_itShouldSetProductInfo_loadImage_andThenLoadReviews' time='0.003'/>
     <testcase classname='Feature_ProductsTests.ProductDetailsReducerTests' name='test_showAddReviewModal_shouldSetIsAddReviewModalShown' time='0.001'/>
   </testsuite>
   <testsuite name='Feature_ProductsTests.ProductDetailsViewBuilderTests' tests='1' failures='0'>
     <testcase classname='Feature_ProductsTests.ProductDetailsViewBuilderTests' name='test_build_shouldResolveAllEnvironmentDependenciesWithContainer' time='0.001'/>
   </testsuite>
   <testsuite name='Feature_ProductsTests.ProductDetailsViewTests' tests='4' failures='0'>
-    <testcase classname='Feature_ProductsTests.ProductDetailsViewTests' name='test_snapshot_apiError' time='0.072'/>
-    <testcase classname='Feature_ProductsTests.ProductDetailsViewTests' name='test_snapshot_emptyAPIResponse' time='0.047'/>
+    <testcase classname='Feature_ProductsTests.ProductDetailsViewTests' name='test_snapshot_apiError' time='0.073'/>
+    <testcase classname='Feature_ProductsTests.ProductDetailsViewTests' name='test_snapshot_emptyAPIResponse' time='0.050'/>
     <testcase classname='Feature_ProductsTests.ProductDetailsViewTests' name='test_snapshot_list' time='0.091'/>
-    <testcase classname='Feature_ProductsTests.ProductDetailsViewTests' name='test_snapshot_loading' time='0.043'/>
+    <testcase classname='Feature_ProductsTests.ProductDetailsViewTests' name='test_snapshot_loading' time='0.046'/>
   </testsuite>
   <testsuite name='Feature_ProductsTests.ProductsListReducerTests' tests='5' failures='0'>
     <testcase classname='Feature_ProductsTests.ProductsListReducerTests' name='test_filterProductsByTerm_whenTermIsValid_shouldPresentOnlyFilteredProductRows' time='0.002'/>
-    <testcase classname='Feature_ProductsTests.ProductsListReducerTests' name='test_loadData_whenAPIFails_shouldPresentAPIError' time='0.001'/>
+    <testcase classname='Feature_ProductsTests.ProductsListReducerTests' name='test_loadData_whenAPIFails_shouldPresentAPIError' time='0.002'/>
     <testcase classname='Feature_ProductsTests.ProductsListReducerTests' name='test_loadData_whenAPISucceeds_itShouldSetProductRowsAndLoadProductImages' time='0.002'/>
     <testcase classname='Feature_ProductsTests.ProductsListReducerTests' name='test_updateSearchTerm_whenInputHasLessThan3Letters_itShoulUpdateTheStateAndShowFilteringView' time='0.001'/>
     <testcase classname='Feature_ProductsTests.ProductsListReducerTests' name='test_updateSearchTerm_whenInputHasMoreThan3LettersAndProductRowsIsEmpty_itShouldShowNoProductsWereFound' time='0.001'/>
   </testsuite>
   <testsuite name='Feature_ProductsTests.ProductsListViewTests' tests='6' failures='0'>
-    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_apiError' time='0.082'/>
-    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_emptyAPIResponse' time='0.062'/>
-    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_emptyFilterResults' time='0.070'/>
-    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_filtering' time='0.059'/>
-    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_list' time='0.083'/>
-    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_loading' time='0.057'/>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_apiError' time='0.083'/>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_emptyAPIResponse' time='0.064'/>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_emptyFilterResults' time='0.072'/>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_filtering' time='0.063'/>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_list' time='0.088'/>
+    <testcase classname='Feature_ProductsTests.ProductsListViewTests' name='test_snapshot_loading' time='0.059'/>
   </testsuite>
   <testsuite name='FoundationKitTests.CoreFoundationTestDummy' tests='1' failures='0'>
-    <testcase classname='FoundationKitTests.CoreFoundationTestDummy' name='test_this' time='0.002'/>
+    <testcase classname='FoundationKitTests.CoreFoundationTestDummy' name='test_this' time='0.003'/>
   </testsuite>
-  <testsuite name='NetworkingTests.NetworkingTests' tests='1' failures='0'>
-    <testcase classname='NetworkingTests.NetworkingTests' name='testExample' time='0.003'/>
+  <testsuite name='NetworkingTests.URLRequestMapperTests' tests='5' failures='0'>
+    <testcase classname='NetworkingTests.URLRequestMapperTests' name='test_mapToURLRequest_whenAllParametersAreProvided_itShouldSetTheValuesCorrectly' time='0.014'/>
+    <testcase classname='NetworkingTests.URLRequestMapperTests' name='test_mapToURLRequest_whenBodyParametersIsNotProvided_itShouldSetTheValuesCorrectly' time='0.002'/>
+    <testcase classname='NetworkingTests.URLRequestMapperTests' name='test_mapToURLRequest_whenHeadersNotProvided_itShouldSetTheValuesCorrectly' time='0.002'/>
+    <testcase classname='NetworkingTests.URLRequestMapperTests' name='test_mapToURLRequest_whenMinimumParametersAreProvided_itShouldSetTheValuesCorrectly' time='0.002'/>
+    <testcase classname='NetworkingTests.URLRequestMapperTests' name='test_mapToURLRequest_whenPathIsNotProvided_itShouldSetTheValuesCorrectly' time='0.002'/>
   </testsuite>
   <testsuite name='RepositoryTests.RepositoryTests' tests='1' failures='0'>
     <testcase classname='RepositoryTests.RepositoryTests' name='testExample' time='0.003'/>
   </testsuite>
   <testsuite name='AppTests.AppTests' tests='2' failures='0'>
-    <testcase classname='AppTests.AppTests' name='testExample' time='0.002'/>
-    <testcase classname='AppTests.AppTests' name='testPerformanceExample' time='0.267'/>
+    <testcase classname='AppTests.AppTests' name='testExample' time='0.001'/>
+    <testcase classname='AppTests.AppTests' name='testPerformanceExample' time='0.263'/>
   </testsuite>
 </testsuites>

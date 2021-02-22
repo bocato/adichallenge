@@ -1,13 +1,5 @@
 import Foundation
 
-/// Provides the base URL's for especific endpoints
-public protocol BaseURLProviding {
-    func baseURL<Endpoint>(
-        for endpoint: Endpoint,
-        environment: APIEnvironmentIdentifier
-    ) -> URL?
-}
-
 /// Provides an interface for the services enviroment properties
 public protocol APIEnvironmentProvider {
     /// Defines the current enviroment

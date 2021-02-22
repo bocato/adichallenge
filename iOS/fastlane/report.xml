@@ -5,22 +5,22 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000349">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000324">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: scan" time="56.936757">
+      <testcase classname="fastlane.lanes" name="1: scan" time="58.925848">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: xcov" time="9.507963">
+      <testcase classname="fastlane.lanes" name="2: xcov" time="8.975398">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: open ../xcov_report/index.html" time="0.116207">
+      <testcase classname="fastlane.lanes" name="3: open ../xcov_report/index.html" time="0.134424">
         
       </testcase>
     

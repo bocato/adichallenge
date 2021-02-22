@@ -94,8 +94,11 @@ let package = Package(
         .testTarget(
             name: "NetworkingTests",
             dependencies: [
+                // Internal Dependencies
                 "NetworkingInterface",
                 "Networking",
+                // Third Party Dependencies
+                "SnapshotTesting",
             ]
         ),
 
